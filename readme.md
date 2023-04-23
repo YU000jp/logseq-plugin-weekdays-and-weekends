@@ -65,6 +65,10 @@
 - Select marketplace
 - Type 'week' in the search field, select it from the search results and install
 
+## Link
+
+ - [Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+
 ## Other Logseq plugins (My products)
 
 - [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
