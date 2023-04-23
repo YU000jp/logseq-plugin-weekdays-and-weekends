@@ -29,7 +29,7 @@
 
 2. Build templates
   
-- slash command `Create sample for weekdays renderer`
+- Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
 ![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
 
