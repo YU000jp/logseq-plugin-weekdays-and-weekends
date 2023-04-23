@@ -18,6 +18,8 @@
 
 ## Setup
 
+<details><summary>summary</summary>
+
 1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
 
 ```
@@ -35,7 +37,9 @@
 
 3. Edit Template A and B
 
-- Contents of both Template A and Template B is free spaces and open to interpretation by you.
+- Contents of both Template A and Template B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
+
+</details>
 
 ## Questions
 
