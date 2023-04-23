@@ -45,7 +45,7 @@
 
 - As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu.
 
-5. Change to a specific day of the week (Option)
+5. Change to specific days of the week (Option)
  
    Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
    1. Specify days of week in 3 letters like "Sun" and separate them with an "&".
