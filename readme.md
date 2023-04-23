@@ -1,4 +1,4 @@
-# Logseq Plugin: Weekdays and weekends
+# Logseq Plugin: Weekdays and Weekends
 
 - Development stage 👷🚧
 
@@ -7,6 +7,8 @@
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 
 ## Demo
+
+![someautomaticmarkdownlink (9)](https://user-images.githubusercontent.com/111847207/233831285-ee263e62-31e4-4d89-8403-7b6e8ae57dc3.gif)
 
 ## Features
 
@@ -18,10 +20,11 @@
 
 - Press [---] on the top right toolbar to open [Plugins]
 - Select marketplace
-- Type ' ' in the search field, select it from the search results and install
+- Type 'week' in the search field, select it from the search results and install
 
 ## Other Logseq plugins (My products)
 
+- [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
 - [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
 - [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
 - [Panel Coloring](https://github.com/YU000jp/logseq-plugin-panel-coloring)
