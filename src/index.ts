@@ -43,7 +43,7 @@ const main = async () => {
             properties: {
               template: "templateA",
               "template-including-parent": "false",
-              Comment: " [default] Mon,Tue,Wed,Thu,Fri",
+              Comment: " [default] Mon&Tue&Wed&Thu&Fri",
               "background-color": "yellow",
             },
             sibling: true,
@@ -59,7 +59,7 @@ const main = async () => {
               properties: {
                 template: "templateB",
                 "template-including-parent": "false",
-                Comment: " [default] Sat,Sun",
+                Comment: " [default] Sat&Sun",
                 "background-color": "yellow",
               },
               sibling: true,
@@ -77,11 +77,6 @@ const main = async () => {
       }
     }
     processingSlashCommand = false;
-  });
-  logseq.Editor.registerSlashCommand("Add weekdays renderer at Editing cursor", async () => {
-    await logseq.Editor.insertAtEditingCursor(
-      `{{renderer :Weekdays, TemplateC, Sat&Sun}} `
-    );
   });
 
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
