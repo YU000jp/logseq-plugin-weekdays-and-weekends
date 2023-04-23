@@ -1,10 +1,10 @@
-# Logseq Plugin: Template for TypeScript
+# Logseq Plugin: Weekdays and weekends
 
 - Development stage 👷🚧
 
-[![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-template-typescript)](https://github.com/YU000jp/logseq-plugin-template-typescript/releases)
-[![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-template-typescript?color=blue)](https://github.com/YU000jp/logseq-plugin-template-typescript/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-template-typescript/total.svg)](https://github.com/YU000jp/logseq-plugin-template-typescript/releases)
+[![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
+[![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 
 ## Demo
 

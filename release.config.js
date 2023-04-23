@@ -1,5 +1,5 @@
 
-var PLUGIN_NAME = 'logseq-plugin-template-typescript'
+var PLUGIN_NAME = 'logseq-plugin-weekdays-and-weekends'
 
 module.exports = {
     branches: ['main'],
