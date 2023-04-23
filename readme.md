@@ -16,7 +16,7 @@
 
 - When rendering is executed, the template is reflected. Like regular templates, it can also be called manually at any time.
 
-## Setup
+## Setup 🖥️
 
 <details><summary>Summary</summary>
 
@@ -43,14 +43,9 @@
 
 - As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu.
 
-</details>
-
-## Option (Custom)
-
-<details><summary>Summary</summary>
+5. change to a specific day of the week (Option)
  
-1. Open the page that was built. Click on the area to the right of the label to edit the renderer.
- 
+   Open the page that was built. Click on the area to the right of the label to edit the renderer.
    1. Specify days of week in 3 letters like "Sun" and separate them with an "&".
    1. It is possible to replicate renderers, not limited to TemplateA and TemplateB. And manually change the names of TemplateA and TemplateB as they are just names of the templates.
  
