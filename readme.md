@@ -14,13 +14,13 @@
 
 ## Feature
 
- - When rendering is executed, the template is reflected. Like regular templates, it can also be called manually at any time.
+- When rendering is executed, the template is reflected. Like regular templates, it can also be called manually at any time.
 
 ## Setup
 
 1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
 
- ```
+```
  :default-templates
 {:journals "Journal"}
 ```
@@ -29,13 +29,18 @@
 
 2. Build templates
   
-  - slash command `Create sample for weekdays renderer`
+- slash command `Create sample for weekdays renderer`
   
-  ![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
+![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
 
 3. Edit Template A and B
 
-  - Contents of both Template A and Template B is free spaces and open to interpretation by you.
+- Contents of both Template A and Template B is free spaces and open to interpretation by you.
+
+## Questions
+
+- Always turn on this plugin to execute rendering when the journal template is called. For Logseq mobile version, please manually call the template.
+- We cannot create a template specifically for holidays at this time. There is a plan to allow for holiday templates to be set up by excluding holidays, but it will take some time to implement.
 
 ## Install from Marketplace (Coming👷🚧)
 
