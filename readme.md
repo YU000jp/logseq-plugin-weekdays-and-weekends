@@ -1,6 +1,8 @@
 # Logseq Plugin: Weekdays and Weekends
 
-- Development stage 👷🚧
+- Plugin for sorting journal templates into weekdays and weekends.
+
+> Development stage 👷🚧
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
