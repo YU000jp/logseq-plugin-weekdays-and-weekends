@@ -39,6 +39,10 @@
 
 - Contents of both Template A and Template B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
 
+4. Perform check
+
+- As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu.
+
 </details>
 
 ## Option (Custom)
