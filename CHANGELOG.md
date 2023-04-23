@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.0.0...v1.1.0) (2023-04-23)
+
+
+### Features
+
+* Add description to package.json for better maintenance ([d7a8318](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/d7a8318b12b70d88f81f04576015acec011f2bc2))
+
 # 1.0.0 (2023-04-23)
 
 
