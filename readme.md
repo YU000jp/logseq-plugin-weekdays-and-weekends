@@ -18,7 +18,7 @@
 
 ## Setup
 
-<details><summary>summary</summary>
+<details><summary>Summary</summary>
 
 1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
 
@@ -40,6 +40,19 @@
 - Contents of both Template A and Template B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
 
 </details>
+
+## Option (Custom)
+
+<details><summary>Summary</summary>
+ 
+1. Open the page that was built. Click on the area to the right of the label to edit the renderer.
+ 
+   1. Specify days of week in 3 letters like "Sun" and separate them with an "&".
+   1. It is possible to replicate renderers, not limited to TemplateA and TemplateB. And manually change the names of TemplateA and TemplateB as they are just names of the templates.
+ 
+ ![someautomaticmarkdownlink (12)](https://user-images.githubusercontent.com/111847207/233835850-e9cebb43-fc8a-4a9e-a13d-5a32dd06f38f.gif)
+ 
+ </details>
 
 ## Questions
 
