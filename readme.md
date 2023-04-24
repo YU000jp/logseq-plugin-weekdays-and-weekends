@@ -22,21 +22,21 @@
 
 1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
 
-```
+```text
  :default-templates
 {:journals "Journal"}
 ```
 
 ![image](https://user-images.githubusercontent.com/111847207/233831919-33624f5f-2012-4df7-ab1d-d5f4e0f3cd1a.png)
  > Be found around the 20th line.
- 
+
 2. Build templates
-  
+
 - Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
 ![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
 > In the sample, both TemplateA and TemplateB will be created.
- 
+
 3. Edit Template A and B
 
 - Contents of both Template A and Template B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
@@ -46,14 +46,14 @@
 - As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu.
 
 5. Change to specific days of the week (Option)
- 
+
    Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
    1. Specify days of week in 3 letters like "Sun" and separate them with an "&".
    1. It is possible to replicate renderers, not limited to TemplateA and TemplateB. And manually change the names of TemplateA and TemplateB as they are just names of the templates.
- 
+
  ![someautomaticmarkdownlink (12)](https://user-images.githubusercontent.com/111847207/233835850-e9cebb43-fc8a-4a9e-a13d-5a32dd06f38f.gif)
- 
- </details>
+
+</details>
 
 ## Questions
 
@@ -68,7 +68,7 @@
 
 ## Link
 
- - [Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+- [Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
 ## Other Logseq plugins (My products)
 
