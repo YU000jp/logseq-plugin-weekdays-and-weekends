@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.1.0...v1.1.1) (2023-04-24)
+
+
+### Bug Fixes
+
+* improve rendering behavior ([931a891](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/931a891309c309be23f03cf4726bcd693824e81e))
+
 # [1.1.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.0.0...v1.1.0) (2023-04-23)
 
 
