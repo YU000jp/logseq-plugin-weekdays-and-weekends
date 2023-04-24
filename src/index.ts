@@ -32,7 +32,7 @@ const main = async () => {
         sibling: false,
       });
       if (templateBlock) {
-        const rendererBlock = await logseq.Editor.insertBlock(templateBlock.uuid, "{{renderer :Weekdays, templateA, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, templateB, Sat&Sun}} ", {
+        const rendererBlock = await logseq.Editor.insertBlock(templateBlock.uuid, "{{renderer :Weekdays, Template-A, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Template-B, Sat&Sun}} ", {
           sibling: false,
         });
         if (rendererBlock) {
@@ -41,7 +41,7 @@ const main = async () => {
           });
           const templateA = await logseq.Editor.insertBlock(templateBlock.uuid, "#### Template A", {
             properties: {
-              template: "templateA",
+              template: "Template-A",
               "template-including-parent": "false",
               Comment: " [default] Mon&Tue&Wed&Thu&Fri",
               "background-color": "yellow",
@@ -57,7 +57,7 @@ const main = async () => {
             }
             const templateB = await logseq.Editor.insertBlock(templateA.uuid, "#### Template B", {
               properties: {
-                template: "templateB",
+                template: "Template-B",
                 "template-including-parent": "false",
                 Comment: " [default] Sat&Sun",
                 "background-color": "yellow",
@@ -84,7 +84,11 @@ const main = async () => {
     if (type !== ":Weekdays" || !template || !selectWeekday) {
       return;
     }
-    if ((await checkTemplate(payload.uuid))) {
+    const check = await checkJournals();
+    if (check === true) {//ジャーナルだったらレンダリング実行
+      await logseq.Editor.updateBlock(payload.uuid, "");//remove renderer
+      await insertTemplateBlock(payload.uuid, template, selectWeekday);
+    } else {//そうでなかったら、レンダリングしない
       logseq.provideUI({
         key: `${slot}`,
         reset: true,
@@ -100,9 +104,6 @@ const main = async () => {
           borderRadius: "5px",
         }
       });
-    } else {
-      await logseq.Editor.updateBlock(payload.uuid, "");//remove renderer
-      await insertTemplateBlock(payload.uuid, template, selectWeekday);
     }
   });
 
@@ -120,9 +121,9 @@ const main = async () => {
     };
     const dayArray = selectWeekday.split("&"); // ["Sun", "Sat"]
     const dayNumbers = dayArray.map(day => days[day]); // [0, 6]
-    const today = new Date();
-    const todayNumber = today.getDay(); // 0-6
-    if (!dayNumbers.includes(todayNumber)) {
+    const theDay = new Date();//その日の日付で確認する(バグにならないか TODO:)
+    const theDayNumber = theDay.getDay(); // 0-6
+    if (!dayNumbers.includes(theDayNumber)) {
       return;
     } //一致しない場合は終了
 
@@ -133,9 +134,8 @@ const main = async () => {
       [(= "${template}" ?ty)]]`;
     const ret = await logseq.DB.datascriptQuery(query);
     const results = ret?.flat();
-    let Block;
     if (results && results.length > 0) {
-      Block = await logseq.Editor.getBlock(results[0].uuid, {
+      const Block = await logseq.Editor.getBlock(results[0].uuid, {
         includeChildren: true,
       });
       if (Block) {
@@ -189,21 +189,18 @@ async function templateBlank(uuid, amPm) {
 
 
 
-async function checkTemplate(uuid) {
-  //Credits to Alex for this implementation https://github.com/QWxleA
-  //is block(uuid) on a template?
+async function checkJournals() {
   try {
-    const block = await logseq.Editor.getBlock(uuid);
-    if (block) {
-      const checkTPL = block.properties?.template != undefined ? true : false;
-      const checkPRT = block.parent != null && block.parent.id !== block.page.id ? true : false;
-      if (checkTPL === false && checkPRT === false) { return false; }
-      if (checkTPL === true) { return true; }
-      return await checkTemplate(block.parent.id);
+    const page = await logseq.Editor.getCurrentPage();
+    if (page) {
+      return false;
+    } else {
+      return true;//Journalsの場合はnull
     }
   } catch (error) {
     console.log(error);
   }
+
 }
 
 
