@@ -16,6 +16,11 @@ const main = async () => {
   let processingSlashCommand = false;
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async (e) => {
     if (processingSlashCommand) { return; }
+    const check = await checkJournals();//ジャーナルでは許可しない
+    if (check === true) {
+      logseq.UI.showMsg("This is journal page. ","error");
+    return;
+    }
     processingSlashCommand = true;
     const titleBlock = await logseq.Editor.insertBlock(e.uuid, "### Weekdays and Weekends", {
       sibling: true,
@@ -121,7 +126,7 @@ const main = async () => {
     };
     const dayArray = selectWeekday.split("&"); // ["Sun", "Sat"]
     const dayNumbers = dayArray.map(day => days[day]); // [0, 6]
-    const theDay = new Date();//その日の日付で確認する(バグにならないか TODO:)
+    const theDay = new Date();//その日の日付
     const theDayNumber = theDay.getDay(); // 0-6
     if (!dayNumbers.includes(theDayNumber)) {
       return;
@@ -190,17 +195,12 @@ async function templateBlank(uuid, amPm) {
 
 
 async function checkJournals() {
-  try {
     const page = await logseq.Editor.getCurrentPage();
     if (page) {
       return false;
     } else {
       return true;//Journalsの場合はnull
     }
-  } catch (error) {
-    console.log(error);
-  }
-
 }
 
 
