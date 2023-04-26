@@ -18,8 +18,8 @@ const main = async () => {
     if (processingSlashCommand) { return; }
     const check = await checkJournals();//ジャーナルでは許可しない
     if (check === true) {
-      logseq.UI.showMsg("This is journal page. ","error");
-    return;
+      logseq.UI.showMsg("This is journal page. ", "error");
+      return;
     }
     processingSlashCommand = true;
     const titleBlock = await logseq.Editor.insertBlock(e.uuid, "### Weekdays and Weekends", {
@@ -115,22 +115,25 @@ const main = async () => {
 
   async function insertTemplateBlock(blockUuid, template, selectWeekday) {
     //TODO: holiday
-    const days = {
-      Sun: 0,
-      Mon: 1,
-      Tue: 2,
-      Wed: 3,
-      Thu: 4,
-      Fri: 5,
-      Sat: 6,
-    };
-    const dayArray = selectWeekday.split("&"); // ["Sun", "Sat"]
-    const dayNumbers = dayArray.map(day => days[day]); // [0, 6]
-    const theDay = new Date();//その日の日付
-    const theDayNumber = theDay.getDay(); // 0-6
-    if (!dayNumbers.includes(theDayNumber)) {
-      return;
-    } //一致しない場合は終了
+    if (selectWeekday !== "ALL") {
+      //曜日指定=ALL以外
+      const days = {
+        Sun: 0,
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6,
+      };
+      const dayArray = selectWeekday.split("&"); // ["Sun", "Sat"]
+      const dayNumbers = dayArray.map(day => days[day]); // [0, 6]
+      const theDay = new Date();//その日の日付
+      const theDayNumber = theDay.getDay(); // 0-6
+      if (!dayNumbers.includes(theDayNumber)) {
+        return;
+      } //一致しない場合は終了
+    }
 
     const query = `[:find (pull ?b [*])
       :where
@@ -195,12 +198,12 @@ async function templateBlank(uuid, amPm) {
 
 
 async function checkJournals() {
-    const page = await logseq.Editor.getCurrentPage();
-    if (page) {
-      return false;
-    } else {
-      return true;//Journalsの場合はnull
-    }
+  const page = await logseq.Editor.getCurrentPage();
+  if (page) {
+    return false;
+  } else {
+    return true;//Journalsの場合はnull
+  }
 }
 
 
