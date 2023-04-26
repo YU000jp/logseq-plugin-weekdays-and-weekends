@@ -1,6 +1,19 @@
 # [1.2.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.1.1...v1.2.0) (2023-04-26)
 
 
+### Bug Fixes
+
+* delete Edit link ([41e624d](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/41e624d06d84fe72886e87e6099b43c3d9430a65))
+
+
+### Features
+
+* Add selected day of the week "All" ([3deaaa7](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/3deaaa78874866f0968d8623fa919b1954e800e9))
+* Disable execution of slash command on journal page ([1ce103f](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/1ce103f9f262eeca37c701ae2f1bfc8af1ba3c26))
+
+# [1.2.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.1.1...v1.2.0) (2023-04-26)
+
+
 ### Features
 
 * Add selected day of the week "All" ([3deaaa7](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/3deaaa78874866f0968d8623fa919b1954e800e9))
