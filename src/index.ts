@@ -58,7 +58,6 @@ const main = async () => {
             if (weekdays) {
               await templateBlank(weekdays.uuid, "AM");
               await templateBlank(weekdays.uuid, "PM");
-              await logseq.Editor.insertBlock(templateA.uuid, `##### [Edit](${templateA.uuid})`, { sibling: false, });
             }
             const templateB = await logseq.Editor.insertBlock(templateA.uuid, "#### Template B", {
               properties: {
@@ -74,7 +73,6 @@ const main = async () => {
               if (weekends) {
                 await templateBlank(weekends.uuid, "AM");
                 await templateBlank(weekends.uuid, "PM");
-                await logseq.Editor.insertBlock(templateB.uuid, `##### [Edit](${templateB.uuid})`, { sibling: false, });
               }
             }
           }
