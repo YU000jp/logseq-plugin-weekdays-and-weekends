@@ -12,9 +12,9 @@
 
 ![someautomaticmarkdownlink (9)](https://user-images.githubusercontent.com/111847207/233831285-ee263e62-31e4-4d89-8403-7b6e8ae57dc3.gif)
 
-## Feature
+## Function
 
-- When rendering is executed, the template is reflected. Like regular templates, it can also be called manually at any time.
+- On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
 ## Setup 🖥️
 
