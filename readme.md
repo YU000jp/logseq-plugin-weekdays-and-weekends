@@ -1,4 +1,4 @@
-# Logseq Plugin: Weekdays and Weekends
+# Logseq Plugin: Weekdays and Weekends (Templates)
 
 - Plugin for switching journal templates for weekdays and weekends.
 
@@ -48,7 +48,7 @@
 5. Change to specific days of the week (Option)
 
    Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
-   1. Specify days of week in 3 letters like "Sun" and separate them with an "&".
+   1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
    1. It is possible to replicate renderers, not limited to TemplateA and TemplateB. And manually change the names of TemplateA and TemplateB as they are just names of the templates.
 
  ![someautomaticmarkdownlink (12)](https://user-images.githubusercontent.com/111847207/233835850-e9cebb43-fc8a-4a9e-a13d-5a32dd06f38f.gif)
