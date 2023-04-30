@@ -93,6 +93,7 @@
 
 ### Logseq Plugin
 
+Not Support - **TODO:**
 - [stdword/ Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
 - [hkgnp/ powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
 - [sawhney17/ SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
