@@ -35,11 +35,11 @@
 - Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
 ![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
-> In the sample, both TemplateA and TemplateB will be created.
+> In the sample, both Template-A and Template-B will be created.
 
 3. Edit Template A and B
 
-- Contents of both Template A and Template B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
+- Contents of both Template-A and Template-B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
 
 4. Perform check
 
@@ -49,7 +49,7 @@
 
    Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
    1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
-   1. It is possible to replicate renderers, not limited to TemplateA and TemplateB. And manually change the names of TemplateA and TemplateB as they are just names of the templates.
+   1. It is possible to replicate renderers, not limited to Template-A and Template-B. And manually change the names of Template-A and Template-B as they are just names of the templates. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
 
  ![someautomaticmarkdownlink (12)](https://user-images.githubusercontent.com/111847207/233835850-e9cebb43-fc8a-4a9e-a13d-5a32dd06f38f.gif)
 
@@ -59,6 +59,10 @@
 
 - Always turn on this plugin to execute rendering when the journal template is called. For Logseq mobile version, please manually call the template.
 - We cannot create a template specifically for holidays at this time. There is a plan to allow for holiday templates to be set up by excluding holidays, but it will take some time to implement. I'm sure that by then, the name of this plugin will have changed to holidays, jokingly of course.☺️
+
+## Plugin Changes Due to @logseq/libs Upgrade
+
+- This plugin utilizes the @logseq/libs plugin API library. Due to the recent release of the latest version of the library, v0.0.15, breaking changes may be implemented in this plugin. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
 ## Install from Marketplace (Coming👷🚧)
 
