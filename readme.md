@@ -61,7 +61,7 @@
 - We cannot create a template specifically for holidays at this time. There is a plan to allow for holiday templates to be set up by excluding holidays, but it will take some time to implement. I'm sure that by then, the name of this plugin will have changed to holidays, jokingly of course.☺️
 - At the moment, integration with existing plugins such as smart-blocks is not possible. We plan to address this in future updates.
 
-## Plugin Changes Due to @logseq/libs Upgrade
+## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished)
 
 - This plugin utilizes the @logseq/libs plugin API library. Due to the recent release of the latest version of the library, v0.0.15, breaking changes may be implemented in this plugin. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
@@ -89,7 +89,7 @@
 
 ### Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/)
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.14
 
 ### Logseq Plugin
 
