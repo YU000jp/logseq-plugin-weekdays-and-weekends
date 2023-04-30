@@ -7,27 +7,21 @@ let renderingOnChanged = false; //rendering OnChanged flag
 const main = () => {
 
   //get theme color (For SweetAlert2)
-  //color: sweetAlert2color
-  //background: sweetAlert2background
-  //別途、checkboxなどはCSSで上書きする必要あり
-    let sweetAlert2background = "#ffffff";
-    let sweetAlert2color = "#000000";
+  //checkboxなどはCSSで上書きする必要あり
+  let sweetAlert2background;  //color: sweetAlert2color
+  let sweetAlert2color; //background: sweetAlert2background
+  const rootThemeColor = () => {
     const root = parent.document.querySelector(":root");
     if (root) {
       const rootStyles = getComputedStyle(root);
-      sweetAlert2background = rootStyles.getPropertyValue("--ls-block-properties-background-color");
-      sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color");
+      sweetAlert2background = rootStyles.getPropertyValue("--ls-block-properties-background-color") || "#ffffff";
+      sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color") || "#000000";
     }
+  };
+  rootThemeColor();
+  logseq.App.onThemeModeChanged(() => { rootThemeColor(); });
+  //end
 
-    logseq.App.onThemeModeChanged(() => {
-      const root = parent.document.querySelector(":root");
-      if (root) {
-        const rootStyles = getComputedStyle(root);
-        sweetAlert2background = rootStyles.getPropertyValue("--ls-block-properties-background-color");
-        sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color");
-      }
-    });
-    
 
   /* user setting */
   // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
@@ -165,77 +159,77 @@ const main = () => {
         //switchMainTemplateName
         //switchSubTemplateName
         //switchAlertDay
-          if (logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) {
-            if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
-              //アラート日の場合
-              //dialog
-              const subTemplateName = logseq.settings?.switchSubTemplateName;
-              logseq.showMainUI();
-              /* inputOptions can be an object or Promise */
-              await Swal.fire({
-                icon: 'question',
-                input: 'radio',
-                inputOptions: {
-                  main: template,
-                  sub: subTemplateName,
-                },
-                color: sweetAlert2color,
-                background: sweetAlert2background,
-                allowOutsideClick: false,
-                allowEscapeKey: false,
-                allowEnterKey: false,
-                html: `<p>Select Main/Sub Template for this week</p>
+        if (logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) {
+          if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
+            //アラート日の場合
+            //dialog
+            const subTemplateName = logseq.settings?.switchSubTemplateName;
+            logseq.showMainUI();
+            /* inputOptions can be an object or Promise */
+            await Swal.fire({
+              icon: 'question',
+              input: 'radio',
+              inputOptions: {
+                main: template,
+                sub: subTemplateName,
+              },
+              color: sweetAlert2color,
+              background: sweetAlert2background,
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+              allowEnterKey: false,
+              html: `<p>Select Main/Sub Template for this week</p>
               <style>
                 div.swal2-container div.swal2-radio {
                   color: unset;
                   background: unset;
                 }
               </style>`,
-              }).then(async (select) => {
-                if (select) {
-                  if (select.value) {
-                    let selectTemplate = template; //main
-                    if (select.value === "sub") { //sub
-                      selectTemplate = subTemplateName;
-                      logseq.updateSettings({ switchSetTemplate: subTemplateName });
-                    }
-                    insertTemplateDialog(selectTemplate, false);
-                    await insertTemplateBlock(payload.uuid, selectTemplate);
-                    logseq.updateSettings({ switchSetTemplate: selectTemplate }); //選択したテンプレートを設定項目へセット
-                  } else {
-                    logseq.UI.showMsg("Cancel", "warning");
+            }).then(async (select) => {
+              if (select) {
+                if (select.value) {
+                  let selectTemplate = template; //main
+                  if (select.value === "sub") { //sub
+                    selectTemplate = subTemplateName;
+                    logseq.updateSettings({ switchSetTemplate: subTemplateName });
                   }
+                  insertTemplateDialog(selectTemplate, false);
+                  await insertTemplateBlock(payload.uuid, selectTemplate);
+                  logseq.updateSettings({ switchSetTemplate: selectTemplate }); //選択したテンプレートを設定項目へセット
+                } else {
+                  logseq.UI.showMsg("Cancel", "warning");
                 }
-              }).finally(() => {
-                logseq.hideMainUI();
-              });
-              setTimeout(() => {
-                rendering = "";
-              }, 1000);
-              return;
-            } else {
-              let setTemplate;
-              if (logseq.settings?.switchSetTemplate) {
-                setTemplate = logseq.settings?.switchSetTemplate;
-              } else {
-                setTemplate = template;
               }
-              //セットされたテンプレートを挿入
-              insertTemplateDialog(setTemplate, true);
-              await insertTemplateBlock(payload.uuid, setTemplate);
-              setTimeout(() => {
-                rendering = "";
-              }, 1000);
-              return;
+            }).finally(() => {
+              logseq.hideMainUI();
+            });
+            setTimeout(() => {
+              rendering = "";
+            }, 1000);
+            return;
+          } else {
+            let setTemplate;
+            if (logseq.settings?.switchSetTemplate) {
+              setTemplate = logseq.settings?.switchSetTemplate;
+            } else {
+              setTemplate = template;
             }
-          } else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
-            insertTemplateDialog(template, true);
-            await insertTemplateBlock(payload.uuid, template);
+            //セットされたテンプレートを挿入
+            insertTemplateDialog(setTemplate, true);
+            await insertTemplateBlock(payload.uuid, setTemplate);
             setTimeout(() => {
               rendering = "";
             }, 1000);
             return;
           }
+        } else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
+          insertTemplateDialog(template, true);
+          await insertTemplateBlock(payload.uuid, template);
+          setTimeout(() => {
+            rendering = "";
+          }, 1000);
+          return;
+        }
       }
 
       await logseq.provideUI({
