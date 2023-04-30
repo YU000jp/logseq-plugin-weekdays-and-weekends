@@ -1,35 +1,10 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { IBatchBlock, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
-let renderingOnChanged = false; //rendering OnChanged flag
 import Swal from 'sweetalert2'; //https://sweetalert2.github.io/
+let renderingOnChanged = false; //rendering OnChanged flag
 
 /* main */
-const main = async (checkDemo) => {
-
-
-  //check demo graph
-  if (!checkDemo) {
-    //check current graph
-    let demo: boolean = false;
-    logseq.App.getCurrentGraph().then((graph) => {
-      if (!graph) {//デモグラフの場合は返り値がnull
-        demo = true;
-      }
-    });
-    if (demo !== false) {
-      //graph changed
-      logseq.App.onCurrentGraphChanged(() => {
-        logseq.App.getCurrentGraph().then((graph) => {
-          if (graph) { //デモグラフの場合は返り値がnull
-            main(true);
-          }
-        });
-      });
-      return;
-    }
-  }
-  //end
-
+const main = () => {
 
   //get theme color (For SweetAlert2)
   //color: sweetAlert2color
@@ -52,8 +27,7 @@ const main = async (checkDemo) => {
         sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color");
       }
     });
-
-
+    
 
   /* user setting */
   // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
