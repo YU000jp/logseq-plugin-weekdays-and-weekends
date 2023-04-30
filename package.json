@@ -20,7 +20,8 @@
         "prod": "npm run clean && vite build"
     },
     "dependencies": {
-        "@logseq/libs": "^0.0.14"
+        "@logseq/libs": "^0.0.14",
+        "sweetalert2": "^11.7.3"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",
