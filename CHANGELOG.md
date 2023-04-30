@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.2.0...v1.3.0) (2023-04-30)
+
+
+### Features
+
+* **add:** switch Main/Sub templates ([eb8b37d](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/eb8b37d286c7970d055bc45f9dd61600f32b9b6a))
+
 # [1.2.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.1.1...v1.2.0) (2023-04-26)
 
 
