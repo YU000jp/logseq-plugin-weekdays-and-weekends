@@ -63,7 +63,7 @@
 
 ## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished)
 
-- This plugin utilizes the @logseq/libs plugin API library. Due to the recent release of the latest version of the library, v0.0.15, breaking changes may be implemented in this plugin. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
+- This plugin utilizes the @logseq/libs plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
 ## Install from Marketplace (Coming👷🚧)
 
