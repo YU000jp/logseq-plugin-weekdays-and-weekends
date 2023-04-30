@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.3.0...v1.3.1) (2023-04-30)
+
+
+### Bug Fixes
+
+* delete check demo graph ([bb072f3](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/bb072f3741edcac55ec09a34c9388f8a3b26c01d))
+
 # [1.3.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.2.0...v1.3.0) (2023-04-30)
 
 
