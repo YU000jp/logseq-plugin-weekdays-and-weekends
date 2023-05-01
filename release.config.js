@@ -1,5 +1,5 @@
 
-var PLUGIN_NAME = 'logseq-plugin-weekdays-and-weekends'
+var PLUGIN_NAME = 'logseq-plugin-weekdays-and-holidays'
 
 module.exports = {
     branches: ['main'],
