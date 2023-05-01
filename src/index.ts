@@ -166,7 +166,7 @@ const main = () => {
           const settingsCountry = logseq.settings?.switchHolidaysCountry
           const array = settingsCountry.split(":");
           hd.init(array[0], logseq.settings?.switchHolidaysState, logseq.settings?.switchHolidaysRegion);
-          const checkHoliday = await hd.isHoliday(new Date("2023/05/03")); //TODO:
+          const checkHoliday = await hd.isHoliday(new Date());
           if (checkHoliday) {
             isHoliday = checkHoliday[0].name;
           }
