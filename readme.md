@@ -59,6 +59,7 @@
 
 - Always turn on this plugin for execute rendering when journal template is called. For Logseq mobile version, please manually call the template.
 - At the moment, integration with existing plugins such as smart-blocks is not possible. We plan to address this in future updates.
+- For those who live every day like a holiday, this plugin may not be necessary.🤣
 
 ## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished)
 
