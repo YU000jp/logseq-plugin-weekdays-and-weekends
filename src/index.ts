@@ -297,11 +297,9 @@ const main = () => {
 
     await logseq.Editor.updateBlock(blockUuid, "");//remove renderer block
 
-    //TODO: holiday
-    //テンプレートを取得する
-
     // @logseq/lib v0.0.15(未公開) TODO:
-    // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する (README.mdを書き換える TODO:)
+    // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
+    // (導入後、README.mdを書き換える TODO:)
     //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
 
     //insertTemplate: (target: BlockUUID, name: string) => Promise<any>
