@@ -319,9 +319,9 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchMainSub",
-      title: "Switch on",
+      title: "Turn on",
       type: "boolean",
-      description: "",
+      description: "On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.",
       default: false,
     },
     {
