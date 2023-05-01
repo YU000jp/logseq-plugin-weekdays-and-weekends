@@ -10,7 +10,7 @@
 
 ## Demo
 
-![someautomaticmarkdownlink (13)](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
+![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
 
 ## Function
 
@@ -18,10 +18,11 @@
 
 Offer four templates:
 
-1. Weekdays templates (possible to specify conditions using multiple templates and change days of a week)
-1. Main/Sub templates
-1. weekends template
-1. Public holiday template
+1. Weekdays templates `Main-Template`
+(possible to specify conditions using multiple templates and change days of a week)
+1. Main/Sub templates `Sub-Template`
+1. weekends template `Weekends-Template`
+1. Public holiday template `Holidays-Template`
 
 ## Setup 🖥️
 
@@ -30,17 +31,19 @@ Offer four templates:
 1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
 
 ```text
- :default-templates
+:default-templates
 {:journals "Journal"}
 ```
 
-![スクリーンショット 2023-05-01 225619](https://user-images.githubusercontent.com/111847207/235462277-dd42adda-713c-4d21-abb6-5c25e585ab2c.png)
- > Be found around the 20th line.
+![image](https://user-images.githubusercontent.com/111847207/235462277-dd42adda-713c-4d21-abb6-5c25e585ab2c.png)
+> Be found around the 20th line.
 
 2. Build templates
 
-- Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
-  
+- Open templates page or any. Execute a slash command.
+
+`Create sample for weekdays renderer`
+
 ![image](https://user-images.githubusercontent.com/111847207/235462948-8a18ad6e-c0e1-4839-a7b2-a4b436cfc6b3.png)
 > In the sample, 4 templates be created.
 
@@ -54,18 +57,24 @@ Offer four templates:
 
 5. Change to specific days of the week (Option)
 
-   Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
-   1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
-   1. It is possible to replicate renderers, not limited to Template-A and Template-B. And manually change the names of Template-A and Template-B as they are just names of the templates. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
+Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
 
- ![someautomaticmarkdownlink (14)](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
+1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
+1. It is possible to replicate renderers, not limited to Main-Template and Weekends-Template. And manually change the names of 4 templates as they are just names of the templates. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
 
- 6. Open plugin settings
- 
-- By default, two options are turned off.
- 
+![image](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
+
+6. Open plugin settings
+
+- By default, 2 options are turned off.
+
+2 Options:
+
+1. Switch to Sub-Template for a week
+1. Switch to Holidays-Template
+
 ![image](https://user-images.githubusercontent.com/111847207/235469056-e5fd49e0-9b3d-4af9-bff9-5eabcd93c399.png)
- 
+
 </details>
 
 ## Questions
@@ -79,7 +88,7 @@ Offer four templates:
 
 - This plugin utilizes the @logseq/libs plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
-## Install from Marketplace (Coming👷🚧)
+## Install from Logseq Marketplace (Coming👷🚧)
 
 - Press [---] on the top right toolbar to open [Plugins]
 - Select marketplace
@@ -87,7 +96,7 @@ Offer four templates:
 
 ## Link
 
-- [Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+- [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
 ## Other Logseq plugins (My products)
 
@@ -110,9 +119,10 @@ Offer four templates:
 ### Logseq Plugin
 
 Not Support - **TODO:**
-- [stdword/ Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
-- [hkgnp/ powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
-- [sawhney17/ SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
+
+- [stdword / Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
+- [hkgnp / powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
+- [sawhney17 / SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
 
 ### Icon
 
