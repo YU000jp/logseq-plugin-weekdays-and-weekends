@@ -43,7 +43,7 @@
 
 4. Perform check
 
-- As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu.
+- As usual, possible to either wait for the date to change or delete the current day's journal. As the current journal page will be deleted, make a copy. To delete it, right-click on the date title and select "Delete" from the context menu.
 
 5. Change to specific days of the week (Option)
 
