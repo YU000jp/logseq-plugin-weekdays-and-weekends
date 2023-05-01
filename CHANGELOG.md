@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.4.0...v1.5.0) (2023-05-01)
+
+
+### Bug Fixes
+
+* **bug:** plugin settings setting title of two parts ([201d6bb](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/201d6bb7e6b87665ab3e764b04104296e5ecafcd))
+
+
+### Features
+
+* **holidays:** add holiday type ([5445436](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/54454368551bbc9f667e9413aad4f4bb3256f9ca))
+
 # [1.4.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.3.1...v1.4.0) (2023-05-01)
 
 
