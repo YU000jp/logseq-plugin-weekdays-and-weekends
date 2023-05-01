@@ -34,7 +34,7 @@
 
 - Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
-![image](https://user-images.githubusercontent.com/111847207/235461564-abd9ef7f-9505-4df6-b5ea-c0ca04a89cc7.png)
+![image](https://user-images.githubusercontent.com/111847207/235462948-8a18ad6e-c0e1-4839-a7b2-a4b436cfc6b3.png)
 > In the sample, 4 templates be created.
 
 3. Edit Templates
