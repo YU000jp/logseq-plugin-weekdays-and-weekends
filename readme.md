@@ -60,7 +60,8 @@ Offer four templates:
 Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
 
 1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
-1. It is possible to replicate renderers, not limited to Main-Template and Weekends-Template. And manually change the names of 4 templates as they are just names of the templates. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
+1. It is possible to replicate renderers, not limited to Main-Template and Weekends-Template. And manually change the names of 4 templates as they are just names of the templates.
+1. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
 
 ![image](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
 
@@ -71,9 +72,9 @@ Open the page that was built. Click on the area to the right of WAITING labels t
 2 Options:
 
 1. Switch to Sub-Template for a week
-On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.
+- On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.
 1. Switch to Holidays-Template
-When renderers is called, prioritize holidays.
+- When renderers is called, prioritize holidays.
 
 ![image](https://user-images.githubusercontent.com/111847207/235536003-a382cf0f-abee-4639-9e83-3410734d3d81.png)
 
