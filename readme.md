@@ -58,7 +58,6 @@
 ## Questions
 
 - Always turn on this plugin for execute rendering when journal template is called. For Logseq mobile version, please manually call the template.
-- We cannot create a template specifically for holidays at this time. There is a plan to allow for holiday templates to be set up by excluding holidays, but it will take some time to implement. I'm sure that by then, the name of this plugin will have changed to holidays, jokingly of course.☺️
 - At the moment, integration with existing plugins such as smart-blocks is not possible. We plan to address this in future updates.
 
 ## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished)
