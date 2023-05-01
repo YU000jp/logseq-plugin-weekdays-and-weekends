@@ -16,7 +16,7 @@
 
 - On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
-Possible to offer four templates:
+Offer four templates:
 
 1. Weekdays templates (possible to specify conditions using multiple templates and change the day of the week)
 1. Main/Sub templates (allowing users to choose which one to use on specific weekdays)
@@ -60,6 +60,12 @@ Possible to offer four templates:
 
  ![someautomaticmarkdownlink (14)](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
 
+ 6. Open plugin settings
+ 
+- By default, two options are turned off.
+ 
+![image](https://user-images.githubusercontent.com/111847207/235469056-e5fd49e0-9b3d-4af9-bff9-5eabcd93c399.png)
+ 
 </details>
 
 ## Questions
