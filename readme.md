@@ -99,8 +99,9 @@ Open the page that was built. Click on the area to the right of `WAITING` labels
 
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
-## Other Logseq plugins (My products)
+## My plugins
 
+- [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
 - [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
 - [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
 - [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
