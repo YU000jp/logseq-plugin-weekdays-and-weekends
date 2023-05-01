@@ -1,6 +1,6 @@
 # Logseq Plugin: Weekdays and Holidays (Templates)
 
-- Plugin for switching journal templates for weekdays and weekends, holidays. Possible to set templates for each day of the week.
+- Plugin for switching journal templates for weekdays and weekends, public holidays. Possible to set templates for each day of the week.
 
 > Development stage 👷🚧
 
