@@ -27,7 +27,7 @@
 {:journals "Journal"}
 ```
 
-![image](https://user-images.githubusercontent.com/111847207/233831919-33624f5f-2012-4df7-ab1d-d5f4e0f3cd1a.png)
+![スクリーンショット 2023-05-01 225619](https://user-images.githubusercontent.com/111847207/235462277-dd42adda-713c-4d21-abb6-5c25e585ab2c.png)
  > Be found around the 20th line.
 
 2. Build templates
