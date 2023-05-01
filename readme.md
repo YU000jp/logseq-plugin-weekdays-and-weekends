@@ -71,7 +71,9 @@ Open the page that was built. Click on the area to the right of WAITING labels t
 2 Options:
 
 1. Switch to Sub-Template for a week
+On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.
 1. Switch to Holidays-Template
+When renderers is called, prioritize holidays.
 
 ![image](https://user-images.githubusercontent.com/111847207/235534909-744bfc44-7aa9-409d-af0d-2ed84a8a78dc.png)
 
@@ -84,7 +86,7 @@ Open the page that was built. Click on the area to the right of WAITING labels t
 - In the current version, standard Dynamic variables are not supported.
 - For those who live every day like a holiday, this plugin may not be necessary.🤣
 
-## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished)
+## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished) TODO:
 
 - This plugin utilizes the @logseq/libs plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
