@@ -62,7 +62,7 @@ Possible to offer four templates:
 
  6. Open plugin settings
  
-- By default, the two options are turned off.
+- By default, two options are turned off.
  
 ![image](https://user-images.githubusercontent.com/111847207/235469056-e5fd49e0-9b3d-4af9-bff9-5eabcd93c399.png)
  
