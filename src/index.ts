@@ -364,7 +364,7 @@ function userSettings(ByLanguage: string) {
       key: "switchHolidays",
       title: "Switch on holidays",
       type: "boolean",
-      description: "",
+      description: "When renderers is called, prioritize holidays.",
       default: false,
     },
     {
@@ -387,14 +387,14 @@ function userSettings(ByLanguage: string) {
       key: "switchHolidaysState",
       title: "Supported states (Match country)",
       type: "string",
-      description: '2-character alphanumeric code or blank (default)',
+      description: '2-character alphanumeric code (ex, NY) or blank (default)',
       default: "",
     },
     {
       key: "switchHolidaysRegion",
       title: "Supported regions (Match country)",
       type: "string",
-      description: '2-character alphanumeric code or blank (default)',
+      description: '2 or 3 character alphanumeric code or blank (default)',
       default: "",
     },
   ];
