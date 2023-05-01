@@ -16,7 +16,7 @@
 
 - On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
-Possible to offer four templates:
+Offer four templates:
 
 1. Weekdays templates (possible to specify conditions using multiple templates and change the day of the week)
 1. Main/Sub templates (allowing users to choose which one to use on specific weekdays)
