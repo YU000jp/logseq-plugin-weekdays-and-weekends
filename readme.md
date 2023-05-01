@@ -34,7 +34,7 @@
 
 - Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
-![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
+![image](https://user-images.githubusercontent.com/111847207/235461564-abd9ef7f-9505-4df6-b5ea-c0ca04a89cc7.png)
 > In the sample, 4 templates be created.
 
 3. Edit Templates
@@ -51,7 +51,7 @@
    1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
    1. It is possible to replicate renderers, not limited to Template-A and Template-B. And manually change the names of Template-A and Template-B as they are just names of the templates. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
 
- ![someautomaticmarkdownlink (12)](https://user-images.githubusercontent.com/111847207/233835850-e9cebb43-fc8a-4a9e-a13d-5a32dd06f38f.gif)
+ ![someautomaticmarkdownlink (14)](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
 
 </details>
 
