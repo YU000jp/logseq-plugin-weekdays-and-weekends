@@ -60,6 +60,12 @@ Possible to offer four templates:
 
  ![someautomaticmarkdownlink (14)](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
 
+ 6. Open plugin settings
+ 
+- By default, the two options are turned off.
+ 
+![image](https://user-images.githubusercontent.com/111847207/235469056-e5fd49e0-9b3d-4af9-bff9-5eabcd93c399.png)
+ 
 </details>
 
 ## Questions
