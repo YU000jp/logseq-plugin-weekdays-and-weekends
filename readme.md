@@ -18,7 +18,7 @@
 
 Offer four templates:
 
-1. Weekdays templates (possible to specify conditions using multiple templates and change the day of the week)
+1. Weekdays templates (possible to specify conditions using multiple templates and change days of a week)
 1. Main/Sub templates
 1. weekends template
 1. Public holiday template
