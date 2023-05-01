@@ -28,7 +28,7 @@ Offer four templates:
 
 <details><summary>Summary</summary>
 
-1. Edit config.edn and replace (Press [---] on the top right toolbar to open [Settings])
+1. Edit config.edn and replace (Press [`---`] on the top right toolbar to open [`Settings`])
 
 ```text
 :default-templates
@@ -53,13 +53,13 @@ Offer four templates:
 
 4. Perform check
 
-- As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select "Delete" from the context menu. Make a copy in advance, as current journal page be deleted.
+- As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select `Delete` from the context menu. Make a copy in advance, as current journal page be deleted.
 
 5. Change to specific days of the week (Option)
 
-Open the page that was built. Click on the area to the right of WAITING labels to edit the renderer.
+Open the page that was built. Click on the area to the right of `WAITING` labels to edit the renderer.
 
-1. Specify days of week in 3 letters like "Sun" and separate them with an "&". And possible to select 'All'. This is for bundling templates together.
+1. Specify days of week in 3 letters like `Sun` and separate them with an `&`. And possible to select `All`. This is for bundling templates together.
 1. It is possible to replicate renderers, not limited to Main-Template and Weekends-Template. And manually change the names of 4 templates as they are just names of the templates.
 1. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
 
@@ -87,15 +87,15 @@ Open the page that was built. Click on the area to the right of WAITING labels t
 - In the current version, standard Dynamic variables are not supported.
 - For those who live every day like a holiday, this plugin may not be necessary.🤣
 
-## Plugin Changes Due to @logseq/libs Upgrade v0.0.15 (Unpublished) TODO:
+## Plugin Changes Due to `@logseq/libs` Upgrade v0.0.15 (Unpublished) TODO:
 
-- This plugin utilizes the @logseq/libs plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as smart-blocks. There is a possibility that changes in usage and the need for resetting configuration items may occur.
+- This plugin utilizes `@logseq/libs` plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as `smart-blocks`. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
 ## Install from Logseq Marketplace (Coming👷🚧)
 
-- Press [---] on the top right toolbar to open [Plugins]
+- Press [`---`] on the top right toolbar to open [`Plugins`]
 - Select marketplace
-- Type 'week' in the search field, select it from the search results and install
+- Type `week` in the search field, select it from the search results and install
 
 ## Link
 
