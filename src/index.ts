@@ -282,6 +282,8 @@ const main = () => {
   //end
 
 
+
+  // @logseq/lib v0.0.15導入後に削除 TODO:
   //Fix(bug): replace block property backgroundcolor&backgroundColor === background-color
   logseq.DB.onChanged(async (e) => {
     if (renderingOnChanged === false) { return; } //レンダリング中のみ実行
@@ -289,7 +291,7 @@ const main = () => {
       //backgroundcolorを削除する
       if (block.properties?.backgroundcolor) { //backgroundcolorプロパティが存在するバグ
         setTimeout(async () => {
-          await logseq.Editor.removeBlockProperty(block.uuid, "backgroundcolor"); //削除する @logseq/lib v0.0.15(未公開) TODO:
+          await logseq.Editor.removeBlockProperty(block.uuid, "backgroundcolor");
         }, 10);
       }
     });
@@ -504,12 +506,12 @@ async function checkJournals() {
 //insertTemplateBlock
 async function insertTemplateBlock(blockUuid, template: string) {
 
-    await logseq.Editor.updateBlock(blockUuid, "");//remove renderer block
+  await logseq.Editor.updateBlock(blockUuid, "");//remove renderer block
 
-    // @logseq/lib v0.0.15(未公開) TODO:
-    // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
-    // (導入後、README.mdを書き換える TODO:)
-    //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
+  // @logseq/lib v0.0.15導入予定 TODO:
+  // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
+  // (導入後、README.mdを書き換える TODO:)
+  //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
 
   //insertTemplate: (target: BlockUUID, name: string) => Promise<any>
   // logseq.App.getTemplate(blockUuid, template).then(async (event) => {
