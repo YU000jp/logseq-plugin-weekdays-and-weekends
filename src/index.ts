@@ -341,7 +341,7 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchSubTemplateName",
-      title: "Replace: Sub-Template name *",
+      title: "Call: Sub-Template name *",
       type: "string",
       description: "",
       default: "Sub-Template",
@@ -369,7 +369,7 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchHolidaysTemplateName",
-      title: "Target: Holidays-Template name *",
+      title: "Call: Holidays-Template name *",
       type: "string",
       description: "",
       default: "Holidays-Template",
