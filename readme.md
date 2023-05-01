@@ -75,7 +75,7 @@ On Alert day, when a Main-Template renderer is called, it is possible to switch 
 1. Switch to Holidays-Template
 When renderers is called, prioritize holidays.
 
-![image](https://user-images.githubusercontent.com/111847207/235534909-744bfc44-7aa9-409d-af0d-2ed84a8a78dc.png)
+![image](https://user-images.githubusercontent.com/111847207/235536003-a382cf0f-abee-4639-9e83-3410734d3d81.png)
 
 </details>
 
