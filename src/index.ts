@@ -319,7 +319,7 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchMainSub",
-      title: "Turn on",
+      title: "Turn on: Alert for switching to Sub-Template",
       type: "boolean",
       description: "On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.",
       default: false,
@@ -362,7 +362,7 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchHolidays",
-      title: "Switch on holidays",
+      title: "Turn on Alert for holidays",
       type: "boolean",
       description: "When renderers is called, prioritize holidays.",
       default: false,
