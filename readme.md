@@ -1,6 +1,6 @@
-# Logseq Plugin: Weekdays and Weekends (Templates)
+# Logseq Plugin: Weekdays and Holidays (Templates)
 
-- Plugin for switching journal templates for weekdays and weekends. Possible to set templates for each day of the week.
+- Plugin for switching journal templates for weekdays and weekends, holidays. Possible to set templates for each day of the week.
 
 > Development stage 👷🚧
 
@@ -35,11 +35,11 @@
 - Open templates page or any. Execute a slash command. `Create sample for weekdays renderer`
   
 ![image](https://user-images.githubusercontent.com/111847207/233832456-2faba8a4-fede-4caf-8af8-439ff4684ced.png)
-> In the sample, both Template-A and Template-B will be created.
+> In the sample, 4 templates be created.
 
-3. Edit Template A and B
+3. Edit Templates
 
-- Contents of both Template-A and Template-B is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
+- Contents of templates is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
 
 4. Perform check
 
@@ -91,6 +91,8 @@
 ### Library
 
 - [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.14
+- [date-holidays](https://github.com/commenthol/date-holidays)
+- [SweetAlert2](https://sweetalert2.github.io/)
 
 ### Logseq Plugin
 
