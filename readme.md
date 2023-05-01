@@ -76,7 +76,7 @@ Open the page that was built. Click on the area to the right of `WAITING` labels
 1. Switch to Holidays-Template
 - When renderers is called, prioritize holidays.
 
-![image](https://user-images.githubusercontent.com/111847207/235536003-a382cf0f-abee-4639-9e83-3410734d3d81.png)
+![image](https://user-images.githubusercontent.com/111847207/235544977-a09f5573-8302-4d8e-b5bf-97256982077c.png)
 
 </details>
 
