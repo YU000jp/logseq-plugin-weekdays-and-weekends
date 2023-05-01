@@ -385,7 +385,7 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "switchHolidaysState",
-      title: "Supported states Match country)",
+      title: "Supported states (Match country)",
       type: "string",
       description: '2-character alphanumeric code or blank (default)',
       default: "",
