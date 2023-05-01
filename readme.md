@@ -73,7 +73,7 @@ Open the page that was built. Click on the area to the right of WAITING labels t
 1. Switch to Sub-Template for a week
 1. Switch to Holidays-Template
 
-![image](https://user-images.githubusercontent.com/111847207/235469056-e5fd49e0-9b3d-4af9-bff9-5eabcd93c399.png)
+![image](https://user-images.githubusercontent.com/111847207/235534909-744bfc44-7aa9-409d-af0d-2ed84a8a78dc.png)
 
 </details>
 
