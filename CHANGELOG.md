@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.5.1...v1.6.0) (2023-05-02)
+
+
+### Features
+
+* Fix bug causing first line to disappear ([e18633e](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e18633e2e3ecfd0a8b15d3a2628f27acd45f75b0))
+
 ## [1.5.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.5.0...v1.5.1) (2023-05-01)
 
 
