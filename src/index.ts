@@ -538,11 +538,17 @@ async function insertTemplateBlock(blockUuid, template: string) {
     });
     if (Block) {
       renderingOnChanged = true;
-      const batchBlock = await logseq.Editor.insertBatchBlock(blockUuid, Block.children as IBatchBlock[], { before: true, sibling: true, });
-      if (batchBlock) {
-        setTimeout(() => {
-          renderingOnChanged = false;
-        }, 30);
+      const block = await logseq.Editor.insertBlock(blockUuid, "", { before: true, sibling: true, focus: false, });
+      if (block) {
+        const batchBlock = await logseq.Editor.insertBatchBlock(block.uuid, Block.children as IBatchBlock[], { before: true, sibling: true, });
+        if (batchBlock) {
+          setTimeout(async () => {
+            renderingOnChanged = false;
+            await logseq.Editor.removeBlock(blockUuid);
+            await logseq.Editor.removeBlock(block.uuid);
+          }, 30);
+
+        }
       }
     }
   } else {
