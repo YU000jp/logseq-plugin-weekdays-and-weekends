@@ -174,6 +174,7 @@ const main = () => {
         if (logseq.settings?.switchHolidays === true && isHoliday && logseq.settings?.switchHolidaysTemplateName) {
           //dialog
           await selectTemplateDialog(payload.uuid, `Today is ${isHoliday}.<br/>Select Main/Holidays Template for today`, template, logseq.settings?.switchHolidaysTemplateName, "");
+          logseq.Editor.exitEditingMode();
           setTimeout(() => {
             rendering = "";
           }, 1000);
@@ -183,6 +184,7 @@ const main = () => {
             //アラート日の場合
             //dialog
             await selectTemplateDialog(payload.uuid, "Select Main/Sub Template for this week", template, logseq.settings?.switchSubTemplateName, "sub");
+            logseq.Editor.exitEditingMode();
             setTimeout(() => {
               rendering = "";
             }, 1000);
@@ -197,6 +199,7 @@ const main = () => {
             //セットされたテンプレートを挿入
             sweetalert2Toast(sweetAlert2background, sweetAlert2color, 4200, `Insert ${setTemplate}`, true);
             await insertTemplateBlock(payload.uuid, setTemplate);
+            logseq.Editor.exitEditingMode();
             setTimeout(() => {
               rendering = "";
             }, 1000);
@@ -205,6 +208,7 @@ const main = () => {
         } else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
           sweetalert2Toast(sweetAlert2background, sweetAlert2color, 4200, `Insert ${template}`, true);
           await insertTemplateBlock(payload.uuid, template);
+          logseq.Editor.exitEditingMode();
           setTimeout(() => {
             rendering = "";
           }, 1000);
