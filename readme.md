@@ -32,13 +32,9 @@ Offer four templates:
 ## Questions
 
 - Always turn on this plugin for execute rendering when journal template is called. For Logseq mobile version, please manually call the template.
-- At the moment, integration with existing plugins such as smart-blocks is not possible. We plan to address this in future updates.
-- In the current version, standard Dynamic variables are not supported.
+- ~~At the moment, integration with existing plugins such as smart-blocks is not possible. We plan to address this in future updates.~~ Support in new version
+- ~~In the current version, standard Dynamic variables are not supported.~~~ Support in new version
 - For those who live every day like a holiday, this plugin may not be necessary.🤣
-
-## Plugin Changes Due to `@logseq/libs` Upgrade v0.0.15 TODO:
-
-- This plugin utilizes `@logseq/libs` plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as `smart-blocks`. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
 ## Install from Logseq Marketplace
 
@@ -67,13 +63,11 @@ Offer four templates:
 
 ### Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.14
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15
 - [date-holidays](https://github.com/commenthol/date-holidays)
 - [SweetAlert2](https://sweetalert2.github.io/)
 
 ### Logseq Plugin
-
-Not Support - **TODO:**
 
 - [stdword / Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
 - [hkgnp / powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
@@ -85,4 +79,4 @@ Not Support - **TODO:**
 
 ### Special Thanks
 
-- [xyhp915](https://github.com/xyhp915) for @Logseq/libs
+- [xyhp915](https://github.com/xyhp915) for @Logseq/libs v0.0.15
