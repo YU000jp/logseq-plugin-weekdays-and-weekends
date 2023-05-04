@@ -90,7 +90,7 @@ Open the page that was built. Click on the area to the right of `WAITING` labels
 
 - This plugin utilizes `@logseq/libs` plugin API library. Currently, the older version of the SDK is unable to load templates as templates, so they are being loaded simply as block trees. However, there are plans to provide the functionality to load templates as templates in the future. This will enable integration with existing plugins such as `smart-blocks`. There is a possibility that changes in usage and the need for resetting configuration items may occur.
 
-## Install from Logseq Marketplace (Coming👷🚧)
+## Install from Logseq Marketplace
 
 - Press [`---`] on the top right toolbar to open [`Plugins`]
 - Select marketplace
