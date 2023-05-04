@@ -199,7 +199,7 @@ function insertSampleTemplates(uuid) {
     {
       content: `### Weekdays and Holidays (Templates)`,
       properties: {
-        comment: `Always turn on [Weekdays and holidays (Templates) plugin](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends) for execute rendering when journal template is called.`,
+        comment: `Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called. [English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)`,
       },
       children: [
         {
