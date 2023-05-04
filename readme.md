@@ -5,7 +5,7 @@
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
-[日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)
+ [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
  
 ## Demo
 
@@ -26,59 +26,8 @@ Offer four templates:
 
 ## Setup 🖥️
 
-<details><summary>Summary</summary>
-
-1. Edit config.edn and replace (Press [`---`] on the top right toolbar to open [`Settings`])
-
-```text
-:default-templates
-{:journals "Journal"}
-```
-
-![image](https://user-images.githubusercontent.com/111847207/235462277-dd42adda-713c-4d21-abb6-5c25e585ab2c.png)
-> Be found around the 20th line.
-
-2. Build templates
-
-- Open templates page or any. Execute a slash command.
-
-`Create sample for weekdays renderer`
-
-![image](https://user-images.githubusercontent.com/111847207/235462948-8a18ad6e-c0e1-4839-a7b2-a4b436cfc6b3.png)
-> In the sample, 4 templates be created.
-
-3. Edit Templates
-
-- Contents of templates is free spaces and open to interpretation by you. By right-clicking on the bullet, a context menu will appear, allowing you to select the color and font size.
-
-4. Perform check
-
-- As usual, possible to either wait for the date to change or delete the current day's journal. To delete it, right-click on the date title and select `Delete` from the context menu. Make a copy in advance, as current journal page be deleted.
-
-5. Change to specific days of the week (Option)
-
-Open the page that was built. Click on the area to the right of `WAITING` labels to edit the renderer.
-
-1. Specify days of week in 3 letters like `Sun` and separate them with an `&`. And possible to select `All`. This is for bundling templates together.
-1. It is possible to replicate renderers, not limited to Main-Template and Weekends-Template. And manually change the names of 4 templates as they are just names of the templates.
-1. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed. During runtime, the block with renderings be removed.
-
-![image](https://user-images.githubusercontent.com/111847207/235461336-8e7db7bf-a29a-4796-8599-5ecf659b8d67.gif)
-
-6. Open plugin settings
-
-- By default, 2 options are turned off.
-
-2 Options:
-
-1. Switch to Sub-Template for a week
-- On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week.
-1. Switch to Holidays-Template
-- When renderers is called, prioritize holidays.
-
-![image](https://user-images.githubusercontent.com/111847207/235544977-a09f5573-8302-4d8e-b5bf-97256982077c.png)
-
-</details>
+- [Engilsh Document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document)📝
+- [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
 
 ## Questions
 
