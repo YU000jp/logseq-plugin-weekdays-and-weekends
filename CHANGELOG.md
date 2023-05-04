@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.7.0...v1.8.0) (2023-05-04)
+
+
+### Features
+
+* **sample template:** pull links to documents ([bf5c05e](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/bf5c05e3c2dd90726ca42cb606f0723f31adbc1c))
+
 # [1.7.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.6.0...v1.7.0) (2023-05-04)
 
 
