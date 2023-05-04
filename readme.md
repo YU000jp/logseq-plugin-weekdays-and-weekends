@@ -17,10 +17,11 @@
 Offer four templates:
 
 1. Weekdays templates `Main-Template`
-(possible to specify conditions using multiple templates and change days of a week)
 1. Main/Sub templates `Sub-Template`
 1. weekends template `Weekends-Template`
 1. Public holiday template `Holidays-Template`
+
+- possible to specify conditions using multiple templates and change days of a week
 
 ## Setup 🖥️
 
