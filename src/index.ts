@@ -137,10 +137,16 @@ const main = () => {
   //end
 
 
-  logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async (event) => {
-    await logseq.Editor.insertAtEditingCursor(
+  //TODO: 保留
+  logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async() => {
+    logseq.Editor.insertAtEditingCursor(
       `{{renderer :Weekdays, Template-C, Sat&Sun}} `
     );
+  });
+
+  //スラッシュコマンドから設定画面を呼び出し
+  logseq.Editor.registerSlashCommand("Plugin Settings - Weekdays and Holidays (Templates)", async () => {
+    logseq.showSettingsUI();
   });
 
 
@@ -216,7 +222,7 @@ const main = () => {
         }
       }
 
-      await logseq.provideUI({
+      logseq.provideUI({
         key: `${slot}`,
         reset: true,
         slot,
@@ -316,10 +322,17 @@ function userSettings(ByLanguage: string) {
   const settingsTemplate: SettingSchemaDesc[] = [
     {
       key: "",
-      title: "[Option] Switch to Sub-Template for a week",
+      title: "Check Wiki to setup",
       type: "heading",
-      description: "",
-      default: "Possible to switching templates on specific days of the week.",
+      description: "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",
+      default: "",
+    },
+    {
+      key: "",
+      title: "[Option] Sub-Template for a week",
+      type: "heading",
+      description: "Use switching templates on specific days of the week.",
+      default: "",
     },
     {
       key: "switchMainSub",
@@ -359,14 +372,14 @@ function userSettings(ByLanguage: string) {
     },
     {
       key: "",
-      title: "[Option] Switch to Holidays-Template",
+      title: "[Option] Holidays-Template",
       type: "heading",
-      description: "",
-      default: "Possible to switch templates on holidays.",
+      description: "Use switch templates on holidays.",
+      default: "",
     },
     {
       key: "switchHolidays",
-      title: "Turn on Alert for holidays",
+      title: "Turn on: Alert for holidays",
       type: "boolean",
       description: "When renderers is called, prioritize holidays.",
       default: false,
