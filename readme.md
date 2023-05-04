@@ -133,3 +133,7 @@ Not Support - **TODO:**
 ### Icon
 
 - [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
+
+### Special Thanks
+
+- [xyhp915](https://github.com/xyhp915) for @Logseq/libs
