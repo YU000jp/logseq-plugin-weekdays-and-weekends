@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.6.0...v1.7.0) (2023-05-04)
+
+
+### Bug Fixes
+
+* exit editing mode when done insert template ([aae9f10](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/aae9f10e81b69496dd9fe0a7c110f75129ef2039))
+
+
+### Features
+
+* plugin settings description ([543d172](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/543d172ae8acb435670f39b242acc27904097761))
+
 # [1.6.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.5.1...v1.6.0) (2023-05-02)
 
 
