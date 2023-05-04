@@ -42,103 +42,12 @@ const main = () => {
       return;
     }
     processingSlashCommand = true;
-    try {
-      sweetalert2Toast(9500, "Processing...", true);
-      const titleBlock = await logseq.Editor.insertBlock(e.uuid, "### Weekdays and Weekends", {
-        sibling: true,
-        properties: { comment: "Always turn on [Weekdays and weekends plugin](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends) for execute rendering when journal template is called." }
-      });
-      if (titleBlock) {
-        const templateBlock = await logseq.Editor.insertBlock(titleBlock.uuid, "#### Journal: Template Settings", {
-          properties: {
-            template: "Journal",
-            "template-including-parent": "false",
-            Comment: 'Edit config.edn `:default-templates {:journals "Journal"}`` There is a block that has two renderings. When it is loaded as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
-            "background-color": "yellow",
-          },
-          sibling: false,
-        });
-        if (templateBlock) {
-          const rendererBlock = await logseq.Editor.insertBlock(templateBlock.uuid, "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Weekends-Template, Sat&Sun}} ", {
-            sibling: false,
-          });
-          if (rendererBlock) {
-            await logseq.Editor.insertBlock(templateBlock.uuid, "", {
-              sibling: true,
-            });
-            const templateA = await logseq.Editor.insertBlock(templateBlock.uuid, "#### Main-Template:", {
-              properties: {
-                template: "Main-Template",
-                "template-including-parent": "false",
-                Comment: " [default] Mon&Tue&Wed&Thu&Fri",
-                "background-color": "gray",
-              },
-              sibling: true,
-            });
-            if (templateA) {
-              const weekdays = await logseq.Editor.insertBlock(templateA.uuid, "### Weekdays (Main)", { sibling: false, properties: {}, });
-              if (weekdays) {
-                await templateBlank(weekdays.uuid, "AM");
-                await templateBlank(weekdays.uuid, "PM");
-              }
-              const templateB = await logseq.Editor.insertBlock(templateA.uuid, "#### Sub-Template:", {
-                properties: {
-                  template: "Sub-Template",
-                  "template-including-parent": "false",
-                  Comment: "switch Main/Sub templates for a week (to plugin settings)",
-                  "background-color": "gray",
-                },
-                sibling: true,
-              });
-              if (templateB) {
-                const weekends = await logseq.Editor.insertBlock(templateB.uuid, "### Weekdays (Sub)", { sibling: false, properties: {}, });
-                if (weekends) {
-                  await templateBlank(weekends.uuid, "AM");
-                  await templateBlank(weekends.uuid, "PM");
-                }
-                const templateC = await logseq.Editor.insertBlock(templateB.uuid, "#### Weekends-Template:", {
-                  properties: {
-                    template: "Weekends-Template",
-                    "template-including-parent": "false",
-                    Comment: " [default] Sat&Sun",
-                    "background-color": "gray",
-                  },
-                  sibling: true,
-                });
-                if (templateC) {
-                  const weekends = await logseq.Editor.insertBlock(templateC.uuid, "### Weekends", { sibling: false, properties: {}, });
-                  if (weekends) {
-                    await templateBlank(weekends.uuid, "AM");
-                    await templateBlank(weekends.uuid, "PM");
-                  }
-                  const templateD = await logseq.Editor.insertBlock(templateC.uuid, "#### Holidays-Template:", {
-                    properties: {
-                      template: "Holidays-Template",
-                      "template-including-parent": "false",
-                      Comment: "Alert holidays (to plugin settings)",
-                      "background-color": "gray",
-                    },
-                    sibling: true,
-                  });
-                  if (templateD) {
-                    const weekends = await logseq.Editor.insertBlock(templateD.uuid, "### Holidays", { sibling: false, properties: {}, });
-                    if (weekends) {
-                      await templateBlank(weekends.uuid, "AM");
-                      await templateBlank(weekends.uuid, "PM");
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    } finally {
-      logseq.hideMainUI();
-    }
+    await insertSampleTemplates(e.uuid);
     processingSlashCommand = false;
   });
   //end
+
+
 
 
   //TODO: 保留
@@ -284,6 +193,175 @@ const main = () => {
 
 };/* end_main */
 
+
+function insertSampleTemplates(uuid) {
+  const batch: IBatchBlock[] = [
+    {
+      content: `### Weekdays and Holidays (Templates)`,
+      properties: {
+        comment: `Always turn on [Weekdays and holidays (Templates) plugin](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends) for execute rendering when journal template is called.`,
+      },
+      children: [
+        {
+          content: `#### Journal: Template Settings`,
+          properties: {
+            template: "Journal",
+            "template-including-parent": "false",
+            comment: 'Edit config.edn `:default-templates {:journals "Journal"}`` There is a block that has two renderings. When it is loaded as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
+            "background-color": "yellow",
+          },
+          children: [
+            {
+              content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
+            },
+          ],
+        },
+        {
+          content: `#### Main-Template:`,
+          properties: {
+            template: "Main-Template",
+            "template-including-parent": "false",
+            Comment: " [default] Mon&Tue&Wed&Thu&Fri",
+            "background-color": "gray",
+          },
+          children: [
+            {
+              content: `### Weekdays (Main)`,
+              children: [
+                {
+                  content: `#### AM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+                {
+                  content: `#### PM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        }, {
+          content: `#### Sub-Template:`,
+          properties: {
+            template: "Sub-Template",
+            "template-including-parent": "false",
+            Comment: "switch Main/Sub templates for a week (to plugin settings)",
+            "background-color": "gray",
+          },
+          children: [
+            {
+              content: `### Weekdays (Sub)`,
+              children: [
+                {
+                  content: `#### AM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+                {
+                  content: `#### PM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+              ],
+            },
+          ]
+        }, {
+          content: `#### Weekends-Template:`,
+          properties: {
+            template: "Weekends-Template",
+            "template-including-parent": "false",
+            Comment: " [default] Sat&Sun",
+            "background-color": "gray",
+          },
+          children: [
+            {
+              content: `### Weekends`,
+              children: [
+                {
+                  content: `#### AM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+                {
+                  content: `#### PM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        }, {
+          content: `#### Holidays-Template:`,
+          properties: {
+            template: "Holidays-Template",
+            "template-including-parent": "false",
+            Comment: "Alert holidays (to plugin settings)",
+            "background-color": "gray",
+          },
+          children: [
+            {
+              content: `### Holidays`,
+              children: [
+                {
+                  content: `#### AM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+                {
+                  content: `#### PM`,
+                  children: [
+                    {
+                      content: ``,
+                    }, {
+                      content: ``,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  logseq.Editor.insertBatchBlock(uuid, batch);
+}
 
 //userSettings
 function userSettings(ByLanguage: string) {
@@ -512,6 +590,7 @@ async function insertTemplateBlock(blockUuid, template: string) {
 
 //sweetAlert2 https://sweetalert2.github.io/#mixin
 async function sweetalert2Toast(timer: number, text: string, MainUI: boolean) {
+  logseq.Editor.exitEditingMode();
   if (MainUI === true) {
     logseq.showMainUI();
   }
@@ -535,16 +614,6 @@ async function sweetalert2Toast(timer: number, text: string, MainUI: boolean) {
   }
 }
 //end
-
-
-async function templateBlank(uuid, amPm: string) {
-  const insert = await logseq.Editor.insertBlock(uuid, `### ${amPm}`, { sibling: false });
-  if (insert) {
-    for (let i = 0; i < 2; i++) {
-      await logseq.Editor.insertBlock(insert.uuid, "", { sibling: false });//空行を追加
-    }
-  }
-}
 
 
 //Credit: hkgnp
