@@ -2,15 +2,15 @@ import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { IBatchBlock, SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
 import Swal from 'sweetalert2'; //https://sweetalert2.github.io/
 import Holidays from 'date-holidays'; //https://github.com/commenthol/date-holidays
-let renderingOnChanged = false; //rendering OnChanged flag
+let sweetAlert2background;  //color: sweetAlert2color
+let sweetAlert2color; //background: sweetAlert2background
 
 /* main */
 const main = () => {
 
   //get theme color (For SweetAlert2)
   //checkboxなどはCSSで上書きする必要あり
-  let sweetAlert2background;  //color: sweetAlert2color
-  let sweetAlert2color; //background: sweetAlert2background
+
   const rootThemeColor = () => {
     const root = parent.document.querySelector(":root");
     if (root) {
@@ -42,88 +42,90 @@ const main = () => {
       return;
     }
     processingSlashCommand = true;
-    sweetalert2Toast(sweetAlert2background, sweetAlert2color, 9500, "Processing...", true);
-    const titleBlock = await logseq.Editor.insertBlock(e.uuid, "### Weekdays and Weekends", {
-      sibling: true,
-      properties: { comment: "Always turn on [Weekdays and weekends plugin](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends) for execute rendering when journal template is called." }
-    });
-    if (titleBlock) {
-      const templateBlock = await logseq.Editor.insertBlock(titleBlock.uuid, "#### Journal: Template Settings", {
-        properties: {
-          template: "Journal",
-          "template-including-parent": "false",
-          Comment: 'Edit config.edn `:default-templates {:journals "Journal"}`` There is a block that has two renderings. When it is loaded as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
-          "background-color": "yellow",
-        },
-        sibling: false,
+    try {
+      sweetalert2Toast(9500, "Processing...", true);
+      const titleBlock = await logseq.Editor.insertBlock(e.uuid, "### Weekdays and Weekends", {
+        sibling: true,
+        properties: { comment: "Always turn on [Weekdays and weekends plugin](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends) for execute rendering when journal template is called." }
       });
-      if (templateBlock) {
-        const rendererBlock = await logseq.Editor.insertBlock(templateBlock.uuid, "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Weekends-Template, Sat&Sun}} ", {
+      if (titleBlock) {
+        const templateBlock = await logseq.Editor.insertBlock(titleBlock.uuid, "#### Journal: Template Settings", {
+          properties: {
+            template: "Journal",
+            "template-including-parent": "false",
+            Comment: 'Edit config.edn `:default-templates {:journals "Journal"}`` There is a block that has two renderings. When it is loaded as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
+            "background-color": "yellow",
+          },
           sibling: false,
         });
-        if (rendererBlock) {
-          await logseq.Editor.insertBlock(templateBlock.uuid, "", {
-            sibling: true,
+        if (templateBlock) {
+          const rendererBlock = await logseq.Editor.insertBlock(templateBlock.uuid, "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Weekends-Template, Sat&Sun}} ", {
+            sibling: false,
           });
-          const templateA = await logseq.Editor.insertBlock(templateBlock.uuid, "#### Main-Template:", {
-            properties: {
-              template: "Main-Template",
-              "template-including-parent": "false",
-              Comment: " [default] Mon&Tue&Wed&Thu&Fri",
-              "background-color": "gray",
-            },
-            sibling: true,
-          });
-          if (templateA) {
-            const weekdays = await logseq.Editor.insertBlock(templateA.uuid, "### Weekdays (Main)", { sibling: false, properties: {}, });
-            if (weekdays) {
-              await templateBlank(weekdays.uuid, "AM");
-              await templateBlank(weekdays.uuid, "PM");
-            }
-            const templateB = await logseq.Editor.insertBlock(templateA.uuid, "#### Sub-Template:", {
+          if (rendererBlock) {
+            await logseq.Editor.insertBlock(templateBlock.uuid, "", {
+              sibling: true,
+            });
+            const templateA = await logseq.Editor.insertBlock(templateBlock.uuid, "#### Main-Template:", {
               properties: {
-                template: "Sub-Template",
+                template: "Main-Template",
                 "template-including-parent": "false",
-                Comment: "switch Main/Sub templates for a week (to plugin settings)",
+                Comment: " [default] Mon&Tue&Wed&Thu&Fri",
                 "background-color": "gray",
               },
               sibling: true,
             });
-            if (templateB) {
-              const weekends = await logseq.Editor.insertBlock(templateB.uuid, "### Weekdays (Sub)", { sibling: false, properties: {}, });
-              if (weekends) {
-                await templateBlank(weekends.uuid, "AM");
-                await templateBlank(weekends.uuid, "PM");
+            if (templateA) {
+              const weekdays = await logseq.Editor.insertBlock(templateA.uuid, "### Weekdays (Main)", { sibling: false, properties: {}, });
+              if (weekdays) {
+                await templateBlank(weekdays.uuid, "AM");
+                await templateBlank(weekdays.uuid, "PM");
               }
-              const templateC = await logseq.Editor.insertBlock(templateB.uuid, "#### Weekends-Template:", {
+              const templateB = await logseq.Editor.insertBlock(templateA.uuid, "#### Sub-Template:", {
                 properties: {
-                  template: "Weekends-Template",
+                  template: "Sub-Template",
                   "template-including-parent": "false",
-                  Comment: " [default] Sat&Sun",
+                  Comment: "switch Main/Sub templates for a week (to plugin settings)",
                   "background-color": "gray",
                 },
                 sibling: true,
               });
-              if (templateC) {
-                const weekends = await logseq.Editor.insertBlock(templateC.uuid, "### Weekends", { sibling: false, properties: {}, });
+              if (templateB) {
+                const weekends = await logseq.Editor.insertBlock(templateB.uuid, "### Weekdays (Sub)", { sibling: false, properties: {}, });
                 if (weekends) {
                   await templateBlank(weekends.uuid, "AM");
                   await templateBlank(weekends.uuid, "PM");
                 }
-                const templateD = await logseq.Editor.insertBlock(templateC.uuid, "#### Holidays-Template:", {
+                const templateC = await logseq.Editor.insertBlock(templateB.uuid, "#### Weekends-Template:", {
                   properties: {
-                    template: "Holidays-Template",
+                    template: "Weekends-Template",
                     "template-including-parent": "false",
-                    Comment: "Alert holidays (to plugin settings)",
+                    Comment: " [default] Sat&Sun",
                     "background-color": "gray",
                   },
                   sibling: true,
                 });
-                if (templateD) {
-                  const weekends = await logseq.Editor.insertBlock(templateD.uuid, "### Holidays", { sibling: false, properties: {}, });
+                if (templateC) {
+                  const weekends = await logseq.Editor.insertBlock(templateC.uuid, "### Weekends", { sibling: false, properties: {}, });
                   if (weekends) {
                     await templateBlank(weekends.uuid, "AM");
                     await templateBlank(weekends.uuid, "PM");
+                  }
+                  const templateD = await logseq.Editor.insertBlock(templateC.uuid, "#### Holidays-Template:", {
+                    properties: {
+                      template: "Holidays-Template",
+                      "template-including-parent": "false",
+                      Comment: "Alert holidays (to plugin settings)",
+                      "background-color": "gray",
+                    },
+                    sibling: true,
+                  });
+                  if (templateD) {
+                    const weekends = await logseq.Editor.insertBlock(templateD.uuid, "### Holidays", { sibling: false, properties: {}, });
+                    if (weekends) {
+                      await templateBlank(weekends.uuid, "AM");
+                      await templateBlank(weekends.uuid, "PM");
+                    }
                   }
                 }
               }
@@ -131,6 +133,8 @@ const main = () => {
           }
         }
       }
+    } finally {
+      logseq.hideMainUI();
     }
     processingSlashCommand = false;
   });
@@ -138,7 +142,7 @@ const main = () => {
 
 
   //TODO: 保留
-  logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async() => {
+  logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async () => {
     logseq.Editor.insertAtEditingCursor(
       `{{renderer :Weekdays, Template-C, Sat&Sun}} `
     );
@@ -180,21 +184,12 @@ const main = () => {
         if (logseq.settings?.switchHolidays === true && isHoliday && logseq.settings?.switchHolidaysTemplateName) {
           //dialog
           await selectTemplateDialog(payload.uuid, `Today is ${isHoliday}.<br/>Select Main/Holidays Template for today`, template, logseq.settings?.switchHolidaysTemplateName, "");
-          logseq.Editor.exitEditingMode();
-          setTimeout(() => {
-            rendering = "";
-          }, 1000);
-          return;
+
         } else if (logseq.settings?.switchMainSub === true && logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) { //Switch to Sub Template
           if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
             //アラート日の場合
             //dialog
             await selectTemplateDialog(payload.uuid, "Select Main/Sub Template for this week", template, logseq.settings?.switchSubTemplateName, "sub");
-            logseq.Editor.exitEditingMode();
-            setTimeout(() => {
-              rendering = "";
-            }, 1000);
-            return;
           } else {
             let setTemplate;
             if (logseq.settings?.switchSetTemplate) {
@@ -203,23 +198,15 @@ const main = () => {
               setTemplate = template;
             }
             //セットされたテンプレートを挿入
-            sweetalert2Toast(sweetAlert2background, sweetAlert2color, 4200, `Insert ${setTemplate}`, true);
             await insertTemplateBlock(payload.uuid, setTemplate);
-            logseq.Editor.exitEditingMode();
-            setTimeout(() => {
-              rendering = "";
-            }, 1000);
-            return;
           }
         } else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
-          sweetalert2Toast(sweetAlert2background, sweetAlert2color, 4200, `Insert ${template}`, true);
           await insertTemplateBlock(payload.uuid, template);
-          logseq.Editor.exitEditingMode();
-          setTimeout(() => {
-            rendering = "";
-          }, 1000);
-          return;
         }
+        setTimeout(() => {
+          rendering = "";
+        }, 1000);
+        return;
       }
 
       logseq.provideUI({
@@ -276,7 +263,6 @@ const main = () => {
               logseq.updateSettings({ switchSetTemplate: replaceTemplate });
             }
           }
-          sweetalert2Toast(sweetAlert2background, sweetAlert2color, 4200, `Insert ${selectTemplate}`, false);
           await insertTemplateBlock(uuid, selectTemplate);
           if (updateSettings === "sub") {
             logseq.updateSettings({ switchSetTemplate: selectTemplate }); //選択したテンプレートを設定項目へセット
@@ -285,27 +271,10 @@ const main = () => {
           logseq.UI.showMsg("Cancel", "warning");
         }
       }
-    }).finally(() => {
-      logseq.hideMainUI();
     });
+    logseq.hideMainUI();
   }
   //end
-
-
-
-  // @logseq/lib v0.0.15導入後に削除 TODO:
-  //Fix(bug): replace block property backgroundcolor&backgroundColor === background-color
-  logseq.DB.onChanged(async (e) => {
-    if (renderingOnChanged === false) { return; } //レンダリング中のみ実行
-    e.blocks.forEach(async (block) => {
-      //backgroundcolorを削除する
-      if (block.properties?.backgroundcolor) { //backgroundcolorプロパティが存在するバグ
-        setTimeout(async () => {
-          await logseq.Editor.removeBlockProperty(block.uuid, "backgroundcolor");
-        }, 10);
-      }
-    });
-  });
 
 
   // logseq.App.registerUIItem("toolbar", {
@@ -519,67 +488,30 @@ async function checkJournals() {
 }
 
 
-
 //insertTemplateBlock
 async function insertTemplateBlock(blockUuid, template: string) {
-
-  await logseq.Editor.updateBlock(blockUuid, "");//remove renderer block
-
-  // @logseq/lib v0.0.15導入予定 TODO:
+  // @logseq/lib v0.0.15導入
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
-  // (導入後、README.mdを書き換える TODO:)
   //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
-
-  //insertTemplate: (target: BlockUUID, name: string) => Promise<any>
-  // logseq.App.getTemplate(blockUuid, template).then(async (event) => {
-  //   if (event) {
-  //         logseq.Editor.moveBlock(blockUuid, event.uuid);
-  //         logseq.UI.showMsg(`Rendered ${template}`, "success", { timeout: 3000 });
-  //   } else {
-  //     logseq.UI.showMsg(`Template ${template} not found.`);
-  //   }
-  // });
-
-
-  //クエリーで取得 @logseq/lib v0.0.14用
-  const query = `[:find (pull ?b [*])
-      :where
-      [?b :block/properties ?p]
-      [(get ?p :template) ?ty]
-      [(= "${template}" ?ty)]]`;
-  const ret = await logseq.DB.datascriptQuery(query);
-  const results = ret?.flat();
-  if (results && results.length > 0) {
-    const Block = await logseq.Editor.getBlock(results[0].uuid, {
-      includeChildren: true,
-    });
-    if (Block) {
-      renderingOnChanged = true;
-      const block = await logseq.Editor.insertBlock(blockUuid, "", { before: true, sibling: true, focus: false, });
-      if (block) {
-        const batchBlock = await logseq.Editor.insertBatchBlock(block.uuid, Block.children as IBatchBlock[], { before: true, sibling: true, });
-        if (batchBlock) {
-          setTimeout(async () => {
-            renderingOnChanged = false;
-            await logseq.Editor.removeBlock(blockUuid);
-            await logseq.Editor.removeBlock(block.uuid);
-          }, 30);
-
-        }
-      }
+  logseq.Editor.updateBlock(blockUuid, "");
+  const exist = await logseq.App.existTemplate(template);
+  if (exist === true) {
+    await sweetalert2Toast(2000, `Insert ${template}`, true);
+    const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false });
+    if (newBlock) {
+      logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
+        console.log(`Render insert template ${template}`);
+        logseq.Editor.removeBlock(blockUuid);
+      });
     }
   } else {
-    logseq.UI.showMsg(`Template ${template} not found.`, "error");
+    console.warn(`Template ${template} not found.`);
   }
-  //end
-
-  //Full House Template (https://github.com/stdword/logseq13-full-house-plugin) Outlines unsupported
-  //logseq.Editor.insertBlock(blockUuid, `{{renderer :template, ${template}}}`,{before:true});
 }
 
 
 //sweetAlert2 https://sweetalert2.github.io/#mixin
-async function sweetalert2Toast(sweetAlert2background: string, sweetAlert2color: string, timer: number, text: string, MainUI: boolean) {
+async function sweetalert2Toast(timer: number, text: string, MainUI: boolean) {
   if (MainUI === true) {
     logseq.showMainUI();
   }
@@ -590,14 +522,16 @@ async function sweetalert2Toast(sweetAlert2background: string, sweetAlert2color:
     timer: timer,
     timerProgressBar: true,
   });
-  await Toast.fire({
+  Toast.fire({
     icon: 'success',
     title: text,
     color: sweetAlert2color,
     background: sweetAlert2background,
   });
   if (MainUI === true) {
-    logseq.hideMainUI();
+    setTimeout(() => {
+      logseq.hideMainUI();
+    }, timer);
   }
 }
 //end

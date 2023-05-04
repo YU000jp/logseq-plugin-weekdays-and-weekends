@@ -20,9 +20,9 @@
         "prod": "npm run clean && vite build"
     },
     "dependencies": {
-        "@logseq/libs": "^0.0.14",
+        "@logseq/libs": "^0.0.15",
         "date-holidays": "^3.19.0",
-        "sweetalert2": "^11.7.3"
+        "sweetalert2": "^11.7.5"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.3",
@@ -35,7 +35,7 @@
         "npx": "^10.2.2",
         "semantic-release": "^21.0.2",
         "typescript": "^5.0.4",
-        "vite": "^4.3.3",
+        "vite": "^4.3.4",
         "vite-plugin-logseq": "^1.1.2"
     },
     "config": {
