@@ -46,7 +46,7 @@ Offer four templates:
 ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
 
 ## Link
-
+- [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 - [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
