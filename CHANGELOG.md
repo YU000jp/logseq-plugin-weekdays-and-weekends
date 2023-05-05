@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.8.0...v1.9.0) (2023-05-05)
+
+
+### Features
+
+* **L10N:** Multi language L10N library 日本語対応 ([79a2535](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/79a25355c1455f07e2ca4bb7d9786b2f381210a1))
+
 # [1.8.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.7.0...v1.8.0) (2023-05-04)
 
 
