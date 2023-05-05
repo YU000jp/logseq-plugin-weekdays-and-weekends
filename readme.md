@@ -13,6 +13,7 @@
 
 ## Features
 
+- A mechanism for calling the functions of this plugin is achieved by placing what is called renderings in journal template.
 - On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
 Offer four templates:
