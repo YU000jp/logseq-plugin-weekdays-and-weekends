@@ -47,6 +47,7 @@ Offer four templates:
 ## Link
 
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+- [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
 ## My plugins
 
