@@ -52,7 +52,20 @@ Offer four templates:
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 - [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
-## My plugins
+## Contributing
+
+- Contributions to this plugin are always welcome! If you find a bug or have a suggestion for a new feature, please open an issue or submit a pull request. All contributions will be reviewed and considered for inclusion in future releases.
+
+## License
+
+- This Plugin is released under the MIT License. See the LICENSE file for more information.
+
+# Author
+
+* YU000jp
+* Twitter: [@y0skyblue](https://twitter.com/y0skyblue)
+
+### My plugins
 
 - [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
 - [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
@@ -85,3 +98,7 @@ Offer four templates:
 ### Special Thanks
 
 - [xyhp915](https://github.com/xyhp915) for @Logseq/libs v0.0.15
+
+---
+
+<a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
