@@ -1,6 +1,7 @@
 # Logseq Plugin: Weekdays and Holidays (Templates) 🛌
 
-- Plugin for switching journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week. This plugin is capable of corresponding to holidays in various countries around the world, thanks to the library we utilize.
+- Plugin for switching journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week.
+- This plugin is capable of corresponding to holidays in various countries around the world, thanks to the library we utilize.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
