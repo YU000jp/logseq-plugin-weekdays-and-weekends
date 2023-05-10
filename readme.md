@@ -1,10 +1,12 @@
 # Logseq Plugin: Weekdays and Holidays (Templates) 🛌
 
-- Plugin for switching journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week. This plugin is capable of corresponding to holidays in various countries around the world, thanks to the library we utilize.
+- Plugin for switching journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week.
+- This plugin is capable of corresponding to holidays in various countries around the world, thanks to the library we utilize.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
+ Published 2023/05/04 
  [日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) / [ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
  
 ## Demo
@@ -50,16 +52,38 @@ Offer four templates:
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 - [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
-## My plugins
+## Showcase / Questions / Ideas / Help
+
+Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
+
+## Contributing
+
+- Contributions to this plugin are always welcome! If you find a bug or have a suggestion for a new feature, please open an issue or submit a pull request. All contributions will be reviewed and considered for inclusion in future releases.
+
+## License
+
+- This Plugin is released under the MIT License. See the LICENSE file for more information.
+
+## Author
+
+* GitHub: [YU000jp](https://github.com/YU000jp)
+* Twitter: [@y0skyblue](https://twitter.com/y0skyblue)
+* Discord: YU#5179 ([Logseq](https://discord.gg/logseq))
+
+### My Logseq plugins
 
 - [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
 - [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
 - [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
-- [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
 - [Panel Coloring](https://github.com/YU000jp/logseq-plugin-panel-coloring)
 - [Page-tags and Hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
+- [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
 - [Rakuten-books](https://github.com/YU000jp/logseq-plugin-rakuten-books) (Only for Japanese site)
 - [booklog-jp-import](https://github.com/YU000jp/logseq-plugin-booklog-jp-import) (Only for Japanese site)
+
+## Link
+
+- [Logseq](https://github.com/logseq)
 
 ## Prior art & Credit
 
@@ -68,6 +92,7 @@ Offer four templates:
 - [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15
 - [date-holidays](https://github.com/commenthol/date-holidays)
 - [SweetAlert2](https://sweetalert2.github.io/)
+- [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
 
 ### Logseq Plugin
 
@@ -82,3 +107,7 @@ Offer four templates:
 ### Special Thanks
 
 - [xyhp915](https://github.com/xyhp915) for @Logseq/libs v0.0.15
+
+---
+
+<a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
