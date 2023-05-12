@@ -6,6 +6,8 @@ import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyu
 import ja from "./translations/ja.json";
 let sweetAlert2background;  //color: sweetAlert2color
 let sweetAlert2color; //background: sweetAlert2background
+//import AirDatepicker from 'air-datepicker'; // https://github.com/t1m0n/air-datepicker/tree/master/dist
+//import flatpickr from "flatpickr";
 
 /* main */
 const main = () => {
@@ -95,7 +97,7 @@ const main = () => {
             //アラート日の場合
             //dialog
             await selectTemplateDialog(payload.uuid, "Select Main/Sub Template for this week", template, logseq.settings?.switchSubTemplateName, "sub");
-          } else {
+          } else if(weekdays === "ALL" || checkWeekday(weekdays) === true){
             let setTemplate;
             if (logseq.settings?.switchSetTemplate) {
               setTemplate = logseq.settings?.switchSetTemplate;
@@ -470,10 +472,46 @@ function userSettings(ByLanguage: string) {
       description: '2 or 3 character alphanumeric code or blank (default)',
       default: "",
     },
+    // {
+    //   key: "",
+    //   title: t("[Option] Private holiday or annual leave"),
+    //   type: "heading",
+    //   description: t("Use switch templates on them."),
+    //   default: "",
+    // },
+    // {
+    //   key: "switchPrivate",
+    //   title: t("Turn on: Alert for them"),
+    //   type: "boolean",
+    //   description: t("When renderers is called, prioritize them."),
+    //   default: false,
+    // },
+    // {
+    //   key: "selectPrivateDays",
+    //   title: t("select dates for them"),
+    //   type: "string",
+    //   description: t("Select multiple dates"),
+    //   default: "",
+    // },
+    // {
+    //   key: "switchPrivateTemplateName",
+    //   title: t("Call: Private-Template name *"),
+    //   type: "string",
+    //   description: "",
+    //   default: "Holidays-Template",
+    // },
   ];
   logseq.useSettingsSchema(settingsTemplate);
-}
 
+
+
+
+  //  const inputElement = parent.document.querySelector<HTMLInputElement>('div[data-key="selectPrivateDays"] input');
+
+
+
+
+}
 
 //setCountry
 function setCountry() {
@@ -539,7 +577,7 @@ function setCountry() {
 //end
 
 
-function checkWeekday(selectWeekday: string) {
+function checkWeekday(selectWeekday: string): boolean {
   //曜日指定=ALL以外
   const days = {
     Sun: 0,
