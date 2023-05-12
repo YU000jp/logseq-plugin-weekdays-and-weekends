@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.9.0...v1.9.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* **bug:** renderer alert (Duplicate templates) ([ea24f4c](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/ea24f4c1161df97023904cab13ddb568eef3c1b1))
+
 # [1.9.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.8.0...v1.9.0) (2023-05-05)
 
 
