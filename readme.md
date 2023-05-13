@@ -20,10 +20,11 @@
 
 Offer four templates:
 
-1. Weekdays templates `Main-Template`
-1. Main/Sub templates `Sub-Template`
+1. Weekdays template `Main-Template`
+1. Main/Sub template `Sub-Template`
 1. weekends template `Weekends-Template`
 1. Public holiday template `Holidays-Template`
+1. Private holiday (or annual leave) template `Holidays-Template`
 
 - possible to specify conditions using multiple templates and change days of a week
 
