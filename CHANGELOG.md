@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.9.1...v1.10.0) (2023-05-13)
+
+
+### Features
+
+* **Private days:** add specify multiple dates ([e656a2a](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e656a2a4597a9d9c4c848808b0764a3843514bd2))
+
 ## [1.9.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.9.0...v1.9.1) (2023-05-12)
 
 
