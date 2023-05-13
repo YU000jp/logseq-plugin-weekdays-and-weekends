@@ -85,11 +85,13 @@ const main = () => {
           const month = today.getMonth();// +1しない
           const day = today.getDate();
           logseq.settings.privateDaysArray.forEach((date) => {
-            if (date.getFullYear() === fullYear &&
-              date.getMonth() === month &&
-              date.getDate() === day) {
+            const thisDate = new Date(date);
+            if (thisDate.getFullYear() === fullYear &&
+              thisDate.getMonth() === month &&
+              thisDate.getDate() === day) {
               // dateが今日の日付と一致する場合の処理
               isPrivate = true;
+              return;
             }
           });
         } else
