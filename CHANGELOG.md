@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.10.0...v1.10.1) (2023-05-14)
+
+
+### Bug Fixes
+
+* **bug:** Private Days Array duplicate ([5014530](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/50145303632054eaa8bac1e174985ee5d89e96e7))
+
 # [1.10.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.9.1...v1.10.0) (2023-05-13)
 
 
