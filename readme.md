@@ -79,18 +79,12 @@ Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-wee
 - [Panel Coloring](https://github.com/YU000jp/logseq-plugin-panel-coloring)
 - [Page-tags and Hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
 - [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
-- [Rakuten-books](https://github.com/YU000jp/logseq-plugin-rakuten-books) (Only for Japanese site)
-- [booklog-jp-import](https://github.com/YU000jp/logseq-plugin-booklog-jp-import) (Only for Japanese site)
-
-## Link
-
-- [Logseq](https://github.com/logseq)
 
 ## Prior art & Credit
 
 ### Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 (Thanks! [xyhp915](https://github.com/xyhp915))
 - [date-holidays](https://github.com/commenthol/date-holidays)
 - [SweetAlert2](https://sweetalert2.github.io/)
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
@@ -104,10 +98,6 @@ Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-wee
 ### Icon
 
 - [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
-
-### Special Thanks
-
-- [xyhp915](https://github.com/xyhp915) for @Logseq/libs v0.0.15
 
 ---
 
