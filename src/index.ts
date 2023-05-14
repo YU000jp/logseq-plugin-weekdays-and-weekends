@@ -200,18 +200,24 @@ const main = () => {
 
 
 function getDates() {
-  const dates: Date[] = []; // 日付を格納する配列を初期化
+  logseq.updateSettings({ privateDaysArray: null });
+  const privateDaysArray: Date[] = []; // 日付を格納する配列を初期化
   const dateIds = ["date1", "date2", "date3", "date4", "date5", "date6"]; // 日付のIDを格納する配列
-
   for (const dateId of dateIds) { // 日付のIDを1つずつ処理するループ
-    const inputDate = new Date((<HTMLInputElement>parent.document.getElementById(dateId)).value); // 日付の値を取得
+    const value = (<HTMLInputElement>parent.document.getElementById(dateId)).value;
+    if (!value) {
+      continue;
+    }
+    const inputDate: Date = new Date(value); // 日付の値を取得
     if (!isNaN(inputDate.getTime())) { // 日付が有効な日付かどうかをチェック
-      dates.push(inputDate); // 日付を配列に追加
+      privateDaysArray.push(inputDate); // 日付を配列に追加
     }
   }
-  logseq.updateSettings({ privateDaysArray: dates });
-  selectPrivateDays();
+  logseq.updateSettings({ privateDaysArray });
   logseq.UI.showMsg(`Set Private Days`, "info");
+  setTimeout(() => {
+    selectPrivateDays();
+  }, 300);
 }
 
 
@@ -224,6 +230,7 @@ function selectPrivateDays() {
       attrs: {
         title: 'Plugin Settings - Weekdays and Holidays (Templates)',
       },
+      close: "outside",
       reset: true,
       template: `
     <form id="SetDates">
@@ -291,7 +298,7 @@ function selectPrivateDays() {
 
 function setSavedDates() {
   if (logseq.settings?.privateDaysArray) {
-    const privateDaysArray = logseq.settings.privateDaysArray; // 保存された日付の配列を取得
+    const privateDaysArray: Date[] = logseq.settings.privateDaysArray; // 保存された日付の配列を取得
     const dateIds = ["date1", "date2", "date3", "date4", "date5", "date6"]; // 日付のIDを格納する配列
     const today = new Date(); // 今日の日付を取得
     for (let i = 0; i < privateDaysArray.length && i < dateIds.length; i++) { // 日付を1つずつ処理するループ
@@ -299,9 +306,7 @@ function setSavedDates() {
       const inputDate = new Date(privateDaysArray[i]); // 日付をDateオブジェクトに変換
       if (inputDate > today) { // 日付が今日より後の場合のみ、値をセットする
         const formattedDate = inputDate.toISOString().slice(0, 10); // yyyy-mm-ddの形式に変換
-        console.log(formattedDate);
         const dateInput = parent.document.getElementById(dateIds[i]) as HTMLInputElement; // 日付入力欄に値をセット
-        console.log(dateInput);
         if (dateInput) {
           dateInput.value = formattedDate;
         }
