@@ -60,6 +60,23 @@ const main = () => {
   });
 
 
+  logseq.provideStyle({
+    key: "main", style: `
+  form.SetDates {
+    margin:1.2em;
+  }
+  form.SetDates input {
+    background: var(--ls-block-properties-background-color);
+    color: var(--ls-primary-text-color);
+    margin-bottom: 1em;
+  }
+  form.SetDates button {
+    outline: 2px solid var(--ls-link-ref-text-hover-color);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    padding:5px;
+  }
+  ` });
+
   let rendering = ""; //rendering flag
   //rendering
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
@@ -79,61 +96,78 @@ const main = () => {
         let isHoliday;
         // Switch on private days
         let isPrivate: Boolean = false;
-        if (logseq.settings?.switchPrivate === true && logseq.settings?.switchPrivateTemplateName && logseq.settings.privateDaysArray) {
-          const today = new Date();
-          const fullYear = today.getFullYear();
-          const month = today.getMonth();// +1しない
-          const day = today.getDate();
-          logseq.settings.privateDaysArray.forEach((date) => {
-            const thisDate = new Date(date);
-            if (thisDate.getFullYear() === fullYear &&
-              thisDate.getMonth() === month &&
-              thisDate.getDate() === day) {
-              // dateが今日の日付と一致する場合の処理
-              isPrivate = true;
-              return;
-            }
-          });
-        } else
-          if (logseq.settings?.switchHolidays === true && logseq.settings?.switchHolidaysCountry && logseq.settings?.switchHolidaysTemplateName) {
-            const hd = new Holidays();
-            const settingsCountry = logseq.settings?.switchHolidaysCountry
-            const array = settingsCountry.split(":");
-            hd.init(array[0], logseq.settings?.switchHolidaysState, logseq.settings?.switchHolidaysRegion);
-            const checkHoliday = await hd.isHoliday(new Date()); //test new Date("2023/05/03")
-            if (checkHoliday) {
-              isHoliday = `${checkHoliday[0].name} (${checkHoliday[0].type})`;
-            }
+        // Switch on working on holidays
+        let isWorkingOnHolidays: Boolean = false;
+        if (logseq.settings?.switchWorkingOnHolidays === true && (logseq.settings?.switchWorkingOnHolidaysTemplateName || logseq.settings?.selectWorkingOnHolidaysSubTemplate === true) && logseq.settings?.workingOnHolidaysArray) {
+          isWorkingOnHolidays = checkMatchToday(logseq.settings?.workingOnHolidaysArray) as boolean;
+        }
+        if (isWorkingOnHolidays === false && logseq.settings?.switchPrivate === true && logseq.settings?.switchPrivateTemplateName && logseq.settings?.privateDaysArray) {
+          isPrivate = checkMatchToday(logseq.settings?.privateDaysArray) as boolean;
+        }
+        if (isWorkingOnHolidays === false && isPrivate === false && logseq.settings?.switchHolidays === true && logseq.settings?.switchHolidaysCountry && logseq.settings?.switchHolidaysTemplateName) {
+          const hd = new Holidays();
+          const settingsCountry = logseq.settings?.switchHolidaysCountry
+          const array = settingsCountry.split(":");
+          hd.init(array[0], logseq.settings?.switchHolidaysState, logseq.settings?.switchHolidaysRegion);
+          const checkHoliday = await hd.isHoliday(new Date()); //test new Date("2023/05/03")
+          if (checkHoliday) {
+            isHoliday = `${checkHoliday[0].name} (${checkHoliday[0].type})`;
           }
-        if (isPrivate === true) {
+        }
+        if (isWorkingOnHolidays === true) {
+          let thisTemplate;
+          if (logseq.settings?.selectWorkingOnHolidaysSubTemplate === true) {
+            thisTemplate = logseq.settings?.switchSubTemplateName;
+          } else {
+            thisTemplate = logseq.settings?.switchWorkingOnHolidaysTemplateName;
+          }
           //dialog
-          await selectTemplateDialog(payload.uuid, `Today is Private days.<br/>Select Main/Private Template for today`, template, logseq.settings?.switchPrivateTemplateName, "");
+          await selectTemplateDialog(payload.uuid,
+            `Today is Working on Holidays.<br/>Select Main/Working on Holidays Template for today`,
+            template,
+            thisTemplate,
+            "");
         } else
-          if (isHoliday) {
+          if (isPrivate === true) {
             //dialog
-            await selectTemplateDialog(payload.uuid, `Today is ${isHoliday}.<br/>Select Main/Holidays Template for today`, template, logseq.settings?.switchHolidaysTemplateName, "");
-
+            await selectTemplateDialog(payload.uuid,
+              `Today is Private days.<br/>Select Main/Private Template for today`,
+              template,
+              logseq.settings?.switchPrivateTemplateName,
+              "");
           } else
-            if (logseq.settings?.switchMainSub === true && logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) { //Switch to Sub Template
-              if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
-                //アラート日の場合
-                //dialog
-                await selectTemplateDialog(payload.uuid, "Select Main/Sub Template for this week", template, logseq.settings?.switchSubTemplateName, "sub");
+            if (isHoliday) {
+              //dialog
+              await selectTemplateDialog(payload.uuid,
+                `Today is ${isHoliday}.<br/>Select Main/Holidays Template for today`,
+                template,
+                logseq.settings?.switchHolidaysTemplateName,
+                "");
+            } else
+              if (logseq.settings?.switchMainSub === true && logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) { //Switch to Sub Template
+                if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
+                  //アラート日の場合
+                  //dialog
+                  await selectTemplateDialog(payload.uuid,
+                    "Select Main/Sub Template for this week",
+                    template,
+                    logseq.settings?.switchSubTemplateName,
+                    "sub");
+                } else
+                  if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
+                    let setTemplate;
+                    if (logseq.settings?.switchSetTemplate) {
+                      setTemplate = logseq.settings?.switchSetTemplate;
+                    } else {
+                      setTemplate = template;
+                    }
+                    //セットされたテンプレートを挿入
+                    await insertTemplateBlock(payload.uuid, setTemplate);
+                  }
               } else
                 if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
-                  let setTemplate;
-                  if (logseq.settings?.switchSetTemplate) {
-                    setTemplate = logseq.settings?.switchSetTemplate;
-                  } else {
-                    setTemplate = template;
-                  }
-                  //セットされたテンプレートを挿入
-                  await insertTemplateBlock(payload.uuid, setTemplate);
+                  await insertTemplateBlock(payload.uuid, template);
                 }
-            } else
-              if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
-                await insertTemplateBlock(payload.uuid, template);
-              }
         setTimeout(() => {
           rendering = "";
         }, 1000);
@@ -175,8 +209,13 @@ const main = () => {
     if (processingOnSettingsChanged === false && newSet && oldSet && newSet !== oldSet) {
       if (oldSet.selectPrivateDays !== true && newSet.selectPrivateDays === true) {
         processingOnSettingsChanged = true;
-        selectPrivateDays();
+        selectDaysByUser("PrivateDays");
         logseq.updateSettings({ selectPrivateDays: false });
+        processingOnSettingsChanged = false;
+      } else if (oldSet.selectWorkingOnHolidays !== true && newSet.selectWorkingOnHolidays === true) {
+        processingOnSettingsChanged = true;
+        selectDaysByUser("WorkingOnHolidays");
+        logseq.updateSettings({ selectWorkingOnHolidays: false });
         processingOnSettingsChanged = false;
       }
     }
@@ -184,8 +223,11 @@ const main = () => {
 
 
   logseq.provideModel({
-    getDates() {
-      getDates();
+    getDatesPrivateDays() {
+      getDates("PrivateDays");
+    },
+    getDatesWorkingOnHolidays() {
+      getDates("WorkingOnHolidays");
     },
   });
 
@@ -199,10 +241,43 @@ const main = () => {
 };/* end_main */
 
 
-function getDates() {
-  logseq.updateSettings({ privateDaysArray: null });
-  const privateDaysArray: Date[] = []; // 日付を格納する配列を初期化
-  const dateIds = ["date1", "date2", "date3", "date4", "date5", "date6"]; // 日付のIDを格納する配列
+function checkMatchToday(array: []): Boolean {
+  if (!array) { return false }
+  const today = new Date();
+  const fullYear = today.getFullYear();
+  const month = today.getMonth(); // +1しない
+  const day = today.getDate();
+  let check: Boolean = false;
+  array.forEach((date) => {
+    const thisDate = new Date(date);
+    if (thisDate.getFullYear() === fullYear &&
+      thisDate.getMonth() === month &&
+      thisDate.getDate() === day) {
+      // dateが今日の日付と一致する場合の処理
+      check = true;
+      return true;
+    }
+  });
+  return check;
+}
+
+function getDates(target) {
+  let id, title;
+  if (target === "PrivateDays") {
+    id = "p";
+    title = "Private Days";
+    logseq.updateSettings({ privateDaysArray: null });
+  } else if (target === "WorkingOnHolidays") {
+    id = "w";
+    title = "Working on Holidays";
+    logseq.updateSettings({ workingOnHolidaysArray: null });
+  } else {
+    console.error("Error: getDates");
+    return;
+  }
+
+  const DaysArray: Date[] = []; // 日付を格納する配列を初期化
+  const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
   for (const dateId of dateIds) { // 日付のIDを1つずつ処理するループ
     const value = (<HTMLInputElement>parent.document.getElementById(dateId)).value;
     if (!value) {
@@ -210,66 +285,66 @@ function getDates() {
     }
     const inputDate: Date = new Date(value); // 日付の値を取得
     if (!isNaN(inputDate.getTime())) { // 日付が有効な日付かどうかをチェック
-      privateDaysArray.push(inputDate); // 日付を配列に追加
+      DaysArray.push(inputDate); // 日付を配列に追加
     }
   }
-  logseq.updateSettings({ privateDaysArray });
-  logseq.UI.showMsg(`Set Private Days`, "info");
-  setTimeout(() => {
-    selectPrivateDays();
-  }, 300);
+  if (target === "PrivateDays") {
+    logseq.updateSettings({ privateDaysArray: DaysArray });
+  } else if (target === "WorkingOnHolidays") {
+    logseq.updateSettings({ workingOnHolidaysArray: DaysArray });
+  }
 }
 
 
-function selectPrivateDays() {
+function selectDaysByUser(target) {
+  let key, title, id, onClick;
+  if (target === "PrivateDays") {
+    key = target;
+    title = "Private Days";
+    id = "p";
+    onClick = "getDatesPrivateDays";
+  } else if (target === "WorkingOnHolidays") {
+    key = "WorkingOnHolidays";
+    title = "Working on Holidays";
+    id = "w";
+    onClick = "getDatesWorkingOnHolidays";
+  } else {
+    console.error("Error: selectDaysByUser");
+    return;
+  }
   const today = new Date();
   const formattedDate = today.toISOString().slice(0, 10);
   try {
     logseq.provideUI({
-      key: "PrivateDays",
+      key,
       attrs: {
         title: 'Plugin Settings - Weekdays and Holidays (Templates)',
       },
       close: "outside",
       reset: true,
       template: `
-    <form id="SetDates">
-    <h3>Select Private Days</h3>
+    <form class="SetDates">
+    <h3>Select ${title}</h3>
   <div><label for="date1">Date 1:</label>
-  <input type="date" id="date1" name="date1" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date1" name="date1" min="${formattedDate}"/></div>
   
   <div><label for="date2">Date 2:</label>
-  <input type="date" id="date2" name="date2" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date2" name="date2" min="${formattedDate}"/></div>
 
   <div><label for="date3">Date 3:</label>
-  <input type="date" id="date3" name="date3" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date3" name="date3" min="${formattedDate}"/></div>
 
   <div><label for="date4">Date 4:</label>
-  <input type="date" id="date4" name="date4" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date4" name="date4" min="${formattedDate}"/></div>
 
   <div><label for="date5">Date 5:</label>
-  <input type="date" id="date5" name="date5" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date5" name="date5" min="${formattedDate}"/></div>
 
   <div><label for="date6">Date 6:</label>
-  <input type="date" id="date6" name="date6" min="${formattedDate}"/></div>
+  <input type="date" id="${id}date6" name="date6" min="${formattedDate}"/></div>
   
-  <button type="button" data-on-click="getDates">Set Dates</button>
+  <button type="button" data-on-click="${onClick}">Set Dates</button>
 </form>
-<style>
-    form#SetDates {
-      margin:1.2em;
-    }
-    form#SetDates input {
-      background: var(--ls-block-properties-background-color);
-      color: var(--ls-primary-text-color);
-      margin-bottom: 1em;
-    }
-    form#SetDates button {
-      outline: 2px solid var(--ls-link-ref-text-hover-color);
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-      padding:5px;
-    }
-</style>
     `,
       style: {
         color: "var(--ls-link-ref-text-hover-color)",
@@ -290,16 +365,27 @@ function selectPrivateDays() {
     });
   } finally {
     setTimeout(() => {
-      setSavedDates(); // ページ読み込み時に実行して、保存された日付をフォームにセットする
+      setSavedDates(target); // ページ読み込み時に実行して、保存された日付をフォームにセットする
     }, 300);
   }
 }
 
 
-function setSavedDates() {
-  if (logseq.settings?.privateDaysArray) {
-    const privateDaysArray: Date[] = logseq.settings.privateDaysArray; // 保存された日付の配列を取得
-    const dateIds = ["date1", "date2", "date3", "date4", "date5", "date6"]; // 日付のIDを格納する配列
+function setSavedDates(target) {
+  let id, setting;
+  if (target === "PrivateDays") {
+    id = "p";
+    setting = logseq.settings?.privateDaysArray;
+  } else if (target === "WorkingOnHolidays") {
+    id = "w";
+    setting = logseq.settings?.workingOnHolidaysArray;
+  } else {
+    console.error("Error: setSavedDates");
+    return;
+  }
+  if (setting) {
+    const privateDaysArray: Date[] = setting; // 保存された日付の配列を取得
+    const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
     const today = new Date(); // 今日の日付を取得
     for (let i = 0; i < privateDaysArray.length && i < dateIds.length; i++) { // 日付を1つずつ処理するループ
       if (privateDaysArray[i] === undefined) { continue; }
@@ -543,19 +629,20 @@ function userSettings(ByLanguage: string) {
       key: "",
       title: t("Check Wiki to setup"),
       type: "heading",
-      description: "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",
+      description: t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document"),
       default: "",
     },
+    //Sub Template
     {
       key: "",
       title: t("[Option] Sub-Template for a week"),
       type: "heading",
-      description: t("Use switching templates on specific days of the week."),
+      description: t("Use alert for switching templates on specific days of the week."),
       default: "",
     },
     {
       key: "switchMainSub",
-      title: t("Turn on: Alert for switching to Sub-Template"),
+      title: t("Turn on:"),
       type: "boolean",
       description: t("On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week."),
       default: false,
@@ -589,16 +676,17 @@ function userSettings(ByLanguage: string) {
       description: t("--No editing is needed. For editing manually."),
       default: "",
     },
+    //holidays
     {
       key: "",
       title: t("[Option] Holidays-Template"),
       type: "heading",
-      description: t("Use switch templates on holidays."),
+      description: t("Use alert for switching templates on holidays."),
       default: "",
     },
     {
       key: "switchHolidays",
-      title: t("Turn on: Alert for holidays"),
+      title: t("Turn on:"),
       type: "boolean",
       description: t("When renderers is called, prioritize holidays."),
       default: false,
@@ -633,16 +721,17 @@ function userSettings(ByLanguage: string) {
       description: '2 or 3 character alphanumeric code or blank (default)',
       default: "",
     },
+    //Private holidays
     {
       key: "",
       title: t("[Option] Private holiday (or annual leave)"),
       type: "heading",
-      description: t("Use switch templates on the private holidays."),
+      description: t("Use alert for switching templates on the private holidays."),
       default: "",
     },
     {
       key: "switchPrivate",
-      title: t("Turn on: Alert for the private holidays"),
+      title: t("Turn on:"),
       type: "boolean",
       description: t("When renderers are called, prioritize them over others."),
       default: false,
@@ -660,6 +749,42 @@ function userSettings(ByLanguage: string) {
       type: "string",
       description: "",
       default: "Holidays-Template",
+    },
+    //Working on holidays
+    {
+      key: "",
+      title: t("[Option] Working on holidays"),
+      type: "heading",
+      description: t("Use alert for switching templates on the working on holidays."),
+      default: "",
+    },
+    {
+      key: "switchWorkingOnHolidays",
+      title: t("Turn on:"),
+      type: "boolean",
+      description: t("When renderers are called, prioritize them over others."),
+      default: false,
+    },
+    {
+      key: "selectWorkingOnHolidays",
+      title: t("select multiple dates"),
+      type: "boolean",
+      description: t("(Open a new model on click this checkbox)"),
+      default: false,
+    },
+    {
+      key: "selectWorkingOnHolidaysSubTemplate",
+      title: t("Use setting option of sub-template name"),
+      type: "boolean",
+      description: "",
+      default: true,
+    },
+    {
+      key: "switchWorkingOnHolidaysTemplateName",
+      title: t("Call: template name of Working On Holidays"),
+      type: "string",
+      description: t("If the boolean setting item above is false"),
+      default: "Main-Template",
     },
   ];
   logseq.useSettingsSchema(settingsTemplate);
@@ -782,6 +907,7 @@ async function insertTemplateBlock(blockUuid, template: string) {
       });
     }
   } else {
+    logseq.UI.showMsg(`Template ${template} not found.`, "error");
     console.warn(`Template ${template} not found.`);
   }
 }
