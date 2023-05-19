@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.10.1...v1.11.0) (2023-05-19)
+
+
+### Features
+
+* Accommodate working on holidays ([e42db4a](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e42db4a4c6771ced81e8f10a2c0777b73784fe05))
+
 ## [1.10.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.10.0...v1.10.1) (2023-05-14)
 
 
