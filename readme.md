@@ -18,15 +18,16 @@
 - A mechanism for calling the functions of this plugin is achieved by placing what is called renderings in journal template.
 - On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
-Offer 5 templates:
+Offer 4+ templates:
 
 1. Weekdays template `Main-Template`
 1. Main/Sub template `Sub-Template`
 1. weekends template `Weekends-Template`
 1. Public holiday template `Holidays-Template`
-1. Private holiday (or annual leave) template `(Holidays-Template)`
+1. Private holiday (or annual leave)`
+1. Working on holidays
 
-- possible to specify conditions using multiple templates and change days of a week
+> It is possible to specify conditions using multiple templates and change days of a week.
 
 ## Setup 🖥️
 
