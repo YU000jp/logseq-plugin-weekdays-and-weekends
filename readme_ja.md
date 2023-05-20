@@ -35,7 +35,6 @@
 - ジャーナル テンプレートが呼び出されたときにレンダリングを実行する必要があります。常にこのプラグインをオンにしてください。 Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
 - 既存の[Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)との統合が可能です。
 - Logseq標準の動的変数をサポートします。
-- さまざまな休日パターンに対応しています。
 
 ## Logseqマーケットプレースからインストール
 
