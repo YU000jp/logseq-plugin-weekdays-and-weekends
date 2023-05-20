@@ -29,7 +29,12 @@ Offer 4+ templates:
 
 > It is possible to specify conditions using multiple templates and change days of a week.
 
-## Setup 🖥️
+## Usage
+
+- In this plugin, initial setup by the user is required once.
+> By default, several items are set to "off" in the initial configuration.
+
+### Setup 🖥️
 
 - [English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document)📝
 - [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
