@@ -9,35 +9,53 @@
 > Published 2023/05/04 
 > [日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) / [ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
  
-## Demo
-
-![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
+ <hr/>
 
 ## Features
 
 - A mechanism for calling the functions of this plugin is achieved by placing what is called renderings in journal template.
 - On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
 
-Offer 4+ templates:
+#### Offer 4 templates:
 
 1. Weekdays template `Main-Template`
 1. Main/Sub template `Sub-Template`
 1. weekends template `Weekends-Template`
 1. Public holiday template `Holidays-Template`
-1. Private holiday (or annual leave)`
-1. Working on holidays
-
 > It is possible to specify conditions using multiple templates and change days of a week.
 
-## Usage
+#### Offer 2 options:
+
+3. Private holiday (or annual leave)
+4. Working on holidays
+
+## Demo
+
+   ![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
+
+<hr/>
+
+## Getting Started
+
+### Install from Logseq Marketplace
+
+- Press [`---`] on the top right toolbar to open [`Plugins`]
+- Select marketplace
+- Type `week` in the search field, select it from the search results and install
+
+   ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
+
+### Usage
 
 - In this plugin, initial setup by the user is required once.
 > By default, several items are set to "off" in the initial configuration.
 
-### Setup 🖥️
+#### Setup 🖥️
 
 - [English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document)📝
 - [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
+
+<hr/>
 
 ## Questions
 
@@ -47,18 +65,20 @@ Offer 4+ templates:
 - It is possible to also place the renderer as a journal template in other graphs, but please note that the plugin settings are shared across all graphs.
 > For those who live every day like a holiday, this plugin may not be necessary.🤣
 
-## Install from Logseq Marketplace
-
-- Press [`---`] on the top right toolbar to open [`Plugins`]
-- Select marketplace
-- Type `week` in the search field, select it from the search results and install
-
-![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
+<hr/>
 
 ## Link
+
+#### Manual:
+
 - [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+
+#### Publish template:
+
 - [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
+
+<hr/>
 
 ## Showcase / Questions / Ideas / Help
 
