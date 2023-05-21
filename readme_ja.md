@@ -6,9 +6,7 @@
  公開日:2023/05/04 /
  [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
 
-## デモ
-
-![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
+<hr/>
 
 ## 機能説明
 
@@ -24,6 +22,14 @@
 
 > 複数のテンプレートによる条件指定や曜日変更が可能
 - 個人休暇(年休)、休日出勤日を指定可能 (それぞれ最大6日)
+
+## デモ
+
+![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
+
+<hr/>
+
+- プラグインを使用するには、ユーザーによる初期設定が必要です。またデフォルトでは、いくつかの機能がオフになっています。プラグインの設定画面を開いて、設定をオンにしてください。
 
 ## 初期設定
 
