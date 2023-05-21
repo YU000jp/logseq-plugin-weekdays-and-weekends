@@ -65,7 +65,7 @@
 
 <hr/>
 
-## Link
+## Links
 
 #### Manual:
 
