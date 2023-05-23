@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.0...v1.11.1) (2023-05-23)
+
+
+### Bug Fixes
+
+* **bug:** duplicate message ([710544e](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/710544ebf23ba830b14d37b93df94575955b9aff))
+
 # [1.11.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.10.1...v1.11.0) (2023-05-19)
 
 
