@@ -843,10 +843,8 @@ function setCountry() {
       if (configs) {
         ByLanguage = convertLanguageCodeToCountryCode(configs.preferredLanguage);
         logseq.updateSettings({ switchHolidaysCountry: ByLanguage });
+        logseq.showSettingsUI();
       }
-    }).finally(() => {
-      logseq.UI.showMsg("Check setting of [Supported countries] on plugin settings", "info", { timeout: 3000 });
-      logseq.showSettingsUI();
     });
   }
   return ByLanguage;
