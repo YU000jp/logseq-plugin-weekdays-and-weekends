@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases) Published 2023/05/04 ([日本語README](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) / [ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝)
  
- <hr/>
+ ---
 
 ## Features
 
@@ -31,14 +31,14 @@
 
    ![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
 
-<hr/>
+---
 
 ## Getting Started
 
 ### Install from Logseq Marketplace
 
 - Press [`---`] on the top right toolbar to open [`Plugins`]
-- Select marketplace
+- Select `Marketplace`
 - Type `week` in the search field, select it from the search results and install
 
    ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
@@ -53,7 +53,7 @@
 - [English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document)📝
 - [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
 
-<hr/>
+---
 
 ## Questions
 
@@ -63,7 +63,7 @@
 - It is possible to also place the renderer as a journal template in other graphs, but please note that the plugin settings are shared across all graphs.
 > For those who live every day like a holiday, this plugin may not be necessary.🤣
 
-<hr/>
+---
 
 ## Links
 
@@ -76,7 +76,7 @@
 
 - [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
-<hr/>
+---
 
 ## Showcase / Questions / Ideas / Help
 
@@ -88,6 +88,7 @@
 
 ### My Logseq plugins
 
+- [Show Weekday and Week-number](https://github.com/YU000jp/logseq-plugin-show-weekday-and-week-number)
 - [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
 - [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
 - [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
