@@ -86,7 +86,7 @@ const main = () => {
 
     if (type === ":Weekdays") {//:weekdays
 
-      const check = await checkJournals();//ジャーナルだったらレンダリング実行
+      const check: boolean = await checkJournals();//ジャーナルだったらレンダリング実行
       if (template && weekdays && check === true) {
         //switchMainTemplateName
         //switchSubTemplateName
@@ -199,7 +199,7 @@ const main = () => {
       await l10nSetup({ builtinTranslations: { ja } });
     } finally {
       /* user settings */
-      userSettings(ByLanguage);
+      logseq.useSettingsSchema(settingsTemplate(ByLanguage));
     }
   })();
 
@@ -243,13 +243,13 @@ const main = () => {
 
 function checkMatchToday(array: []): Boolean {
   if (!array) { return false }
-  const today = new Date();
+  const today: Date = new Date();
   const fullYear = today.getFullYear();
   const month = today.getMonth(); // +1しない
   const day = today.getDate();
   let check: Boolean = false;
   array.forEach((date) => {
-    const thisDate = new Date(date);
+    const thisDate: Date = new Date(date);
     if (thisDate.getFullYear() === fullYear &&
       thisDate.getMonth() === month &&
       thisDate.getDate() === day) {
@@ -618,177 +618,174 @@ function insertSampleTemplates(uuid) {
 }
 
 //userSettings
-function userSettings(ByLanguage: string) {
-  // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
+// https://logseq.github.io/plugins/types/SettingSchemaDesc.html
 
-  //設定画面の文章変更時は、translations/ja.jsonも変更する (翻訳が反映されなくなる)
-  // t() L10N framework
-  //最終更新 2023/05/05
-  const settingsTemplate: SettingSchemaDesc[] = [
-    {
-      key: "",
-      title: t("Check Wiki to setup"),
-      type: "heading",
-      description: t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document"),
-      default: "",
-    },
-    //Sub Template
-    {
-      key: "",
-      title: t("[Option] Sub-Template for a week"),
-      type: "heading",
-      description: t("Use alert for switching templates on specific days of the week."),
-      default: "",
-    },
-    {
-      key: "switchMainSub",
-      title: t("Turn on:"),
-      type: "boolean",
-      description: t("On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week."),
-      default: false,
-    },
-    {
-      key: "switchAlertDay",
-      title: t("Trigger: Alert day"),
-      type: "enum",
-      enumChoices: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      description: t("For select Main/Sub templates"),
-      default: "Mon",
-    },
-    {
-      key: "switchMainTemplateName",
-      title: t("Target: Main-Template name *"),
-      type: "string",
-      description: t("Fill in the Main-Template specified in a renderer."),
-      default: "Main-Template",
-    },
-    {
-      key: "switchSubTemplateName",
-      title: t("Call: Sub-Template name *"),
-      type: "string",
-      description: "",
-      default: "Sub-Template",
-    },
-    {
-      key: "switchSetTemplate",
-      title: t("Set: current template name by switching"),
-      type: "string",
-      description: t("--No editing is needed. For editing manually."),
-      default: "",
-    },
-    //holidays
-    {
-      key: "",
-      title: t("[Option] Holidays-Template"),
-      type: "heading",
-      description: t("Use alert for switching templates on holidays."),
-      default: "",
-    },
-    {
-      key: "switchHolidays",
-      title: t("Turn on:"),
-      type: "boolean",
-      description: t("When renderers is called, prioritize holidays."),
-      default: false,
-    },
-    {
-      key: "switchHolidaysTemplateName",
-      title: t("Call: Holidays-Template name *"),
-      type: "string",
-      description: "",
-      default: "Holidays-Template",
-    },
-    {
-      key: "switchHolidaysCountry",
-      title: t("Supported countries *"),
-      type: "enum",
-      enumPicker: "select",
-      enumChoices: ["AD: Andorra", "AE: دولة الإمارات العربية المتحدة", "AG: Antigua & Barbuda", "AI: Anguilla", "AL: Shqipëri", "AM: Հայաստան", "AO: Angola", "AR: Argentina", "AS: American Samoa", "AT: Österreich", "AU: Australia", "AW: Aruba", "AX: Landskapet Åland", "AZ: Azərbaycan Respublikası", "BA: Bosna i Hercegovina", "BB: Barbados", "BD: গণপ্রজাতন্ত্রী বাংলাদেশ", "BE: Belgique", "BF: Burkina Faso", "BG: България", "BH: مملكة البحرين", "BI: République du Burundi", "BJ: République du Bénin", "BL: St. Barthélemy", "BM: Bermuda", "BN: Negara Brunei Darussalam", "BO: Bolivia", "BQ: Caribisch Nederland", "BR: Brasil", "BS: Bahamas", "BW: Botswana", "BY: Рэспубліка Беларусь", "BZ: Belize", "CA: Canada", "CC: Cocos (Keeling) Islands", "CD: République démocratique du Congo", "CF: République centrafricaine", "CG: République du Congo", "CH: Schweiz", "CI: République de Côte d'Ivoire", "CK: Cook Islands", "CL: Chile", "CM: Cameroun", "CN: 中华人民共和国", "CO: Colombia", "CR: Costa Rica", "CU: Cuba", "CV: República de Cabo Verde", "CW: Curaçao", "CX: Christmas Island", "CY: Κύπρος", "CZ: Česká republika", "DE: Deutschland", "DJ: République de Djibouti", "DK: Danmark", "DM: Dominica", "DO: República Dominicana", "DZ: الجمهورية الجزائرية الديمقراطية الشعبية", "EC: Ecuador", "EE: Eesti", "EG: جمهورية مصر العربية", "EH: الجمهورية العربية الصحراوية الديمقراطية", "ER: Eritrea", "ES: España", "ET: ኢትዮጵያ", "FI: Suomi", "FJ: Matanitu Tugalala o Viti", "FO: Føroyar", "FR: France", "GA: Gabon", "GB: United Kingdom", "GD: Grenada", "GE: საქართველო", "GF: Guyane", "GG: Guernsey", "GH: Ghana", "GI: Gibraltar", "GL: Kalaallit Nunaat", "GM: The Gambia", "GN: Guinée", "GP: Guadeloupe", "GQ: República de Guinea Ecuatorial", "GR: Ελλάδα", "GT: Guatemala", "GU: Guam", "GW: Guiné-Bissau", "GY: Guyana", "HK: 香港", "HN: Honduras", "HR: Hrvatska", "HT: Haïti", "HU: Magyarország", "IC: Islas Canarias", "ID: Indonesia", "IE: Ireland", "IL: מְדִינַת יִשְׂרָאֵל", "IM: Isle of Man", "IR: جمهوری اسلامی ایران", "IS: Ísland", "IT: Italia", "JE: Jersey", "JM: Jamaica", "JP: 日本", "KE: Kenya", "KM: Union des Comores", "KN: St. Kitts & Nevis", "KR: 대한민국", "KY: Cayman Islands", "LC: St. Lucia", "LI: Lichtenstein", "LR: Liberia", "LS: \'Muso oa Lesotho", "LT: Lietuva", "LU: Luxembourg", "LV: Latvija", "LY: دولة ليبيا", "MA: المملكة المغربية", "MC: Monaco", "MD: Republica Moldova", "ME: Crna Gora", "MF: Saint Martin", "MG: Repoblikan'i Madagasikara", "MK: Република Македонија", "ML: République du Mali", "MQ: Martinique", "MR: الجمهورية الإسلامية الموريتانية", "MS: Montserrat", "MT: Malta", "MW: Malawi", "MX: México", "MY: Malaysia", "MZ: Moçambique", "NA: Namibia", "NC: Nouvelle-Calédonie", "NE: République du Niger", "NG: Nigeria", "NI: Nicaragua", "NL: Nederland", "NO: Norge", "NZ: New Zealand", "PA: Panamá", "PE: Perú", "PH: Philippines", "PL: Polska", "PM: St. Pierre & Miquelon", "PR: Puerto Rico", "PT: Portugal", "PY: Paraguay", "RE: Réunion", "RO: Romania", "RS: Република Србија", "RU: Россия", "RW: Rwanda", "SC: Seychelles", "SD: جمهورية السودان", "SE: Sverige", "SG: Singapore", "SH: St. Helena", "SI: Republika Slovenija", "SJ: Svalbard & Jan Mayen", "SK: Slovenská republika", "SL: Sierra Leone", "SM: San Marino", "SN: République du Sénégal", "SO: Jamhuuriyadda Federaalka Soomaaliya", "SR: Suriname", "SS: South Sudan", "ST: São Tomé & Príncipe", "SV: El Salvador", "SX: Sint Maarten", "SZ: Eswatini", "TC: Turks & Caicos Islands", "TD: جمهورية تشاد", "TG: République togolaise", "TH: Thailand", "TN: الجمهورية التونسية", "TO: Puleʻanga Fakatuʻi ʻo Tonga", "TR: Türkiye", "TT: Trinidad & Tobago", "TW: 中華民國", "TZ: Tanzania", "UA: Україна", "UG: Uganda", "US: United States of America", "UY: Uruguay", "VA: Stato della Città del Vaticano", "VC: St. Vincent & Grenadines", "VE: Venezuela", "VG: British Virgin Islands", "VI: U.S. Virgin Islands", "VN: Cộng hòa Xã hội chủ nghĩa Việt Nam", "VU: République de Vanuatu", "XK: Republika e Kosovës", "YT: Mayotte", "ZA: South Africa", "ZM: Zambia", "ZW: Zimbabwe"],
-      description: t('Select your country. If possible to set the State and Region, do so individually. https://github.com/commenthol/date-holidays#supported-countries-states-regions'),
-      default: ByLanguage || "US: United States of America",
-    },
-    {
-      key: "switchHolidaysState",
-      title: t("Supported states (Match country)"),
-      type: "string",
-      description: '2-character alphanumeric code (ex, NY) or blank (default)',
-      default: "",
-    },
-    {
-      key: "switchHolidaysRegion",
-      title: t("Supported regions (Match country)"),
-      type: "string",
-      description: '2 or 3 character alphanumeric code or blank (default)',
-      default: "",
-    },
-    //Private holidays
-    {
-      key: "",
-      title: t("[Option] Private holiday (or annual leave)"),
-      type: "heading",
-      description: t("Use alert for switching templates on the private holidays."),
-      default: "",
-    },
-    {
-      key: "switchPrivate",
-      title: t("Turn on:"),
-      type: "boolean",
-      description: t("When renderers are called, prioritize them over others."),
-      default: false,
-    },
-    {
-      key: "selectPrivateDays",
-      title: t("select multiple dates"),
-      type: "boolean",
-      description: t("(Open a new model on click this checkbox)"),
-      default: false,
-    },
-    {
-      key: "switchPrivateTemplateName",
-      title: t("Call: Private-Template name *"),
-      type: "string",
-      description: "",
-      default: "Holidays-Template",
-    },
-    //Working on holidays
-    {
-      key: "",
-      title: t("[Option] Working on holidays"),
-      type: "heading",
-      description: t("Use alert for switching templates on the working on holidays."),
-      default: "",
-    },
-    {
-      key: "switchWorkingOnHolidays",
-      title: t("Turn on:"),
-      type: "boolean",
-      description: t("When renderers are called, prioritize them over others."),
-      default: false,
-    },
-    {
-      key: "selectWorkingOnHolidays",
-      title: t("select multiple dates"),
-      type: "boolean",
-      description: t("(Open a new model on click this checkbox)"),
-      default: false,
-    },
-    {
-      key: "selectWorkingOnHolidaysSubTemplate",
-      title: t("Use setting option of sub-template name"),
-      type: "boolean",
-      description: "",
-      default: true,
-    },
-    {
-      key: "switchWorkingOnHolidaysTemplateName",
-      title: t("Call: template name of Working On Holidays"),
-      type: "string",
-      description: t("If the boolean setting item above is false"),
-      default: "Main-Template",
-    },
-  ];
-  logseq.useSettingsSchema(settingsTemplate);
-}
+//設定画面の文章変更時は、translations/ja.jsonも変更する (翻訳が反映されなくなる)
+// t() L10N framework
+//最終更新 2023/05/05
+const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
+  {
+    key: "",
+    title: t("Check Wiki to setup"),
+    type: "heading",
+    description: t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document"),
+    default: "",
+  },
+  //Sub Template
+  {
+    key: "",
+    title: t("[Option] Sub-Template for a week"),
+    type: "heading",
+    description: t("Use alert for switching templates on specific days of the week."),
+    default: "",
+  },
+  {
+    key: "switchMainSub",
+    title: t("Turn on:"),
+    type: "boolean",
+    description: t("On Alert day, when a Main-Template renderer is called, it is possible to switch between main and sub templates for the week."),
+    default: false,
+  },
+  {
+    key: "switchAlertDay",
+    title: t("Trigger: Alert day"),
+    type: "enum",
+    enumChoices: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    description: t("For select Main/Sub templates"),
+    default: "Mon",
+  },
+  {
+    key: "switchMainTemplateName",
+    title: t("Target: Main-Template name *"),
+    type: "string",
+    description: t("Fill in the Main-Template specified in a renderer."),
+    default: "Main-Template",
+  },
+  {
+    key: "switchSubTemplateName",
+    title: t("Call: Sub-Template name *"),
+    type: "string",
+    description: "",
+    default: "Sub-Template",
+  },
+  {
+    key: "switchSetTemplate",
+    title: t("Set: current template name by switching"),
+    type: "string",
+    description: t("--No editing is needed. For editing manually."),
+    default: "",
+  },
+  //holidays
+  {
+    key: "",
+    title: t("[Option] Holidays-Template"),
+    type: "heading",
+    description: t("Use alert for switching templates on holidays."),
+    default: "",
+  },
+  {
+    key: "switchHolidays",
+    title: t("Turn on:"),
+    type: "boolean",
+    description: t("When renderers is called, prioritize holidays."),
+    default: false,
+  },
+  {
+    key: "switchHolidaysTemplateName",
+    title: t("Call: Holidays-Template name *"),
+    type: "string",
+    description: "",
+    default: "Holidays-Template",
+  },
+  {
+    key: "switchHolidaysCountry",
+    title: t("Supported countries *"),
+    type: "enum",
+    enumPicker: "select",
+    enumChoices: ["AD: Andorra", "AE: دولة الإمارات العربية المتحدة", "AG: Antigua & Barbuda", "AI: Anguilla", "AL: Shqipëri", "AM: Հայաստան", "AO: Angola", "AR: Argentina", "AS: American Samoa", "AT: Österreich", "AU: Australia", "AW: Aruba", "AX: Landskapet Åland", "AZ: Azərbaycan Respublikası", "BA: Bosna i Hercegovina", "BB: Barbados", "BD: গণপ্রজাতন্ত্রী বাংলাদেশ", "BE: Belgique", "BF: Burkina Faso", "BG: България", "BH: مملكة البحرين", "BI: République du Burundi", "BJ: République du Bénin", "BL: St. Barthélemy", "BM: Bermuda", "BN: Negara Brunei Darussalam", "BO: Bolivia", "BQ: Caribisch Nederland", "BR: Brasil", "BS: Bahamas", "BW: Botswana", "BY: Рэспубліка Беларусь", "BZ: Belize", "CA: Canada", "CC: Cocos (Keeling) Islands", "CD: République démocratique du Congo", "CF: République centrafricaine", "CG: République du Congo", "CH: Schweiz", "CI: République de Côte d'Ivoire", "CK: Cook Islands", "CL: Chile", "CM: Cameroun", "CN: 中华人民共和国", "CO: Colombia", "CR: Costa Rica", "CU: Cuba", "CV: República de Cabo Verde", "CW: Curaçao", "CX: Christmas Island", "CY: Κύπρος", "CZ: Česká republika", "DE: Deutschland", "DJ: République de Djibouti", "DK: Danmark", "DM: Dominica", "DO: República Dominicana", "DZ: الجمهورية الجزائرية الديمقراطية الشعبية", "EC: Ecuador", "EE: Eesti", "EG: جمهورية مصر العربية", "EH: الجمهورية العربية الصحراوية الديمقراطية", "ER: Eritrea", "ES: España", "ET: ኢትዮጵያ", "FI: Suomi", "FJ: Matanitu Tugalala o Viti", "FO: Føroyar", "FR: France", "GA: Gabon", "GB: United Kingdom", "GD: Grenada", "GE: საქართველო", "GF: Guyane", "GG: Guernsey", "GH: Ghana", "GI: Gibraltar", "GL: Kalaallit Nunaat", "GM: The Gambia", "GN: Guinée", "GP: Guadeloupe", "GQ: República de Guinea Ecuatorial", "GR: Ελλάδα", "GT: Guatemala", "GU: Guam", "GW: Guiné-Bissau", "GY: Guyana", "HK: 香港", "HN: Honduras", "HR: Hrvatska", "HT: Haïti", "HU: Magyarország", "IC: Islas Canarias", "ID: Indonesia", "IE: Ireland", "IL: מְדִינַת יִשְׂרָאֵל", "IM: Isle of Man", "IR: جمهوری اسلامی ایران", "IS: Ísland", "IT: Italia", "JE: Jersey", "JM: Jamaica", "JP: 日本", "KE: Kenya", "KM: Union des Comores", "KN: St. Kitts & Nevis", "KR: 대한민국", "KY: Cayman Islands", "LC: St. Lucia", "LI: Lichtenstein", "LR: Liberia", "LS: \'Muso oa Lesotho", "LT: Lietuva", "LU: Luxembourg", "LV: Latvija", "LY: دولة ليبيا", "MA: المملكة المغربية", "MC: Monaco", "MD: Republica Moldova", "ME: Crna Gora", "MF: Saint Martin", "MG: Repoblikan'i Madagasikara", "MK: Република Македонија", "ML: République du Mali", "MQ: Martinique", "MR: الجمهورية الإسلامية الموريتانية", "MS: Montserrat", "MT: Malta", "MW: Malawi", "MX: México", "MY: Malaysia", "MZ: Moçambique", "NA: Namibia", "NC: Nouvelle-Calédonie", "NE: République du Niger", "NG: Nigeria", "NI: Nicaragua", "NL: Nederland", "NO: Norge", "NZ: New Zealand", "PA: Panamá", "PE: Perú", "PH: Philippines", "PL: Polska", "PM: St. Pierre & Miquelon", "PR: Puerto Rico", "PT: Portugal", "PY: Paraguay", "RE: Réunion", "RO: Romania", "RS: Република Србија", "RU: Россия", "RW: Rwanda", "SC: Seychelles", "SD: جمهورية السودان", "SE: Sverige", "SG: Singapore", "SH: St. Helena", "SI: Republika Slovenija", "SJ: Svalbard & Jan Mayen", "SK: Slovenská republika", "SL: Sierra Leone", "SM: San Marino", "SN: République du Sénégal", "SO: Jamhuuriyadda Federaalka Soomaaliya", "SR: Suriname", "SS: South Sudan", "ST: São Tomé & Príncipe", "SV: El Salvador", "SX: Sint Maarten", "SZ: Eswatini", "TC: Turks & Caicos Islands", "TD: جمهورية تشاد", "TG: République togolaise", "TH: Thailand", "TN: الجمهورية التونسية", "TO: Puleʻanga Fakatuʻi ʻo Tonga", "TR: Türkiye", "TT: Trinidad & Tobago", "TW: 中華民國", "TZ: Tanzania", "UA: Україна", "UG: Uganda", "US: United States of America", "UY: Uruguay", "VA: Stato della Città del Vaticano", "VC: St. Vincent & Grenadines", "VE: Venezuela", "VG: British Virgin Islands", "VI: U.S. Virgin Islands", "VN: Cộng hòa Xã hội chủ nghĩa Việt Nam", "VU: République de Vanuatu", "XK: Republika e Kosovës", "YT: Mayotte", "ZA: South Africa", "ZM: Zambia", "ZW: Zimbabwe"],
+    description: t('Select your country. If possible to set the State and Region, do so individually. https://github.com/commenthol/date-holidays#supported-countries-states-regions'),
+    default: ByLanguage || "US: United States of America",
+  },
+  {
+    key: "switchHolidaysState",
+    title: t("Supported states (Match country)"),
+    type: "string",
+    description: '2-character alphanumeric code (ex, NY) or blank (default)',
+    default: "",
+  },
+  {
+    key: "switchHolidaysRegion",
+    title: t("Supported regions (Match country)"),
+    type: "string",
+    description: '2 or 3 character alphanumeric code or blank (default)',
+    default: "",
+  },
+  //Private holidays
+  {
+    key: "",
+    title: t("[Option] Private holiday (or annual leave)"),
+    type: "heading",
+    description: t("Use alert for switching templates on the private holidays."),
+    default: "",
+  },
+  {
+    key: "switchPrivate",
+    title: t("Turn on:"),
+    type: "boolean",
+    description: t("When renderers are called, prioritize them over others."),
+    default: false,
+  },
+  {
+    key: "selectPrivateDays",
+    title: t("select multiple dates"),
+    type: "boolean",
+    description: t("(Open a new model on click this checkbox)"),
+    default: false,
+  },
+  {
+    key: "switchPrivateTemplateName",
+    title: t("Call: Private-Template name *"),
+    type: "string",
+    description: "",
+    default: "Holidays-Template",
+  },
+  //Working on holidays
+  {
+    key: "",
+    title: t("[Option] Working on holidays"),
+    type: "heading",
+    description: t("Use alert for switching templates on the working on holidays."),
+    default: "",
+  },
+  {
+    key: "switchWorkingOnHolidays",
+    title: t("Turn on:"),
+    type: "boolean",
+    description: t("When renderers are called, prioritize them over others."),
+    default: false,
+  },
+  {
+    key: "selectWorkingOnHolidays",
+    title: t("select multiple dates"),
+    type: "boolean",
+    description: t("(Open a new model on click this checkbox)"),
+    default: false,
+  },
+  {
+    key: "selectWorkingOnHolidaysSubTemplate",
+    title: t("Use setting option of sub-template name"),
+    type: "boolean",
+    description: "",
+    default: true,
+  },
+  {
+    key: "switchWorkingOnHolidaysTemplateName",
+    title: t("Call: template name of Working On Holidays"),
+    type: "string",
+    description: t("If the boolean setting item above is false"),
+    default: "Main-Template",
+  },
+];
 
 //setCountry
 function setCountry() {
@@ -878,9 +875,10 @@ function checkWeekday(selectWeekday: string): boolean {
 async function checkJournals() {
   const page = await logseq.Editor.getCurrentPage(); //Journalsの場合はnull
   if (page) {
-    if (page["journal?"] === true) { //Journal day
-      return true;
-    }
+    // if (page["journal?"] === true) { //Journal day
+    //   return true;
+    // }
+    //今日以外も含まれてしまうのでコメントアウト
     return false; //Non-Journal
   } else {
     return true; //Journals
