@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.1...v1.11.2) (2023-05-28)
+
+
+### Bug Fixes
+
+* **bug:** Must not rendering when open new another date ([797e56a](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/797e56a3f43fa3271fc1567ed8e6f7d5f80e8caf))
+
 ## [1.11.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.0...v1.11.1) (2023-05-23)
 
 
