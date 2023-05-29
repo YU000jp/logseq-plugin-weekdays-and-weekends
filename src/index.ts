@@ -27,10 +27,6 @@ const main = () => {
   //end
 
 
-  //get user config Language >>> Country
-  let ByLanguage = setCountry();
-
-
   /* slash command */
   let processingSlashCommand = false;
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async (e) => {
@@ -199,7 +195,16 @@ const main = () => {
       await l10nSetup({ builtinTranslations: { ja } });
     } finally {
       /* user settings */
-      logseq.useSettingsSchema(settingsTemplate(ByLanguage));
+      //get user config Language >>> Country
+      if (logseq.settings?.switchHolidaysCountry === undefined) {
+        const { preferredLanguage } = await logseq.App.getUserConfigs();
+        logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)));
+        setTimeout(() => {
+        logseq.showSettingsUI();
+        }, 300);
+      } else {
+        logseq.useSettingsSchema(settingsTemplate("US: United States of America"));
+      }
     }
   })();
 
@@ -787,66 +792,51 @@ const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
   },
 ];
 
-//setCountry
-function setCountry() {
-  const convertLanguageCodeToCountryCode = (languageCode: string): string => {
-    switch (languageCode) {
-      case "en":
-        return "US: United States of America";
-      case "fr":
-        return "FR: France";
-      case "de":
-        return "DE: Deutschland";
-      case "nl":
-        return "NL: Nederland";
-      case "zh-CN":
-        return "CN: 中华人民共和国";
-      case "zh-Hant":
-        return "TW: 中華民國";
-      case "af":
-        return "ZA: South Africa";
-      case "es":
-        return "ES: España";
-      case "nb-NO":
-        return "NO: Norge";
-      case "pl":
-        return "PL: Polska";
-      case "pt-BR":
-        return "BR: Brasil";
-      case "pt-PT":
-        return "PT: Portugal";
-      case "ru":
-        return "RU: Россия";
-      case "ja":
-        return "JP: 日本";
-      case "it":
-        return "IT: Italia";
-      case "tr":
-        return "TR: Türkiye";
-      case "uk":
-        return "UA: Україна";
-      case "ko":
-        return "KR: 대한민국";
-      case "sk":
-        return "SK: Slovenská republika";
-      default:
-        return "US: United States of America";
-    }
-  };
 
-  let ByLanguage; //language setting
-  if (logseq.settings?.switchHolidaysCountry === undefined) {
-    logseq.App.getUserConfigs().then((configs) => {
-      if (configs) {
-        ByLanguage = convertLanguageCodeToCountryCode(configs.preferredLanguage);
-        logseq.updateSettings({ switchHolidaysCountry: ByLanguage });
-        logseq.showSettingsUI();
-      }
-    });
+const convertLanguageCodeToCountryCode = (languageCode: string): string => {
+  switch (languageCode) {
+    case "en":
+      return "US: United States of America";
+    case "fr":
+      return "FR: France";
+    case "de":
+      return "DE: Deutschland";
+    case "nl":
+      return "NL: Nederland";
+    case "zh-CN":
+      return "CN: 中华人民共和国";
+    case "zh-Hant":
+      return "TW: 中華民國";
+    case "af":
+      return "ZA: South Africa";
+    case "es":
+      return "ES: España";
+    case "nb-NO":
+      return "NO: Norge";
+    case "pl":
+      return "PL: Polska";
+    case "pt-BR":
+      return "BR: Brasil";
+    case "pt-PT":
+      return "PT: Portugal";
+    case "ru":
+      return "RU: Россия";
+    case "ja":
+      return "JP: 日本";
+    case "it":
+      return "IT: Italia";
+    case "tr":
+      return "TR: Türkiye";
+    case "uk":
+      return "UA: Україна";
+    case "ko":
+      return "KR: 대한민국";
+    case "sk":
+      return "SK: Slovenská republika";
+    default:
+      return "US: United States of America";
   }
-  return ByLanguage;
-}
-//end
+};
 
 
 function checkWeekday(selectWeekday: string): boolean {
@@ -935,33 +925,5 @@ async function sweetalert2Toast(timer: number, text: string, MainUI: boolean) {
   }
 }
 //end
-
-
-//Credit: hkgnp
-//https://github.com/hkgnp/logseq-calview-plugin/blob/dc1716781b594d973c3d97fdf2475ad11f71a795/src/utils.tsx#LL3C1-L16C3
-//page..journalDay
-// const getJournalDayFormat = (journalDayInNumber: number) => {
-//   if (journalDayInNumber) {
-//     const journalDay = journalDayInNumber.toString();
-//     return (
-//       journalDay.slice(0, 4) +
-//       "-" +
-//       journalDay.slice(4, 6) +
-//       "-" +
-//       journalDay.slice(6)
-//     );
-//   } else {
-//     console.error("journalDayInNumber is undefined");
-//   }
-// };
-
-
-// /* on click open_toolbar */
-// const model = {
-//   async weekdaysOpenToolbar() {
-//     logseq.showSettingsUI();
-//   }
-// };
-
 
 logseq.ready(main).catch(console.error); //model
