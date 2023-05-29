@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.2...v1.11.3) (2023-05-29)
+
+
+### Bug Fixes
+
+* **refactor:** plugin settings ([f012eb7](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/f012eb781199cd989be318a2a3c92a0b5efb921a))
+
 ## [1.11.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.1...v1.11.2) (2023-05-28)
 
 
