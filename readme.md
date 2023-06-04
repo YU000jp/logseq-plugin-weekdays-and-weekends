@@ -61,7 +61,6 @@
 - Integration with existing [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin), [powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin), and [SmartBlocks](https://github.com/sawhney17/logseq-smartblocks) is possible.
 - Support [Dynamic variables](https://mschmidtkorth.github.io/logseq-msk-docs/#/page/dynamic%20variables) of Logseq standard.
 - It is possible to also place the renderer as a journal template in other graphs, but please note that the plugin settings are shared across all graphs.
-> For those who live every day like a holiday, this plugin may not be necessary.🤣
 
 ---
 
