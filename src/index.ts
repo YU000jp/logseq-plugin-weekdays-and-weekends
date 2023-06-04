@@ -456,9 +456,9 @@ async function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTem
 function insertSampleTemplates(uuid) {
   const batch: IBatchBlock[] = [
     {
-      content: `### Weekdays and Holidays (Templates)`,
+      content: "### Weekdays and Holidays (Templates)",
       properties: {
-        comment: `Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called. [English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)`,
+        comment: "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)",
       },
       children: [
         {
@@ -466,12 +466,12 @@ function insertSampleTemplates(uuid) {
           properties: {
             template: "Journal",
             "template-including-parent": "false",
-            comment: 'Edit config.edn `:default-templates {:journals "Journal"}`` There is a block that has two renderings. When it is loaded as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
+            comment: 'Edit config.edn `:default-templates {:journals "Journal"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
             "background-color": "yellow",
           },
           children: [
             {
-              content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}} {{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
+              content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}}\n{{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
             },
           ],
         },
