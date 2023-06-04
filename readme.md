@@ -83,17 +83,7 @@
 
 ## Author
 
-* GitHub: [YU000jp](https://github.com/YU000jp)
-
-### My Logseq plugins
-
-- [Show Weekday and Week-number](https://github.com/YU000jp/logseq-plugin-show-weekday-and-week-number)
-- [Weekdays and Holidays (Templates)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)
-- [Sticky Popup](https://github.com/YU000jp/logseq-plugin-sticky-popup)
-- [SomeMenuExtender](https://github.com/YU000jp/logseq-plugin-some-menu-extender)
-- [Panel Coloring](https://github.com/YU000jp/logseq-plugin-panel-coloring)
-- [Page-tags and Hierarchy](https://github.com/YU000jp/logseq-page-tags-and-hierarchy)
-- [Column Layout](https://github.com/YU000jp/Logseq-column-Layout)
+- GitHub: [YU000jp](https://github.com/YU000jp)
 
 ## Prior art & Credit
 
