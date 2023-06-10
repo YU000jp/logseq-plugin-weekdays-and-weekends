@@ -1,3 +1,10 @@
+## [1.11.5](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.4...v1.11.5) (2023-06-10)
+
+
+### Bug Fixes
+
+* **plugin settings:** `Use setting option of current template name` ([9864503](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/98645031d87e20a0596d456cecec1b8d71ecad70))
+
 ## [1.11.4](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.3...v1.11.4) (2023-06-04)
 
 
