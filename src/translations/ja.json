@@ -33,7 +33,7 @@
     "#### Holidays-Template:": "#### 祝日のテンプレート:",
     "[Option] Working on holidays": "[オプション] 休日出勤の設定",
     "Use alert for switching templates on the working on holidays.": "休日出勤の日に、テンプレートを選択できるようにする",
-    "Use setting option of sub-template name": "サブテンプレートとして指定した項目を使用する",
+    "Use setting option of current template name": "今週指定したテンプレートを使用する",
     "Call: template name of Working On Holidays": "指定: 休日出勤のテンプレートの名称",
     "If the boolean setting item above is false": "ひとつ上の設定項目がオフの場合"
 }

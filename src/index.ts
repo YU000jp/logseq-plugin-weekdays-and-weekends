@@ -94,7 +94,7 @@ const main = () => {
         let isPrivate: Boolean = false;
         // Switch on working on holidays
         let isWorkingOnHolidays: Boolean = false;
-        if (logseq.settings?.switchWorkingOnHolidays === true && (logseq.settings?.switchWorkingOnHolidaysTemplateName || logseq.settings?.selectWorkingOnHolidaysSubTemplate === true) && logseq.settings?.workingOnHolidaysArray) {
+        if (logseq.settings?.switchWorkingOnHolidays === true && (logseq.settings?.switchWorkingOnHolidaysTemplateName || logseq.settings?.selectWorkingOnHolidaysSetTemplate === true) && logseq.settings?.workingOnHolidaysArray) {
           isWorkingOnHolidays = checkMatchToday(logseq.settings?.workingOnHolidaysArray) as boolean;
         }
         if (isWorkingOnHolidays === false && logseq.settings?.switchPrivate === true && logseq.settings?.switchPrivateTemplateName && logseq.settings?.privateDaysArray) {
@@ -112,8 +112,8 @@ const main = () => {
         }
         if (isWorkingOnHolidays === true) {
           let thisTemplate;
-          if (logseq.settings?.selectWorkingOnHolidaysSubTemplate === true) {
-            thisTemplate = logseq.settings?.switchSubTemplateName;
+          if (logseq.settings?.selectWorkingOnHolidaysSetTemplate === true) {
+            thisTemplate = logseq.settings?.switchSetTemplate;
           } else {
             thisTemplate = logseq.settings?.switchWorkingOnHolidaysTemplateName;
           }
@@ -777,8 +777,8 @@ const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     default: false,
   },
   {
-    key: "selectWorkingOnHolidaysSubTemplate",
-    title: t("Use setting option of sub-template name"),
+    key: "selectWorkingOnHolidaysSetTemplate",
+    title: t("Use setting option of current template name"),
     type: "boolean",
     description: "",
     default: true,
