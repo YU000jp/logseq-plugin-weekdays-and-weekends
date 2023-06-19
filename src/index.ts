@@ -1,43 +1,24 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { IBatchBlock, SettingSchemaDesc, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user';
-import Swal from 'sweetalert2'; //https://sweetalert2.github.io/
+import { IBatchBlock, SettingSchemaDesc, LSPluginBaseInfo, AppUserConfigs } from '@logseq/libs/dist/LSPlugin.user';
 import Holidays from 'date-holidays'; //https://github.com/commenthol/date-holidays
 import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
-let sweetAlert2background;  //color: sweetAlert2color
-let sweetAlert2color; //background: sweetAlert2background
+const key = "selectTemplateDialog";
 
 
-/* main */
 const main = () => {
-
-  //get theme color (For SweetAlert2)
-  //checkboxなどはCSSで上書きする必要あり
-
-  const rootThemeColor = () => {
-    const root = parent.document.querySelector(":root");
-    if (root) {
-      const rootStyles = getComputedStyle(root);
-      sweetAlert2background = rootStyles.getPropertyValue("--ls-block-properties-background-color") || "#ffffff";
-      sweetAlert2color = rootStyles.getPropertyValue("--ls-primary-text-color") || "#000000";
-    }
-  };
-  rootThemeColor();
-  logseq.App.onThemeModeChanged(() => { rootThemeColor(); });
-  //end
-
 
   /* slash command */
   let processingSlashCommand = false;
-  logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async (e) => {
-    if (processingSlashCommand) { return; }
+  logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async ({ uuid }) => {
+    if (processingSlashCommand) return;
     const check = await checkJournals();//ジャーナルでは許可しない
     if (check === true) {
       logseq.UI.showMsg("This is journal page. ", "error");
       return;
     }
     processingSlashCommand = true;
-    await insertSampleTemplates(e.uuid);
+    await insertSampleTemplates(uuid);
     processingSlashCommand = false;
   });
   //end
@@ -46,32 +27,10 @@ const main = () => {
   //TODO: 保留
   logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async () => {
     logseq.Editor.insertAtEditingCursor(
-      `{{renderer :Weekdays, Template-C, Sat&Sun}} `
+      `{{renderer :Weekdays, TemplateName, Sat&Sun}} `
     );
   });
 
-  //スラッシュコマンドから設定画面を呼び出し
-  logseq.Editor.registerSlashCommand("Plugin Settings - Weekdays and Holidays (Templates)", async () => {
-    logseq.showSettingsUI();
-  });
-
-
-  logseq.provideStyle({
-    key: "main", style: `
-  form.SetDates {
-    margin:1.2em;
-  }
-  form.SetDates input {
-    background: var(--ls-block-properties-background-color);
-    color: var(--ls-primary-text-color);
-    margin-bottom: 1em;
-  }
-  form.SetDates button {
-    outline: 2px solid var(--ls-link-ref-text-hover-color);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    padding:5px;
-  }
-  ` });
 
   let rendering = ""; //rendering flag
   //rendering
@@ -89,7 +48,7 @@ const main = () => {
         //switchAlertDay
 
         // Switch on holidays
-        let isHoliday;
+        let isHoliday = "";
         // Switch on private days
         let isPrivate: Boolean = false;
         // Switch on working on holidays
@@ -102,10 +61,9 @@ const main = () => {
         }
         if (isWorkingOnHolidays === false && isPrivate === false && logseq.settings?.switchHolidays === true && logseq.settings?.switchHolidaysCountry && logseq.settings?.switchHolidaysTemplateName) {
           const hd = new Holidays();
-          const settingsCountry = logseq.settings?.switchHolidaysCountry
-          const array = settingsCountry.split(":");
+          const array = (logseq.settings?.switchHolidaysCountry).split(":");
           hd.init(array[0], logseq.settings?.switchHolidaysState, logseq.settings?.switchHolidaysRegion);
-          const checkHoliday = await hd.isHoliday(new Date()); //test new Date("2023/05/03")
+          const checkHoliday = hd.isHoliday(new Date()); //test new Date("2023/05/03")
           if (checkHoliday) {
             isHoliday = `${checkHoliday[0].name} (${checkHoliday[0].type})`;
           }
@@ -197,10 +155,10 @@ const main = () => {
       /* user settings */
       //get user config Language >>> Country
       if (logseq.settings?.switchHolidaysCountry === undefined) {
-        const { preferredLanguage } = await logseq.App.getUserConfigs();
+        const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs;
         logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)));
         setTimeout(() => {
-        logseq.showSettingsUI();
+          logseq.showSettingsUI();
         }, 300);
       } else {
         logseq.useSettingsSchema(settingsTemplate("US: United States of America"));
@@ -226,6 +184,46 @@ const main = () => {
     }
   });
 
+  const popup = `${logseq.baseInfo.id}--${key}`;
+  logseq.provideStyle({
+    key: "main", style: `
+    form.SetDates {
+      margin:1.2em;
+    }
+    form.SetDates input {
+      background: var(--ls-block-properties-background-color);
+      color: var(--ls-primary-text-color);
+      margin-bottom: 1em;
+    }
+    form.SetDates button {
+      outline: 2px solid var(--ls-link-ref-text-hover-color);
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      padding:5px;
+    }
+    div#${popup} p {
+      font-size: 1.1em;
+    }
+    div#${popup} input[type="radio"] {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+    div#${popup} ul {
+      list-style: none;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+    div#${popup} button {
+      margin-top: 1em;
+      margin-left: 2em;
+      border: 1px solid var(--ls-secondary-background-color);
+      boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+      text-decoration: underline;
+    }
+    div#${popup} button:hover {
+      background: var(--ls-secondary-background-color);
+      color: var(--ls-secondary-text-color);
+    }
+  `});
 
   logseq.provideModel({
     getDatesPrivateDays() {
@@ -238,16 +236,11 @@ const main = () => {
 
 
 
-  // logseq.App.registerUIItem("toolbar", {
-  //   key: pluginId,
-  //   template: `<div data-on-click="weekdaysOpenToolbar" style="font-size:20px">🛳️</div>`,
-  // });
-
 };/* end_main */
 
 
 function checkMatchToday(array: []): Boolean {
-  if (!array) { return false }
+  if (!array) return false;
   const today: Date = new Date();
   const fullYear = today.getFullYear();
   const month = today.getMonth(); // +1しない
@@ -267,37 +260,31 @@ function checkMatchToday(array: []): Boolean {
 }
 
 function getDates(target) {
-  let id, title;
+  let id = "";
   if (target === "PrivateDays") {
     id = "p";
-    title = "Private Days";
     logseq.updateSettings({ privateDaysArray: null });
   } else if (target === "WorkingOnHolidays") {
     id = "w";
-    title = "Working on Holidays";
     logseq.updateSettings({ workingOnHolidaysArray: null });
   } else {
-    console.error("Error: getDates");
-    return;
+    return console.error("Error: getDates");;
   }
-
   const DaysArray: Date[] = []; // 日付を格納する配列を初期化
   const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
   for (const dateId of dateIds) { // 日付のIDを1つずつ処理するループ
     const value = (<HTMLInputElement>parent.document.getElementById(dateId)).value;
-    if (!value) {
-      continue;
-    }
+    if (!value) continue;
     const inputDate: Date = new Date(value); // 日付の値を取得
-    if (!isNaN(inputDate.getTime())) { // 日付が有効な日付かどうかをチェック
-      DaysArray.push(inputDate); // 日付を配列に追加
-    }
+    // 日付が有効な日付かどうかをチェックし、日付を配列に追加
+    if (!isNaN(inputDate.getTime())) DaysArray.push(inputDate);
   }
   if (target === "PrivateDays") {
     logseq.updateSettings({ privateDaysArray: DaysArray });
   } else if (target === "WorkingOnHolidays") {
     logseq.updateSettings({ workingOnHolidaysArray: DaysArray });
   }
+  logseq.UI.showMsg("Saved", "success", { timeout: 1500 });
 }
 
 
@@ -393,233 +380,258 @@ function setSavedDates(target) {
     const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
     const today = new Date(); // 今日の日付を取得
     for (let i = 0; i < privateDaysArray.length && i < dateIds.length; i++) { // 日付を1つずつ処理するループ
-      if (privateDaysArray[i] === undefined) { continue; }
+      if (privateDaysArray[i] === undefined) continue;
       const inputDate = new Date(privateDaysArray[i]); // 日付をDateオブジェクトに変換
       if (inputDate > today) { // 日付が今日より後の場合のみ、値をセットする
         const formattedDate = inputDate.toISOString().slice(0, 10); // yyyy-mm-ddの形式に変換
         const dateInput = parent.document.getElementById(dateIds[i]) as HTMLInputElement; // 日付入力欄に値をセット
-        if (dateInput) {
-          dateInput.value = formattedDate;
-        }
+        if (dateInput) dateInput.value = formattedDate;
       }
     }
   }
 }
 
 //selectTemplateDialog
-async function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTemplate, updateSettings) {
-  logseq.showMainUI();
-  /* inputOptions can be an object or Promise */
-  await Swal.fire({
-    icon: 'question',
-    input: 'radio',
-    inputOptions: {
-      main: targetTemplate,
-      sub: replaceTemplate,
-    },
-    color: sweetAlert2color,
-    background: sweetAlert2background,
-    allowOutsideClick: false,
-    allowEscapeKey: false,
-    allowEnterKey: false,
-    html: `<p>${dialogText}</p>
-              <style>
-                div.swal2-container div.swal2-radio {
-                  color: unset;
-                  background: unset;
-                }
-              </style>`,
-  }).then(async (select) => {
-    if (select) {
-      if (select.value) {
-        let selectTemplate = targetTemplate; //main
-        if (select.value === "sub") { //sub
-          selectTemplate = replaceTemplate;
-          if (updateSettings === "sub") {
-            logseq.updateSettings({ switchSetTemplate: replaceTemplate });
-          }
-        }
-        await insertTemplateBlock(uuid, selectTemplate);
-        if (updateSettings === "sub") {
-          logseq.updateSettings({ switchSetTemplate: selectTemplate }); //選択したテンプレートを設定項目へセット
-        }
-      } else {
-        logseq.UI.showMsg("Cancel", "warning");
+function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTemplate, updateSettings): Promise<void> {
+  return new Promise((resolve) => {
+    logseq.provideUI({
+      attrs: {
+        title: "🛌 Weekdays and Holidays Plugin",
+      },
+      key,
+      reset: true,
+      template: `
+    <p>${dialogText}</p>
+    <hr/>
+    <p>Which template do you want to use?</p>
+    <ul>
+      <li><input type="radio" id="main" name="selectTemplateRadio" value="main"><label for="main">${targetTemplate}</label></li>
+      <li><input type="radio" id="sub" name="selectTemplateRadio" value="sub"><label for="sub">${replaceTemplate}</label></li>
+    </ul>
+    <button type="button" id="selectTemplateButton">OK</button>
+      `,
+      style: {
+        width: "440px",
+        maxWidth: "440px",
+        minWidth: "440px",
+        height: "320px",
+        left: "35vw",
+        bottom: "unset",
+        right: "unset",
+        top: "10vw",
+        padding: "1em",
+        backgroundColor: 'var(--ls-primary-background-color)',
+        color: 'var(--ls-primary-text-color)',
+        boxShadow: '1px 2px 5px var(--ls-secondary-background-color)',
+      },
+    });
+
+    setTimeout(() => {
+      const button = parent.document.getElementById("selectTemplateButton") as HTMLButtonElement;
+      if (button) {
+        let processing: Boolean = false;
+        button.addEventListener("click", () => {
+          if (processing) return;
+          processing = true;
+          //radioボタンの値を取得する
+          const select: string = (parent.document.querySelector('input[name="selectTemplateRadio"]:checked') as HTMLInputElement)!.value;
+          if (!select) return processing = false;
+          let selectTemplate = "";
+          if (select === "main") {
+            selectTemplate = targetTemplate;
+          } else
+            if (select === "sub") {
+              selectTemplate = replaceTemplate;
+              if (updateSettings === "sub") logseq.updateSettings({ switchSetTemplate: selectTemplate });
+            } else {
+              return processing = false;
+            }
+          //テンプレートを挿入する
+          insertTemplateBlock(uuid, selectTemplate);
+
+          //ダイアログを閉じる
+          const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
+          if (element) element.remove();
+          processing = false;
+          resolve();
+        });
       }
-    }
+    }, 100);
   });
-  logseq.hideMainUI();
 }
 //end
 
 
-function insertSampleTemplates(uuid) {
-  const batch: IBatchBlock[] = [
-    {
-      content: "### Weekdays and Holidays (Templates)",
-      properties: {
-        comment: "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)",
+function insertSampleTemplates(uuid): Promise<void> {
+  return new Promise((resolve) => {
+    const batch: IBatchBlock[] = [
+      {
+        content: "### Weekdays and Holidays (Templates)",
+        properties: {
+          comment: "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)",
+        },
+        children: [
+          {
+            content: t("#### Journal: Template Settings"),
+            properties: {
+              template: "Journal",
+              "template-including-parent": "false",
+              comment: 'Edit config.edn `:default-templates {:journals "Journal"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
+              "background-color": "yellow",
+            },
+            children: [
+              {
+                content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}}\n{{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
+              },
+            ],
+          },
+          {
+            content: t("#### Main-Template:"),
+            properties: {
+              template: "Main-Template",
+              "template-including-parent": "false",
+              Comment: " [default] Mon&Tue&Wed&Thu&Fri",
+              "background-color": "gray",
+            },
+            children: [
+              {
+                content: `### Weekdays (Main)`,
+                children: [
+                  {
+                    content: `#### AM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                  {
+                    content: `#### PM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }, {
+            content: t("#### Sub-Template:"),
+            properties: {
+              template: "Sub-Template",
+              "template-including-parent": "false",
+              Comment: "switch Main/Sub templates for a week (to plugin settings)",
+              "background-color": "gray",
+            },
+            children: [
+              {
+                content: `### Weekdays (Sub)`,
+                children: [
+                  {
+                    content: `#### AM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                  {
+                    content: `#### PM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ]
+          }, {
+            content: t("#### Weekends-Template:"),
+            properties: {
+              template: "Weekends-Template",
+              "template-including-parent": "false",
+              Comment: " [default] Sat&Sun",
+              "background-color": "gray",
+            },
+            children: [
+              {
+                content: `### Weekends`,
+                children: [
+                  {
+                    content: `#### AM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                  {
+                    content: `#### PM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }, {
+            content: t("#### Holidays-Template:"),
+            properties: {
+              template: "Holidays-Template",
+              "template-including-parent": "false",
+              Comment: "Alert holidays (to plugin settings)",
+              "background-color": "gray",
+            },
+            children: [
+              {
+                content: `### Holidays`,
+                children: [
+                  {
+                    content: `#### AM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                  {
+                    content: `#### PM`,
+                    children: [
+                      {
+                        content: ``,
+                      }, {
+                        content: ``,
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
-      children: [
-        {
-          content: t("#### Journal: Template Settings"),
-          properties: {
-            template: "Journal",
-            "template-including-parent": "false",
-            comment: 'Edit config.edn `:default-templates {:journals "Journal"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
-            "background-color": "yellow",
-          },
-          children: [
-            {
-              content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}}\n{{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
-            },
-          ],
-        },
-        {
-          content: t("#### Main-Template:"),
-          properties: {
-            template: "Main-Template",
-            "template-including-parent": "false",
-            Comment: " [default] Mon&Tue&Wed&Thu&Fri",
-            "background-color": "gray",
-          },
-          children: [
-            {
-              content: `### Weekdays (Main)`,
-              children: [
-                {
-                  content: `#### AM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-                {
-                  content: `#### PM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        }, {
-          content: t("#### Sub-Template:"),
-          properties: {
-            template: "Sub-Template",
-            "template-including-parent": "false",
-            Comment: "switch Main/Sub templates for a week (to plugin settings)",
-            "background-color": "gray",
-          },
-          children: [
-            {
-              content: `### Weekdays (Sub)`,
-              children: [
-                {
-                  content: `#### AM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-                {
-                  content: `#### PM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-              ],
-            },
-          ]
-        }, {
-          content: t("#### Weekends-Template:"),
-          properties: {
-            template: "Weekends-Template",
-            "template-including-parent": "false",
-            Comment: " [default] Sat&Sun",
-            "background-color": "gray",
-          },
-          children: [
-            {
-              content: `### Weekends`,
-              children: [
-                {
-                  content: `#### AM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-                {
-                  content: `#### PM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        }, {
-          content: t("#### Holidays-Template:"),
-          properties: {
-            template: "Holidays-Template",
-            "template-including-parent": "false",
-            Comment: "Alert holidays (to plugin settings)",
-            "background-color": "gray",
-          },
-          children: [
-            {
-              content: `### Holidays`,
-              children: [
-                {
-                  content: `#### AM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-                {
-                  content: `#### PM`,
-                  children: [
-                    {
-                      content: ``,
-                    }, {
-                      content: ``,
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ];
-  logseq.Editor.insertBatchBlock(uuid, batch);
+    ];
+    logseq.Editor.insertBatchBlock(uuid, batch);
+    resolve();
+  });
 }
 
 //userSettings
@@ -884,7 +896,8 @@ async function insertTemplateBlock(blockUuid, template: string) {
   logseq.Editor.updateBlock(blockUuid, "");
   const exist = await logseq.App.existTemplate(template);
   if (exist === true) {
-    await sweetalert2Toast(2000, `Insert ${template}`, true);
+    logseq.Editor.exitEditingMode();
+    logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 });
     const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false });
     if (newBlock) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
@@ -893,37 +906,10 @@ async function insertTemplateBlock(blockUuid, template: string) {
       });
     }
   } else {
-    logseq.UI.showMsg(`Template ${template} not found.`, "error");
+    logseq.UI.showMsg(`Template ${template} not found.`, "error", { timeout: 3000 });
     console.warn(`Template ${template} not found.`);
   }
 }
 
-
-//sweetAlert2 https://sweetalert2.github.io/#mixin
-async function sweetalert2Toast(timer: number, text: string, MainUI: boolean) {
-  logseq.Editor.exitEditingMode();
-  if (MainUI === true) {
-    logseq.showMainUI();
-  }
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: timer,
-    timerProgressBar: true,
-  });
-  Toast.fire({
-    icon: 'success',
-    title: text,
-    color: sweetAlert2color,
-    background: sweetAlert2background,
-  });
-  if (MainUI === true) {
-    setTimeout(() => {
-      logseq.hideMainUI();
-    }, timer);
-  }
-}
-//end
 
 logseq.ready(main).catch(console.error); //model
