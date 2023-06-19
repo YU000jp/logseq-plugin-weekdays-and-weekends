@@ -91,7 +91,6 @@
 
 - [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 (Thanks! [xyhp915](https://github.com/xyhp915))
 - [date-holidays](https://github.com/commenthol/date-holidays)
-- [SweetAlert2](https://sweetalert2.github.io/)
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
 
 ### Logseq Plugin
