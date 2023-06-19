@@ -1,3 +1,11 @@
+# [1.12.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.5...v1.12.0) (2023-06-19)
+
+
+### Features
+
+* **add:** toolbar button ([8685d20](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/8685d202d82e89b14bc245154d3939aef2b20df6))
+* **refactor:** Change UI (Remove sweetalert2 lib) ([be2cde9](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/be2cde90d618c40c45aaa8a56df37cbeba3d1d35))
+
 ## [1.11.5](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.4...v1.11.5) (2023-06-10)
 
 
