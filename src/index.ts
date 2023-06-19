@@ -896,13 +896,15 @@ async function insertTemplateBlock(blockUuid, template: string) {
   logseq.Editor.updateBlock(blockUuid, "");
   const exist = await logseq.App.existTemplate(template);
   if (exist === true) {
-    logseq.Editor.exitEditingMode();
     logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 });
     const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false });
     if (newBlock) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
         console.log(`Render insert template ${template}`);
         logseq.Editor.removeBlock(blockUuid);
+        setTimeout(() => {
+          logseq.Editor.exitEditingMode();
+        }, 100);
       });
     }
   } else {
