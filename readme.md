@@ -66,14 +66,15 @@
 
 ## Links
 
-#### Manual:
-
 - [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
 - [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
-#### Publish template:
+### Logseq Plugin
 
-- [Tempate Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
+- [stdword / Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
+- [hkgnp / powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
+- [sawhney17 / SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
+- [dangermccann/ Tempate Gallery](https://github.com/dangermccann/logseq-template-gallery)
 
 ---
 
@@ -92,12 +93,6 @@
 - [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 (Thanks! [xyhp915](https://github.com/xyhp915))
 - [date-holidays](https://github.com/commenthol/date-holidays)
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
-
-### Logseq Plugin
-
-- [stdword / Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
-- [hkgnp / powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
-- [sawhney17 / SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
 
 ### Icon
 
