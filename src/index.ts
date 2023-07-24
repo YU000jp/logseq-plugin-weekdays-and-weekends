@@ -1,5 +1,5 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { IBatchBlock, SettingSchemaDesc, LSPluginBaseInfo, AppUserConfigs } from '@logseq/libs/dist/LSPlugin.user';
+import { IBatchBlock, SettingSchemaDesc, LSPluginBaseInfo, AppUserConfigs, PageEntity } from '@logseq/libs/dist/LSPlugin.user';
 import Holidays from 'date-holidays'; //https://github.com/commenthol/date-holidays
 import { setup as l10nSetup, t } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
@@ -30,6 +30,10 @@ const main = () => {
       `{{renderer :Weekdays, TemplateName, Sat&Sun}} `
     );
   });
+
+
+  //renderer実行
+  logseq.App.onTodayJournalCreated(() => setTimeout(() => logseq.Editor.exitEditingMode(), 100));
 
 
   let rendering = ""; //rendering flag
@@ -226,15 +230,9 @@ const main = () => {
   `});
 
   logseq.provideModel({
-    getDatesPrivateDays() {
-      getDates("PrivateDays");
-    },
-    getDatesWorkingOnHolidays() {
-      getDates("WorkingOnHolidays");
-    },
-    weekdaysOpenSettings() {
-      logseq.showSettingsUI();
-    },
+    getDatesPrivateDays: () => getDates("PrivateDays"),
+    getDatesWorkingOnHolidays: () => getDates("WorkingOnHolidays"),
+    weekdaysOpenSettings: () => logseq.showSettingsUI(),
   });
 
   // toolbar button
@@ -907,7 +905,7 @@ function checkWeekday(selectWeekday: string): boolean {
 
 
 async function checkJournals() {
-  const page = await logseq.Editor.getCurrentPage(); //Journalsの場合はnull
+  const page = await logseq.Editor.getCurrentPage() as PageEntity | null; //Journalsの場合はnull
   if (page) {
     // if (page["journal?"] === true) { //Journal day
     //   return true;
@@ -926,7 +924,7 @@ async function insertTemplateBlock(blockUuid, template: string) {
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
   //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
   logseq.Editor.updateBlock(blockUuid, "");
-  const exist = await logseq.App.existTemplate(template);
+  const exist = await logseq.App.existTemplate(template) as boolean;
   if (exist === true) {
     logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 });
     const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false });
@@ -934,13 +932,11 @@ async function insertTemplateBlock(blockUuid, template: string) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
         console.log(`Render insert template ${template}`);
         logseq.Editor.removeBlock(blockUuid);
-        setTimeout(() => {
-          logseq.Editor.exitEditingMode();
-        }, 100);
+        setTimeout(() => logseq.Editor.exitEditingMode(), 100);
       });
     }
   } else {
-    logseq.UI.showMsg(`Template ${template} not found.`, "error", { timeout: 3000 });
+    logseq.UI.showMsg(`Template ${template} not found.`, "warming", { timeout: 5000 });
     console.warn(`Template ${template} not found.`);
   }
 }
