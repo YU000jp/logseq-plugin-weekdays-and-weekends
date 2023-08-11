@@ -27,10 +27,6 @@
 3. Private holiday (or annual leave)
 4. Working on holidays
 
-## Demo
-
-   ![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
-
 ---
 
 ## Getting Started
