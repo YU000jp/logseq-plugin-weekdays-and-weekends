@@ -9,8 +9,8 @@ export function rendering() {
 
   //rendering
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
-    if (rendering === slot) { return; }
-    rendering = slot;
+    if (rendering === slot) return;
+    rendering = slot;//重複実行防止
     const [type, template, weekdays] = payload.arguments as string[];
 
     if (type === ":Weekdays") { //:weekdays
@@ -42,12 +42,7 @@ export function rendering() {
           }
         }
         if (isWorkingOnHolidays === true) {
-          let thisTemplate;
-          if (logseq.settings?.selectWorkingOnHolidaysSetTemplate === true) {
-            thisTemplate = logseq.settings?.switchSetTemplate;
-          } else {
-            thisTemplate = logseq.settings?.switchWorkingOnHolidaysTemplateName;
-          }
+          const thisTemplate = logseq.settings?.selectWorkingOnHolidaysSetTemplate === true ? logseq.settings?.switchSetTemplate : logseq.settings?.switchWorkingOnHolidaysTemplateName;
           //dialog
           await selectTemplateDialog(payload.uuid,
             `Today is Working on Holidays.<br/>Select Main/Working on Holidays Template for today`,
