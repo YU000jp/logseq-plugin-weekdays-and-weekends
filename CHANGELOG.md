@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.13.0...v1.13.1) (2023-09-29)
+
+
+### Bug Fixes
+
+* **bug:** duplicate template (Prevent continuous loading) ([b4cd845](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/b4cd845fac0ab49407779a863c312d06e1d33209))
+
 # [1.13.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.12.0...v1.13.0) (2023-09-29)
 
 
