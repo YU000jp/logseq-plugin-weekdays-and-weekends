@@ -8,7 +8,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
       {
         content: "### Weekdays and Holidays (Templates)",
         properties: {
-          comment: "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document) / [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)",
+          comment: t("Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]") + "(" + t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document") + ")",
         },
         children: [
           {
@@ -16,7 +16,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
             properties: {
               template: "Journal",
               "template-including-parent": "false",
-              comment: 'Edit config.edn `:default-templates {:journals "Journal"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.',
+              comment: t("Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed."),
               "background-color": "yellow",
             },
             children: [
@@ -30,32 +30,25 @@ export function insertSampleTemplates(uuid): Promise<void> {
             properties: {
               template: "Main-Template",
               "template-including-parent": "false",
-              Comment: " [default] Mon&Tue&Wed&Thu&Fri",
               "background-color": "gray",
             },
             children: [
               {
-                content: `### Weekdays (Main)`,
+                content: `#### AM`,
                 children: [
                   {
-                    content: `#### AM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
+                ],
+              }, {
+                content: `#### PM`,
+                children: [
                   {
-                    content: `#### PM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
                 ],
               },
@@ -65,32 +58,25 @@ export function insertSampleTemplates(uuid): Promise<void> {
             properties: {
               template: "Sub-Template",
               "template-including-parent": "false",
-              Comment: "switch Main/Sub templates for a week (to plugin settings)",
               "background-color": "gray",
             },
             children: [
               {
-                content: `### Weekdays (Sub)`,
+                content: `#### AM`,
                 children: [
                   {
-                    content: `#### AM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
+                ],
+              }, {
+                content: `#### PM`,
+                children: [
                   {
-                    content: `#### PM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
                 ],
               },
@@ -100,32 +86,25 @@ export function insertSampleTemplates(uuid): Promise<void> {
             properties: {
               template: "Weekends-Template",
               "template-including-parent": "false",
-              Comment: " [default] Sat&Sun",
               "background-color": "gray",
             },
             children: [
               {
-                content: `### Weekends`,
+                content: `#### AM`,
                 children: [
                   {
-                    content: `#### AM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
+                ],
+              }, {
+                content: `#### PM`,
+                children: [
                   {
-                    content: `#### PM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
                 ],
               },
@@ -135,32 +114,25 @@ export function insertSampleTemplates(uuid): Promise<void> {
             properties: {
               template: "Holidays-Template",
               "template-including-parent": "false",
-              Comment: "Alert holidays (to plugin settings)",
               "background-color": "gray",
             },
             children: [
               {
-                content: `### Holidays`,
+                content: `#### AM`,
                 children: [
                   {
-                    content: `#### AM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
+                ],
+              }, {
+                content: `#### PM`,
+                children: [
                   {
-                    content: `#### PM`,
-                    children: [
-                      {
-                        content: ``,
-                      }, {
-                        content: ``,
-                      },
-                    ],
+                    content: ``,
+                  }, {
+                    content: ``,
                   },
                 ],
               },
