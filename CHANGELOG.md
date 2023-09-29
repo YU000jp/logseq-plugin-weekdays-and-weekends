@@ -1,3 +1,15 @@
+# [1.13.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.12.0...v1.13.0) (2023-09-29)
+
+
+### Bug Fixes
+
+* **Update:** sample template ([54b1a07](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/54b1a075bfc401ab4c2e2ee67e1fd05bb6560533))
+
+
+### Features
+
+* **l10n ja:** sample template ([c70ddce](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/c70ddcefd4795b125e2c5b3ed149469938e8fc8c))
+
 # [1.12.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.11.5...v1.12.0) (2023-06-19)
 
 
