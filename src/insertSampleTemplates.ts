@@ -23,6 +23,9 @@ export function insertSampleTemplates(uuid): Promise<void> {
               {
                 content: "{{renderer :Weekdays, Main-Template, Mon&Tue&Wed&Thu&Fri}}\n{{renderer :Weekdays, Weekends-Template, Sat&Sun}}"
               },
+              {
+                content: ""
+              }
             ],
           },
           {
