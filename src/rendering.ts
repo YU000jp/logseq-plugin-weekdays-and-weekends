@@ -1,7 +1,8 @@
 import Holidays from 'date-holidays';
 import { selectTemplateDialog } from './selectTemplateDialog';
 import { insertTemplateBlock } from './insertSampleTemplates';
-import { checkJournals } from './lib';
+import { checkJournalsOrJournalSingle } from './lib';
+import { t } from 'logseq-l10n';
 
 export function rendering() {
   let rendering = ""; //rendering flag
@@ -15,8 +16,8 @@ export function rendering() {
 
     if (type === ":Weekdays") { //:weekdays
 
-      const check: boolean = await checkJournals(); //ジャーナルだったらレンダリング実行
-      if (template && weekdays && check === true) {
+      const day: Date | null = await checkJournalsOrJournalSingle(); //ジャーナルだったらレンダリング実行
+      if (template && weekdays && day) {
         //switchMainTemplateName
         //switchSubTemplateName
         //switchAlertDay
@@ -27,25 +28,23 @@ export function rendering() {
         // Switch on working on holidays
         let isWorkingOnHolidays: Boolean = false;
         if (logseq.settings?.switchWorkingOnHolidays === true && (logseq.settings?.switchWorkingOnHolidaysTemplateName || logseq.settings?.selectWorkingOnHolidaysSetTemplate === true) && logseq.settings?.workingOnHolidaysArray) {
-          isWorkingOnHolidays = checkMatchToday(logseq.settings?.workingOnHolidaysArray) as boolean;
+          isWorkingOnHolidays = checkMatchDay(logseq.settings?.workingOnHolidaysArray, day) as boolean;
         }
         if (isWorkingOnHolidays === false && logseq.settings?.switchPrivate === true && logseq.settings?.switchPrivateTemplateName && logseq.settings?.privateDaysArray) {
-          isPrivate = checkMatchToday(logseq.settings?.privateDaysArray) as boolean;
+          isPrivate = checkMatchDay(logseq.settings?.privateDaysArray, day) as boolean;
         }
         if (isWorkingOnHolidays === false && isPrivate === false && logseq.settings?.switchHolidays === true && logseq.settings?.switchHolidaysCountry && logseq.settings?.switchHolidaysTemplateName) {
           const hd = new Holidays();
           const array = (logseq.settings?.switchHolidaysCountry).split(":");
           hd.init(array[0], logseq.settings?.switchHolidaysState, logseq.settings?.switchHolidaysRegion);
-          const checkHoliday = hd.isHoliday(new Date()); //test new Date("2023/05/03")
-          if (checkHoliday) {
-            isHoliday = `${checkHoliday[0].name} (${checkHoliday[0].type})`;
-          }
+          const checkHoliday = hd.isHoliday(day); //test new Date("2023/05/03")
+          if (checkHoliday) isHoliday = `${checkHoliday[0].name} (${checkHoliday[0].type})`;
         }
         if (isWorkingOnHolidays === true) {
           const thisTemplate = logseq.settings?.selectWorkingOnHolidaysSetTemplate === true ? logseq.settings?.switchSetTemplate : logseq.settings?.switchWorkingOnHolidaysTemplateName;
           //dialog
           await selectTemplateDialog(payload.uuid,
-            `Today is Working on Holidays.<br/>Select Main/Working on Holidays Template for today`,
+            t("Today is Working on Holidays.<br/>Select Main/Working on Holidays Template for today"),
             template,
             thisTemplate,
             "");
@@ -53,7 +52,7 @@ export function rendering() {
         else if (isPrivate === true) {
           //dialog
           await selectTemplateDialog(payload.uuid,
-            `Today is Private days.<br/>Select Main/Private Template for today`,
+            t("Today is Private days.<br/>Select Main/Private Template for today"),
             template,
             logseq.settings?.switchPrivateTemplateName,
             "");
@@ -61,22 +60,22 @@ export function rendering() {
         else if (isHoliday) {
           //dialog
           await selectTemplateDialog(payload.uuid,
-            `Today is ${isHoliday}.<br/>Select Main/Holidays Template for today`,
+            t("Today is ") + isHoliday + t(".<br/>Select Main/Holidays Template for today"),
             template,
             logseq.settings?.switchHolidaysTemplateName,
             "");
         }
         else if (logseq.settings?.switchMainSub === true && logseq.settings?.switchMainTemplateName === template && logseq.settings?.switchSubTemplateName) { //Switch to Sub Template
-          if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay) === true) {
+          if (logseq.settings?.switchAlertDay && checkWeekday(logseq.settings?.switchAlertDay, day) === true) {
             //アラート日の場合
             //dialog
             await selectTemplateDialog(payload.uuid,
-              "Select Main/Sub Template for this week",
+              t("Select Main/Sub Template for this week"),
               template,
               logseq.settings?.switchSubTemplateName,
               "sub");
           }
-          else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
+          else if (weekdays === "ALL" || checkWeekday(weekdays, day) === true) {
             let setTemplate;
             if (logseq.settings?.switchSetTemplate) {
               setTemplate = logseq.settings?.switchSetTemplate;
@@ -87,7 +86,7 @@ export function rendering() {
             await insertTemplateBlock(payload.uuid, setTemplate);
           }
         }
-        else if (weekdays === "ALL" || checkWeekday(weekdays) === true) {
+        else if (weekdays === "ALL" || checkWeekday(weekdays, day) === true) {
           await insertTemplateBlock(payload.uuid, template);
         }
         setTimeout(() => {
@@ -100,7 +99,7 @@ export function rendering() {
         key: `${slot}`,
         reset: true,
         slot,
-        template: `<label title="Waiting renderer"> WAITING: ${template}, ${weekdays} </label>`,
+        template: `<label title="Waiting renderer"> ${t("WAITING")}: ${template}, ${weekdays} </label>`,
         style: {
           color: "var(--ls-link-ref-text-hover-color)",
           border: "2px solid var(--ls-link-ref-text-hover-color)",
@@ -116,7 +115,7 @@ export function rendering() {
   });
 }
 
-function checkWeekday(selectWeekday: string): boolean {
+const checkWeekday = (selectWeekday: string, day: Date): boolean => {
   //曜日指定=ALL以外
   const days = {
     Sun: 0,
@@ -129,19 +128,14 @@ function checkWeekday(selectWeekday: string): boolean {
   };
   const dayArray = selectWeekday.split("&"); // ["Sun", "Sat"]
   const dayNumbers = dayArray.map(day => days[day]); // [0, 6]
-  const theDay = new Date(); //その日の日付
-  const theDayNumber = theDay.getDay(); // 0-6
-  if (dayNumbers.includes(theDayNumber)) {
-    return true; //一致
-  } else {
-    return false; //一致しない
-  }
+  const theDayNumber = day.getDay(); // 0-6
+  if (dayNumbers.includes(theDayNumber)) return true; //一致
+  else return false; //一致しない
 }
 
 
-function checkMatchToday(array: []): Boolean {
+function checkMatchDay(array: [], today: Date): Boolean {
   if (!array) return false;
-  const today: Date = new Date();
   const fullYear = today.getFullYear();
   const month = today.getMonth(); // +1しない
   const day = today.getDate();

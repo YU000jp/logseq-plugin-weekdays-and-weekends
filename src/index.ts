@@ -1,6 +1,6 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { LSPluginBaseInfo, AppUserConfigs } from '@logseq/libs/dist/LSPlugin.user';
-import { setup as l10nSetup } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
 import { setToolbar } from './setToolbar';
 import { insertSampleTemplates } from './insertSampleTemplates';
@@ -8,7 +8,7 @@ import { settingsTemplate } from './settings';
 import { convertLanguageCodeToCountryCode } from './lib';
 import { selectDaysByUser, getDates } from './settings';
 import { rendering } from './rendering';
-import { checkJournals } from './lib';
+import { checkJournalsOrJournalSingle } from './lib';
 export const key = "selectTemplateDialog";
 
 
@@ -18,9 +18,9 @@ const main = () => {
   let processingSlashCommand = false;
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async ({ uuid }) => {
     if (processingSlashCommand) return;
-    const check = await checkJournals();//ジャーナルでは許可しない
-    if (check === true) {
-      logseq.UI.showMsg("This is journal page. ", "error");
+    const check: Date | null = await checkJournalsOrJournalSingle();//ジャーナルでは許可しない
+    if (check) {
+      logseq.UI.showMsg("This page is journals. ", "error");
       return;
     }
     processingSlashCommand = true;

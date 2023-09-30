@@ -1,17 +1,19 @@
 import { PageEntity } from '@logseq/libs/dist/LSPlugin.user';
 
 
+const getJournalDayDate = (str: string): Date => new Date(
+  Number(str.slice(0, 4)), //year
+  Number(str.slice(4, 6)) - 1, //month 0-11
+  Number(str.slice(6)) //day
+);
 
-export async function checkJournals() {
+export const checkJournalsOrJournalSingle = async (): Promise<Date | null> => {
   const page = await logseq.Editor.getCurrentPage() as PageEntity | null; //Journalsの場合はnull
   if (page) {
-    // if (page["journal?"] === true) { //Journal day
-    //   return true;
-    // }
-    //今日以外も含まれてしまうのでコメントアウト
-    return false; //Non-Journal
+    if (page["journal?"] === true && page.journalDay) return getJournalDayDate(String(page.journalDay));//ジャーナルの日付だった場合
+    return null; //Non-Journal
   } else {
-    return true; //Journals
+    return new Date(); //Journals
   }
 }
 export const convertLanguageCodeToCountryCode = (languageCode: string): string => {
