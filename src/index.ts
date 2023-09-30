@@ -4,7 +4,8 @@ import { setup as l10nSetup } from "logseq-l10n"; //https://github.com/sethyuan/
 import ja from "./translations/ja.json";
 import { setToolbar } from './setToolbar';
 import { insertSampleTemplates } from './insertSampleTemplates';
-import { settingsTemplate, convertLanguageCodeToCountryCode } from './settings';
+import { settingsTemplate } from './settings';
+import { convertLanguageCodeToCountryCode } from './lib';
 import { selectDaysByUser, getDates } from './settings';
 import { rendering } from './rendering';
 import { checkJournals } from './lib';
