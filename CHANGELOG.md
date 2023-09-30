@@ -1,3 +1,11 @@
+# [1.14.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.13.1...v1.14.0) (2023-09-30)
+
+
+### Features
+
+* **Add:** ja ([9900fb7](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/9900fb73cbed5affc0b5f028a9525483be1e3584))
+* rendering when open feature day ([b07a5c1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/b07a5c1ec0ce8d1932d963e408aa47dd056263d0))
+
 ## [1.13.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.13.0...v1.13.1) (2023-09-29)
 
 
