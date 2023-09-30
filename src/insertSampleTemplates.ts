@@ -6,7 +6,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
   return new Promise((resolve) => {
     const batch: IBatchBlock[] = [
       {
-        content: "### Weekdays and Holidays (Templates)",
+        content: t("### Weekdays and Holidays (Templates)"),
         properties: {
           comment: t("Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]") + "(" + t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document") + ")",
         },
