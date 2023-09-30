@@ -37,6 +37,14 @@
     "Call: template name of Working On Holidays": "指定: 休日出勤のテンプレートの名称",
     "If the boolean setting item above is false": "ひとつ上の設定項目がオフの場合",
     "### Weekdays (Main)": "### 平日",
-    "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "ジャーナルテンプレートが呼ばれたときにレンダリングを実行するために、常に「Weekdays and Weekends(Templates」プラグインをオンにしてください。\n[日本語ドキュメント]",
-    "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "config.ednの`:default-templates {:journals \"Journal\"}`を編集して、ジャーナルテンプレートとして読み込まれたときにレンダリングが実行されるようにします。実行時には、レンダリングが実行されたブロックは削除されます。ブロックには最大7つのレンダリングを設定できますが、平日が重なる場合は、そのうちの1つしか実行されません。"
+    "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "ジャーナルテンプレートが呼ばれたときにレンダリングを実行するために、常にプラグインをオンにしてください。\n[日本語ドキュメント]",
+    "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "config.ednの`:default-templates {:journals \"Journal\"}`を編集して、ジャーナルテンプレートとして読み込まれたときにレンダリングが実行されるようにします。実行時には、レンダリングが実行されたブロックは削除されます。ブロックには最大7つのレンダリングを設定できますが、平日が重なる場合は、そのうちの1つしか実行されません。",
+    "Create sample for weekdays renderer": "テンプレートとレンダラーのサンプルを作成する",
+    "Today is Working on Holidays.<br/>Select Main/Working on Holidays Template for today": "今日は休日出勤日です。<br/>今日のテンプレートを選択してください。",
+    "Today is Private days.<br/>Select Main/Private Template for today": "今日は個人休暇日です。<br/>今日のテンプレートを選択してください。",
+    "Today is ": "今日は",
+    ".<br/>Select Main/Holidays Template for today": "です。<br/>今日のテンプレートを選択してください。",
+    "Select Main/Sub Template for this week": "今週のテンプレート(メイン/サブ)を選択してください",
+    "WAITING": "実行待ち",
+    "### Weekdays and Holidays (Templates)": "### ジャーナル用テンプレートとレンダリングの設定 (Weekdays and Holidays プラグイン)"
 }
