@@ -1,3 +1,4 @@
+import { t } from 'logseq-l10n';
 import { key } from '.';
 import { insertTemplateBlock } from './insertSampleTemplates';
 
@@ -6,14 +7,14 @@ export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTe
   return new Promise((resolve) => {
     logseq.provideUI({
       attrs: {
-        title: "🛌 Weekdays and Holidays Plugin",
+        title: "🛌 Weekdays and Holidays " + t("Plugin"),
       },
       key,
       reset: true,
       template: `
     <p>${dialogText}</p>
     <hr/>
-    <p>Which template do you want to use?</p>
+    <p>${t("Which template do you want to use?")}</p>
     <ul>
       <li><input type="radio" id="main" name="selectTemplateRadio" value="main"><label for="main">${targetTemplate}</label></li>
       <li><input type="radio" id="sub" name="selectTemplateRadio" value="sub"><label for="sub">${replaceTemplate}</label></li>

@@ -46,5 +46,9 @@
     ".<br/>Select Main/Holidays Template for today": "です。<br/>今日のテンプレートを選択してください。",
     "Select Main/Sub Template for this week": "今週のテンプレート(メイン/サブ)を選択してください",
     "WAITING": "実行待ち",
-    "### Weekdays and Holidays (Templates)": "### ジャーナル用テンプレートとレンダリングの設定 (Weekdays and Holidays プラグイン)"
+    "### Weekdays and Holidays (Templates)": "### ジャーナル用テンプレートとレンダリングの設定 (Weekdays and Holidays プラグイン)",
+    "Which template do you want to use?": "どのテンプレートを使用しますか？",
+    "Plugin": "プラグイン",
+    "Private Days": "個人休暇日",
+    "Working on Holidays": "休日出勤日"
 }

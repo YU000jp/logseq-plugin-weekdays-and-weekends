@@ -203,12 +203,12 @@ export function selectDaysByUser(target) {
   let key, title, id, onClick;
   if (target === "PrivateDays") {
     key = target;
-    title = "Private Days";
+    title = t("Private Days");
     id = "p";
     onClick = "getDatesPrivateDays";
   } else if (target === "WorkingOnHolidays") {
     key = "WorkingOnHolidays";
-    title = "Working on Holidays";
+    title = t("Working on Holidays");
     id = "w";
     onClick = "getDatesWorkingOnHolidays";
   } else {
