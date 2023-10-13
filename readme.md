@@ -67,10 +67,18 @@
 
 ### Logseq Plugin
 
-- [stdword / Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)
-- [hkgnp / powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)
-- [sawhney17 / SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)
-- [dangermccann/ Tempate Gallery](https://github.com/dangermccann/logseq-template-gallery)
+- [Side Block plugin](https://github.com/YU000jp/logseq-plugin-side-block)
+  - Place child blocks next to the parent block.
+
+#### Template Gallery
+
+- [dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
+
+#### Rendering
+
+- [stdword / Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
+- [hkgnp / powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
+- [sawhney17 / SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
 
 ---
 
