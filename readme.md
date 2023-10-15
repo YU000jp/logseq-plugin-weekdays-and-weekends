@@ -1,7 +1,6 @@
 # Logseq Plugin: *Weekdays and Holidays (Templates)* 🛌
 
 - Switch journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week.  Also, support private holidays (or annual leave) max 6 dates.
-> This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
@@ -33,9 +32,7 @@
 
 ### Install from Logseq Marketplace
 
-- Press [`---`] on the top right toolbar to open [`Plugins`]
-- Select `Marketplace`
-- Type `week` in the search field, select it from the search results and install
+- Press [`---`] on the top right toolbar to open [`Plugins`]. Select `Marketplace`. Type `week` in the search field, select it from the search results and install.
 
    ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
 
@@ -94,8 +91,9 @@
 
 ### Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 (Thanks! [xyhp915](https://github.com/xyhp915))
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 ([xyhp915](https://github.com/xyhp915))
 - [date-holidays](https://github.com/commenthol/date-holidays)
+  > This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
 
 ### Icon
