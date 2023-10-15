@@ -64,44 +64,45 @@ const main = () => {
     }
   });
 
-  const popup = `${logseq.baseInfo.id}--${key}`;
   logseq.provideStyle({
     key: "main", style: `
-    form.SetDates {
-      margin:1.2em;
-    }
-    form.SetDates input {
-      background: var(--ls-block-properties-background-color);
-      color: var(--ls-primary-text-color);
-      margin-bottom: 1em;
-    }
-    form.SetDates button {
-      outline: 2px solid var(--ls-link-ref-text-hover-color);
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-      padding:5px;
-    }
-    div#${popup} p {
-      font-size: 1.1em;
-    }
-    div#${popup} input[type="radio"] {
-      margin-left: 0.5em;
-      margin-right: 0.5em;
-    }
-    div#${popup} ul {
-      list-style: none;
-      padding: 4px 8px;
-      cursor: pointer;
-    }
-    div#${popup} button {
-      margin-top: 1em;
-      margin-left: 2em;
-      border: 1px solid var(--ls-secondary-background-color);
-      boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
-      text-decoration: underline;
-    }
-    div#${popup} button:hover {
-      background: var(--ls-secondary-background-color);
-      color: var(--ls-secondary-text-color);
+    body>div[data-ref="${logseq.baseInfo.id}"] {
+      & form.SetDates {
+        margin:1.2em;
+        & input {
+          background: var(--ls-block-properties-background-color);
+          color: var(--ls-primary-text-color);
+          margin-bottom: 1em;
+        }
+        & button {
+          outline: 2px solid var(--ls-link-ref-text-hover-color);
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+          padding:5px;
+        }
+      }
+      & p {
+        font-size: 1.1em;
+      }
+      & input[type="radio"] {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+      }
+      & ul {
+        list-style: none;
+        padding: 4px 8px;
+        cursor: pointer;
+      }
+      & button {
+        margin-top: 1em;
+        margin-left: 2em;
+        border: 1px solid var(--ls-secondary-background-color);
+        boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
+        text-decoration: underline;
+        &:hover {
+          background: var(--ls-secondary-background-color);
+          color: var(--ls-secondary-text-color);
+        }
+      }
     }
   `});
 
