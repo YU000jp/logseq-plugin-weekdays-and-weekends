@@ -66,7 +66,14 @@ const main = () => {
 
   logseq.provideStyle({
     key: "main", style: `
-    body>div[data-ref="${logseq.baseInfo.id}"] {
+  body>div {
+    &#root>div>main {
+      & article>div[data-id="${logseq.baseInfo.id}"] div.heading-item {
+          margin-top: 3em;
+          border-top-width: 1px;
+          padding-top: 1em;
+      }
+    &[data-ref="${logseq.baseInfo.id}"] {
       & form.SetDates {
         margin:1.2em;
         & input {
@@ -104,6 +111,7 @@ const main = () => {
         }
       }
     }
+  }
   `});
 
   logseq.provideModel({
