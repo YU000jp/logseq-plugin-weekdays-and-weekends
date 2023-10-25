@@ -1,3 +1,11 @@
+## [1.15.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.0...v1.15.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* **bug:** CSS is not applied to boxes for entering multiple dates. ([9107d11](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/9107d11c6416829acfeeb913259e9ff4ebc9f46d))
+* days max 10 (from 6) ([a7ff8b8](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/a7ff8b882f62f0ef767e43d0537e9d7ff33376fd))
+
 # [1.15.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.14.0...v1.15.0) (2023-10-17)
 
 
