@@ -1,14 +1,12 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
-import { LSPluginBaseInfo, AppUserConfigs } from '@logseq/libs/dist/LSPlugin.user';
+import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
 import { setup as l10nSetup, t, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
-import ja from "./translations/ja.json";
-import { setToolbar } from './setToolbar';
-import { insertSampleTemplates } from './insertSampleTemplates';
-import { settingsTemplate } from './settings';
-import { convertLanguageCodeToCountryCode } from './lib';
-import { selectDaysByUser, getDates as updateDays } from './settings';
-import { rendering } from './rendering';
-import { checkJournalsOrJournalSingle } from './lib';
+import { insertSampleTemplates } from './insertSampleTemplates'
+import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
+import { rendering } from './rendering'
+import { setToolbar } from './setToolbar'
+import { selectDaysByUser, settingsTemplate, getDates as updateDays } from './settings'
+import ja from "./translations/ja.json"
 export const key = "selectTemplateDialog";
 
 
