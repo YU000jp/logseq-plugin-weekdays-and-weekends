@@ -155,6 +155,7 @@ export async function insertTemplateBlock(blockUuid, template: string) {
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
   //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
 
+  logseq.showMainUI()
 
   logseq.Editor.updateBlock(blockUuid, "")
   const exist = await logseq.App.existTemplate(template) as boolean
@@ -173,6 +174,5 @@ export async function insertTemplateBlock(blockUuid, template: string) {
     console.warn(`Template "${template}" not found.`)
   }
 
-
+  setTimeout(() => logseq.hideMainUI(), 200)
 }
-

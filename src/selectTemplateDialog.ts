@@ -57,8 +57,11 @@ export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTe
           } else {
             return processing = false
           }
+
+          logseq.showMainUI()
           //テンプレートを挿入する
           insertTemplateBlock(uuid, selectTemplate)
+          logseq.hideMainUI()
 
           //ダイアログを閉じる
           const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null
