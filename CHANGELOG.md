@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.1...v1.15.2) (2023-10-25)
+
+
+### Bug Fixes
+
+* **bug:** set processing lock ([f95f032](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/f95f032dafa3461602e3d3cf8adcbdfe72b1b8ff))
+
 ## [1.15.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.0...v1.15.1) (2023-10-25)
 
 
