@@ -10,7 +10,8 @@ const getJournalDayDate = (str: string): Date => new Date(
 export const checkJournalsOrJournalSingle = async (): Promise<Date | null> => {
   const page = await logseq.Editor.getCurrentPage() as PageEntity | null //Journalsの場合はnull
   if (page) {
-    if (page["journal?"] === true && page.journalDay) return getJournalDayDate(String(page.journalDay))//ジャーナルの日付だった場合
+    if (page["journal?"] === true
+      && page.journalDay) return getJournalDayDate(String(page.journalDay))//ジャーナルの日付だった場合
     return null //Non-Journal
   } else {
     return new Date() //Journals

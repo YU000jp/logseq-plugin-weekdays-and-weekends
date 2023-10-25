@@ -29,7 +29,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
             ],
           },
           {
-            content: t("#### Main-Template:"),
+            content: t("#### Main-Template > "),
             properties: {
               template: "Main-Template",
               "template-including-parent": "false",
@@ -57,7 +57,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
               },
             ],
           }, {
-            content: t("#### Sub-Template:"),
+            content: t("#### Sub-Template > "),
             properties: {
               template: "Sub-Template",
               "template-including-parent": "false",
@@ -85,7 +85,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
               },
             ]
           }, {
-            content: t("#### Weekends-Template:"),
+            content: t("#### Weekends-Template > "),
             properties: {
               template: "Weekends-Template",
               "template-including-parent": "false",
@@ -113,7 +113,7 @@ export function insertSampleTemplates(uuid): Promise<void> {
               },
             ],
           }, {
-            content: t("#### Holidays-Template:"),
+            content: t("#### Holidays-Template > "),
             properties: {
               template: "Holidays-Template",
               "template-including-parent": "false",
@@ -154,10 +154,12 @@ export async function insertTemplateBlock(blockUuid, template: string) {
   // @logseq/lib v0.0.15導入
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
   //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
+
+
   logseq.Editor.updateBlock(blockUuid, "")
   const exist = await logseq.App.existTemplate(template) as boolean
   if (exist === true) {
-    logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 })
+    logseq.UI.showMsg(`${t("Insert template")} "${template}"`, "success", { timeout: 2200 })
     const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false })
     if (newBlock) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
@@ -167,8 +169,10 @@ export async function insertTemplateBlock(blockUuid, template: string) {
       })
     }
   } else {
-    logseq.UI.showMsg(`Template ${template} not found.`, "warming", { timeout: 5000 })
-    console.warn(`Template ${template} not found.`)
+    logseq.UI.showMsg(t("The Template not found."), "warming", { timeout: 5000 })
+    console.warn(`Template "${template}" not found.`)
   }
+
+
 }
 
