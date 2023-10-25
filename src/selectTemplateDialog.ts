@@ -1,6 +1,6 @@
-import { t } from 'logseq-l10n';
-import { key } from '.';
-import { insertTemplateBlock } from './insertSampleTemplates';
+import { t } from 'logseq-l10n'
+import { key } from '.'
+import { insertTemplateBlock } from './insertSampleTemplates'
 
 //selectTemplateDialog
 export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTemplate, updateSettings): Promise<void> {
@@ -35,38 +35,38 @@ export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTe
         color: 'var(--ls-primary-text-color)',
         boxShadow: '1px 2px 5px var(--ls-secondary-background-color)',
       },
-    });
+    })
 
     setTimeout(() => {
-      const button = parent.document.getElementById("selectTemplateButton") as HTMLButtonElement;
+      const button = parent.document.getElementById("selectTemplateButton") as HTMLButtonElement
       if (button) {
-        let processing: Boolean = false;
+        let processing: Boolean = false
         button.addEventListener("click", () => {
-          if (processing) return;
-          processing = true;
+          if (processing) return
+          processing = true
           //radioボタンの値を取得する
-          const select: string = (parent.document.querySelector('input[name="selectTemplateRadio"]:checked') as HTMLInputElement)!.value;
-          if (!select) return processing = false;
-          let selectTemplate = "";
+          const select: string = (parent.document.querySelector('input[name="selectTemplateRadio"]:checked') as HTMLInputElement)!.value
+          if (!select) return processing = false
+          let selectTemplate = ""
           if (select === "main") {
-            selectTemplate = targetTemplate;
+            selectTemplate = targetTemplate
           }
           else if (select === "sub") {
-            selectTemplate = replaceTemplate;
-            if (updateSettings === "sub") logseq.updateSettings({ switchSetTemplate: selectTemplate });
+            selectTemplate = replaceTemplate
+            if (updateSettings === "sub") logseq.updateSettings({ switchSetTemplate: selectTemplate })
           } else {
-            return processing = false;
+            return processing = false
           }
           //テンプレートを挿入する
-          insertTemplateBlock(uuid, selectTemplate);
+          insertTemplateBlock(uuid, selectTemplate)
 
           //ダイアログを閉じる
-          const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null;
-          if (element) element.remove();
-          processing = false;
-          resolve();
-        });
+          const element = parent.document.getElementById(logseq.baseInfo.id + `--${key}`) as HTMLDivElement | null
+          if (element) element.remove()
+          processing = false
+          resolve()
+        })
       }
-    }, 100);
-  });
+    }, 100)
+  })
 }

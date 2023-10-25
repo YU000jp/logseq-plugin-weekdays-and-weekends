@@ -1,30 +1,30 @@
-import '@logseq/libs'; //https://plugins-doc.logseq.com/
+import '@logseq/libs' //https://plugins-doc.logseq.com/
 import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
-import { setup as l10nSetup, t, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t, } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { insertSampleTemplates } from './insertSampleTemplates'
 import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
 import { rendering } from './rendering'
 import { setToolbar } from './setToolbar'
 import { selectDaysByUser, settingsTemplate, getDates as updateDays } from './settings'
 import ja from "./translations/ja.json"
-export const key = "selectTemplateDialog";
+export const key = "selectTemplateDialog"
 
 
 const main = () => {
 
   /* slash command */
-  let processingSlashCommand = false;
+  let processingSlashCommand = false
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async ({ uuid }) => {
-    if (processingSlashCommand) return;
-    const check: Date | null = await checkJournalsOrJournalSingle();//ジャーナルでは許可しない
+    if (processingSlashCommand) return
+    const check: Date | null = await checkJournalsOrJournalSingle()//ジャーナルでは許可しない
     if (check) {
-      logseq.UI.showMsg(t("The current page is journals."), "error");
-      return;
+      logseq.UI.showMsg(t("The current page is journals."), "error")
+      return
     }
-    processingSlashCommand = true;
-    await insertSampleTemplates(uuid);
-    processingSlashCommand = false;
-  });
+    processingSlashCommand = true
+    await insertSampleTemplates(uuid)
+    processingSlashCommand = false
+  })
   //end
 
 
@@ -32,35 +32,35 @@ const main = () => {
   logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async () => {
     logseq.Editor.insertAtEditingCursor(
       `{{renderer :Weekdays, TemplateName, Sat&Sun}} `
-    );
-  });
+    )
+  })
 
 
   //renderer実行
-  logseq.App.onTodayJournalCreated(() => setTimeout(() => logseq.Editor.exitEditingMode(), 100));
+  logseq.App.onTodayJournalCreated(() => setTimeout(() => logseq.Editor.exitEditingMode(), 100))
 
 
-  rendering();//end onMacroRendererSlotted
+  rendering()//end onMacroRendererSlotted
 
-  loadSettings();
+  loadSettings()
 
 
-  let processingOnSettingsChanged: Boolean = false;
+  let processingOnSettingsChanged: Boolean = false
   logseq.onSettingsChanged(async (newSet: LSPluginBaseInfo['settings'], oldSet: LSPluginBaseInfo['settings']) => {
     if (processingOnSettingsChanged === false && newSet && oldSet && newSet !== oldSet) {
       if (oldSet.selectPrivateDays !== true && newSet.selectPrivateDays === true) {
-        processingOnSettingsChanged = true;
-        selectDaysByUser("PrivateDays");
-        logseq.updateSettings({ selectPrivateDays: false });
-        processingOnSettingsChanged = false;
+        processingOnSettingsChanged = true
+        selectDaysByUser("PrivateDays")
+        logseq.updateSettings({ selectPrivateDays: false })
+        processingOnSettingsChanged = false
       } else if (oldSet.selectWorkingOnHolidays !== true && newSet.selectWorkingOnHolidays === true) {
-        processingOnSettingsChanged = true;
-        selectDaysByUser("WorkingOnHolidays");
-        logseq.updateSettings({ selectWorkingOnHolidays: false });
-        processingOnSettingsChanged = false;
+        processingOnSettingsChanged = true
+        selectDaysByUser("WorkingOnHolidays")
+        logseq.updateSettings({ selectWorkingOnHolidays: false })
+        processingOnSettingsChanged = false
       }
     }
-  });
+  })
 
   logseq.provideStyle({
     key: "main", style: `
@@ -120,37 +120,37 @@ const main = () => {
           }
       }
   }
-  `});
+  `})
 
   logseq.provideModel({
     getDatesPrivateDays: () => updateDays("PrivateDays"),
     getDatesWorkingOnHolidays: () => updateDays("WorkingOnHolidays"),
     weekdaysOpenSettings: () => logseq.showSettingsUI(),
-  });
+  })
 
   // toolbar button
-  setToolbar();
+  setToolbar()
 
-};/* end_main */
+}/* end_main */
 
 
 
 const loadSettings = async () => {
   try {
-    await l10nSetup({ builtinTranslations: { ja } });
+    await l10nSetup({ builtinTranslations: { ja } })
   } finally {
     /* user settings */
     //get user config Language >>> Country
     if (logseq.settings?.switchHolidaysCountry === undefined) {
-      const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs;
-      logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)));
+      const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs
+      logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)))
       setTimeout(() => {
-        logseq.showSettingsUI();
-      }, 300);
+        logseq.showSettingsUI()
+      }, 300)
     } else {
-      logseq.useSettingsSchema(settingsTemplate("US: United States of America"));
+      logseq.useSettingsSchema(settingsTemplate("US: United States of America"))
     }
   }
-};
+}
 
-logseq.ready(main).catch(console.error); //model
+logseq.ready(main).catch(console.error) //model

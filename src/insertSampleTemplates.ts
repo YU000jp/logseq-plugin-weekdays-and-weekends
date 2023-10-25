@@ -1,5 +1,5 @@
-import { IBatchBlock } from '@logseq/libs/dist/LSPlugin.user';
-import { t } from "logseq-l10n";
+import { IBatchBlock } from '@logseq/libs/dist/LSPlugin.user'
+import { t } from "logseq-l10n"
 
 //end
 export function insertSampleTemplates(uuid): Promise<void> {
@@ -143,10 +143,10 @@ export function insertSampleTemplates(uuid): Promise<void> {
           },
         ],
       },
-    ];
-    logseq.Editor.insertBatchBlock(uuid, batch);
-    resolve();
-  });
+    ]
+    logseq.Editor.insertBatchBlock(uuid, batch)
+    resolve()
+  })
 }//insertTemplateBlock
 
 
@@ -154,21 +154,21 @@ export async function insertTemplateBlock(blockUuid, template: string) {
   // @logseq/lib v0.0.15導入
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
   //https://github.com/logseq/logseq/blob/a5e31128a6366df002488203406684f78d80c7e3/libs/src/LSPlugin.ts#L449
-  logseq.Editor.updateBlock(blockUuid, "");
-  const exist = await logseq.App.existTemplate(template) as boolean;
+  logseq.Editor.updateBlock(blockUuid, "")
+  const exist = await logseq.App.existTemplate(template) as boolean
   if (exist === true) {
-    logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 });
-    const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false });
+    logseq.UI.showMsg(`Insert ${template}`, "success", { timeout: 1800 })
+    const newBlock = await logseq.Editor.insertBlock(blockUuid, "", { sibling: true, isPageBlock: true, before: true, focus: false })
     if (newBlock) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
-        console.log(`Render insert template ${template}`);
-        logseq.Editor.removeBlock(blockUuid);
-        setTimeout(() => logseq.Editor.exitEditingMode(), 100);
-      });
+        console.log(`Render insert template ${template}`)
+        logseq.Editor.removeBlock(blockUuid)
+        setTimeout(() => logseq.Editor.exitEditingMode(), 100)
+      })
     }
   } else {
-    logseq.UI.showMsg(`Template ${template} not found.`, "warming", { timeout: 5000 });
-    console.warn(`Template ${template} not found.`);
+    logseq.UI.showMsg(`Template ${template} not found.`, "warming", { timeout: 5000 })
+    console.warn(`Template ${template} not found.`)
   }
 }
 

@@ -1,6 +1,6 @@
-import { SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user';
+import { SettingSchemaDesc } from '@logseq/libs/dist/LSPlugin.user'
 import { isAfter, sub } from 'date-fns'
-import { t } from "logseq-l10n";
+import { t } from "logseq-l10n"
 
 //userSettings
 // https://logseq.github.io/plugins/types/SettingSchemaDesc.html
@@ -169,67 +169,67 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     description: t("If the boolean setting item above is false"),
     default: "Main-Template",
   },
-];
+]
 
 
 export function getDates(target) {
-  let id = "";
+  let id = ""
   if (target === "PrivateDays") {
-    id = "p";
-    logseq.updateSettings({ privateDaysArray: null });
+    id = "p"
+    logseq.updateSettings({ privateDaysArray: null })
   } else if (target === "WorkingOnHolidays") {
-    id = "w";
-    logseq.updateSettings({ workingOnHolidaysArray: null });
+    id = "w"
+    logseq.updateSettings({ workingOnHolidaysArray: null })
   } else {
     return console.error("Error: getDates");;
   }
-  const DaysArray: Date[] = []; // 日付を格納する配列を初期化
-  const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`]; // 日付のIDを格納する配列
+  const DaysArray: Date[] = [] // 日付を格納する配列を初期化
+  const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`] // 日付のIDを格納する配列
   for (const dateId of dateIds) { // 日付のIDを1つずつ処理するループ
     const ele = parent.document.getElementById(dateId) as HTMLInputElement | null // 日付入力欄を取得
-    if (!ele) continue;
-    const value = ele.value; // 日付入力欄の値を取得
-    if (!value) continue;
-    const inputDate = new Date(value); // 日付の値を取得
+    if (!ele) continue
+    const value = ele.value // 日付入力欄の値を取得
+    if (!value) continue
+    const inputDate = new Date(value) // 日付の値を取得
 
     // 日付が有効な日付かどうかをチェックし、日付を配列に追加
-    if (!isNaN(inputDate.getTime())) DaysArray.push(inputDate);
+    if (!isNaN(inputDate.getTime())) DaysArray.push(inputDate)
   }
-  if (target === "PrivateDays") logseq.updateSettings({ privateDaysArray: DaysArray });
+  if (target === "PrivateDays") logseq.updateSettings({ privateDaysArray: DaysArray })
   else
-    if (target === "WorkingOnHolidays") 
-      logseq.updateSettings({ workingOnHolidaysArray: DaysArray });
-  
-  logseq.UI.showMsg(t("Saved"), "success", { timeout: 2000 });
+    if (target === "WorkingOnHolidays")
+      logseq.updateSettings({ workingOnHolidaysArray: DaysArray })
+
+  logseq.UI.showMsg(t("Saved"), "success", { timeout: 2000 })
 
   setTimeout(() => {
-      //ポップアップ削除
+    //ポップアップ削除
     const element = parent.document.querySelector(`body>div[data-ref="${logseq.baseInfo.id}"]`) as HTMLDivElement | null
     if (element) element.remove()
-  }, 100);
+  }, 100)
 
 }
 
 
 export function selectDaysByUser(target) {
-  let key, title, id, onClick;
+  let key, title, id, onClick
   if (target === "PrivateDays") {
-    key = target;
-    title = t("Private Days");
-    id = "p";
-    onClick = "getDatesPrivateDays";
+    key = target
+    title = t("Private Days")
+    id = "p"
+    onClick = "getDatesPrivateDays"
   } else if (target === "WorkingOnHolidays") {
-    key = "WorkingOnHolidays";
-    title = t("Working on Holidays");
-    id = "w";
-    onClick = "getDatesWorkingOnHolidays";
+    key = "WorkingOnHolidays"
+    title = t("Working on Holidays")
+    id = "w"
+    onClick = "getDatesWorkingOnHolidays"
   } else {
-    console.error("Error: selectDaysByUser");
-    return;
+    console.error("Error: selectDaysByUser")
+    return
   }
   //機能の日付
-  const today = new Date();
-  const formattedDate = today.toISOString().slice(0, 10);
+  const today = new Date()
+  const formattedDate = today.toISOString().slice(0, 10)
   try {
     logseq.provideUI({
       key,
@@ -290,37 +290,37 @@ export function selectDaysByUser(target) {
         width: "300px",
         maxHeight: "1000px",
       }
-    });
+    })
   } finally {
-  // ページ読み込み時に実行して、保存された日付をフォームにセットする
-    setTimeout(() => savedDays(target), 300);
+    // ページ読み込み時に実行して、保存された日付をフォームにセットする
+    setTimeout(() => savedDays(target), 300)
   }
 }
 
 
 function savedDays(target) {
-  let id, setting;
+  let id, setting
   if (target === "PrivateDays") {
-    id = "p";
-    setting = logseq.settings?.privateDaysArray;
+    id = "p"
+    setting = logseq.settings?.privateDaysArray
   } else if (target === "WorkingOnHolidays") {
-    id = "w";
-    setting = logseq.settings?.workingOnHolidaysArray;
+    id = "w"
+    setting = logseq.settings?.workingOnHolidaysArray
   } else {
-    console.error("Error: setSavedDates");
-    return;
+    console.error("Error: setSavedDates")
+    return
   }
   if (setting) {
-    const privateDaysArray: Date[] = setting; // 保存された日付の配列を取得
-    const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`]; // 日付のIDを格納する配列
-    const yesterday = sub(new Date(), { days: 1 });
+    const privateDaysArray: Date[] = setting // 保存された日付の配列を取得
+    const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`] // 日付のIDを格納する配列
+    const yesterday = sub(new Date(), { days: 1 })
     for (let i = 0; i < privateDaysArray.length && i < dateIds.length; i++) { // 日付を1つずつ処理するループ
-      if (privateDaysArray[i] === undefined) continue;
-      const inputDate = new Date(privateDaysArray[i]); // 日付をDateオブジェクトに変換
-      if (isAfter(inputDate,yesterday)) { // 日付が今日より後の場合のみ、値をセットする
-        const formattedDate = inputDate.toISOString().slice(0, 10); // yyyy-mm-ddの形式に変換
-        const dateInput = parent.document.getElementById(dateIds[i]) as HTMLInputElement | null; // 日付入力欄に値をセット
-        if (dateInput) dateInput.value = formattedDate;
+      if (privateDaysArray[i] === undefined) continue
+      const inputDate = new Date(privateDaysArray[i]) // 日付をDateオブジェクトに変換
+      if (isAfter(inputDate, yesterday)) { // 日付が今日より後の場合のみ、値をセットする
+        const formattedDate = inputDate.toISOString().slice(0, 10) // yyyy-mm-ddの形式に変換
+        const dateInput = parent.document.getElementById(dateIds[i]) as HTMLInputElement | null // 日付入力欄に値をセット
+        if (dateInput) dateInput.value = formattedDate
       }
     }
   }
