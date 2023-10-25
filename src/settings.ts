@@ -197,7 +197,7 @@ export function getDates(target) {
   } else if (target === "WorkingOnHolidays") {
     logseq.updateSettings({ workingOnHolidaysArray: DaysArray });
   }
-  logseq.UI.showMsg("Saved", "success", { timeout: 1500 });
+  logseq.UI.showMsg(t("Saved"), "success", { timeout: 1500 });
 
   //ポップアップ削除
     const element = parent.document.querySelector(`body>div[data-ref="${logseq.baseInfo.id}"]`) as HTMLDivElement | null
