@@ -1,12 +1,12 @@
 import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { LSPluginBaseInfo, AppUserConfigs } from '@logseq/libs/dist/LSPlugin.user';
-import { setup as l10nSetup, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import ja from "./translations/ja.json";
 import { setToolbar } from './setToolbar';
 import { insertSampleTemplates } from './insertSampleTemplates';
 import { settingsTemplate } from './settings';
 import { convertLanguageCodeToCountryCode } from './lib';
-import { selectDaysByUser, getDates } from './settings';
+import { selectDaysByUser, getDates as updateDays } from './settings';
 import { rendering } from './rendering';
 import { checkJournalsOrJournalSingle } from './lib';
 export const key = "selectTemplateDialog";
@@ -20,7 +20,7 @@ const main = () => {
     if (processingSlashCommand) return;
     const check: Date | null = await checkJournalsOrJournalSingle();//ジャーナルでは許可しない
     if (check) {
-      logseq.UI.showMsg("This page is journals. ", "error");
+      logseq.UI.showMsg(t("The current page is journals."), "error");
       return;
     }
     processingSlashCommand = true;
@@ -83,6 +83,7 @@ const main = () => {
                   background-color: var(--ls-block-properties-background-color);
                   color: var(--ls-primary-text-color);
                   margin-bottom: 1em;
+                  font-size: .94em;
               }
 
               & button {
@@ -124,8 +125,8 @@ const main = () => {
   `});
 
   logseq.provideModel({
-    getDatesPrivateDays: () => getDates("PrivateDays"),
-    getDatesWorkingOnHolidays: () => getDates("WorkingOnHolidays"),
+    getDatesPrivateDays: () => updateDays("PrivateDays"),
+    getDatesWorkingOnHolidays: () => updateDays("WorkingOnHolidays"),
     weekdaysOpenSettings: () => logseq.showSettingsUI(),
   });
 

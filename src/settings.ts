@@ -183,7 +183,7 @@ export function getDates(target) {
     return console.error("Error: getDates");;
   }
   const DaysArray: Date[] = []; // 日付を格納する配列を初期化
-  const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
+  const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`]; // 日付のIDを格納する配列
   for (const dateId of dateIds) { // 日付のIDを1つずつ処理するループ
     const value = (<HTMLInputElement>parent.document.getElementById(dateId)).value;
     if (!value) continue;
@@ -198,6 +198,10 @@ export function getDates(target) {
     logseq.updateSettings({ workingOnHolidaysArray: DaysArray });
   }
   logseq.UI.showMsg("Saved", "success", { timeout: 1500 });
+
+  //ポップアップ削除
+    const element = parent.document.querySelector(`body>div[data-ref="${logseq.baseInfo.id}"]`) as HTMLDivElement | null
+    if (element) element.remove()
 }
 
 
@@ -225,7 +229,6 @@ export function selectDaysByUser(target) {
       attrs: {
         title,
       },
-      close: "outside",
       reset: true,
       template: `
     <form class="setDates" title="${t("Click the right end of the input field to display a calendar to enter the date.")}">
@@ -246,6 +249,20 @@ export function selectDaysByUser(target) {
 
       <div><label for="date6">${t("Date")} 6:</label>
       <input type="date" id="${id}date6" name="date6" min="${formattedDate}"/></div>
+
+      <div><label for="date7">${t("Date")} 7:</label>
+      <input type="date" id="${id}date7" name="date7" min="${formattedDate}"/></div>
+
+      <div><label for="date8">${t("Date")} 8:</label>
+      <input type="date" id="${id}date8" name="date8" min="${formattedDate}"/></div>
+
+      <div><label for="date9">${t("Date")} 9:</label>
+      <input type="date" id="${id}date9" name="date9" min="${formattedDate}"/></div>
+
+      <div><label for="date10">${t("Date")} 10:</label>
+      <input type="date" id="${id}date10" name="date10" min="${formattedDate}"/></div>
+
+
       <button type="button" data-on-click="${onClick}">${t("Submit")}</button>
     </form>
     `,
@@ -263,7 +280,7 @@ export function selectDaysByUser(target) {
         outline: "2px solid var(--ls-link-ref-text-hover-color)",
         boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.5)",
         width: "300px",
-        height: "500px",
+        maxHeight: "1000px",
       }
     });
   } finally {
@@ -288,7 +305,7 @@ function setSavedDates(target) {
   }
   if (setting) {
     const privateDaysArray: Date[] = setting; // 保存された日付の配列を取得
-    const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`]; // 日付のIDを格納する配列
+    const dateIds = [`${id}date1`, `${id}date2`, `${id}date3`, `${id}date4`, `${id}date5`, `${id}date6`, `${id}date7`, `${id}date8`, `${id}date9`, `${id}date10`]; // 日付のIDを格納する配列
     const today = new Date(); // 今日の日付を取得
     for (let i = 0; i < privateDaysArray.length && i < dateIds.length; i++) { // 日付を1つずつ処理するループ
       if (privateDaysArray[i] === undefined) continue;
