@@ -169,6 +169,8 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     default: "Main-Template",
   },
 ];
+
+
 export function getDates(target) {
   let id = "";
   if (target === "PrivateDays") {
@@ -221,33 +223,31 @@ export function selectDaysByUser(target) {
     logseq.provideUI({
       key,
       attrs: {
-        title: 'Plugin Settings - Weekdays and Holidays (Templates)',
+        title,
       },
       close: "outside",
       reset: true,
       template: `
-    <form class="SetDates">
-    <h3>Select ${title}</h3>
-  <div><label for="date1">Date 1:</label>
-  <input type="date" id="${id}date1" name="date1" min="${formattedDate}"/></div>
-  
-  <div><label for="date2">Date 2:</label>
-  <input type="date" id="${id}date2" name="date2" min="${formattedDate}"/></div>
+    <form class="setDates" title="${t("Click the right end of the input field to display a calendar to enter the date.")}">
+      <div><label for="date1">${t("Date")} 1:</label>
+      <input type="date" id="${id}date1" name="date1" min="${formattedDate}"/></div>
+      
+      <div><label for="date2">${t("Date")} 2:</label>
+      <input type="date" id="${id}date2" name="date2" min="${formattedDate}"/></div>
 
-  <div><label for="date3">Date 3:</label>
-  <input type="date" id="${id}date3" name="date3" min="${formattedDate}"/></div>
+      <div><label for="date3">${t("Date")} 3:</label>
+      <input type="date" id="${id}date3" name="date3" min="${formattedDate}"/></div>
 
-  <div><label for="date4">Date 4:</label>
-  <input type="date" id="${id}date4" name="date4" min="${formattedDate}"/></div>
+      <div><label for="date4">${t("Date")} 4:</label>
+      <input type="date" id="${id}date4" name="date4" min="${formattedDate}"/></div>
 
-  <div><label for="date5">Date 5:</label>
-  <input type="date" id="${id}date5" name="date5" min="${formattedDate}"/></div>
+      <div><label for="date5">${t("Date")} 5:</label>
+      <input type="date" id="${id}date5" name="date5" min="${formattedDate}"/></div>
 
-  <div><label for="date6">Date 6:</label>
-  <input type="date" id="${id}date6" name="date6" min="${formattedDate}"/></div>
-  
-  <button type="button" data-on-click="${onClick}">Set Dates</button>
-</form>
+      <div><label for="date6">${t("Date")} 6:</label>
+      <input type="date" id="${id}date6" name="date6" min="${formattedDate}"/></div>
+      <button type="button" data-on-click="${onClick}">${t("Submit")}</button>
+    </form>
     `,
       style: {
         color: "var(--ls-link-ref-text-hover-color)",

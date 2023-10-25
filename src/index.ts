@@ -66,51 +66,60 @@ const main = () => {
 
   logseq.provideStyle({
     key: "main", style: `
-  body>div {
-    &#root>div>main {
-      & article>div[data-id="${logseq.baseInfo.id}"] div.heading-item {
-          margin-top: 3em;
-          border-top-width: 1px;
-          padding-top: 1em;
+    body>div {
+      &#root>div>main {
+          & article>div[data-id="weekdays-and-holidays"] div.heading-item {
+              margin-top: 3em;
+              border-top-width: 1px;
+              padding-top: 1em;
+          }
       }
-    &[data-ref="${logseq.baseInfo.id}"] {
-      & form.SetDates {
-        margin:1.2em;
-        & input {
-          background: var(--ls-block-properties-background-color);
-          color: var(--ls-primary-text-color);
-          margin-bottom: 1em;
-        }
-        & button {
-          outline: 2px solid var(--ls-link-ref-text-hover-color);
-          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-          padding:5px;
-        }
+
+      &[data-ref="weekdays-and-holidays"] {
+          & form.setDates {
+              margin: 1.2em;
+
+              & input {
+                  background-color: var(--ls-block-properties-background-color);
+                  color: var(--ls-primary-text-color);
+                  margin-bottom: 1em;
+              }
+
+              & button {
+                  outline: 2px solid var(--ls-link-ref-text-hover-color);
+                  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+                  padding: 5px;
+              }
+          }
+
+          & p {
+              font-size: 1.1em;
+          }
+
+          & input[type="radio"] {
+              margin-left: 0.5em;
+              margin-right: 0.5em;
+          }
+
+          & ul {
+              list-style: none;
+              padding: 4px 8px;
+              cursor: pointer;
+          }
+
+          & button {
+              margin-top: 1em;
+              margin-left: 2em;
+              border: 1px solid var(--ls-secondary-background-color);
+              box-shadow: 1px 2px 5px var(--ls-secondary-background-color);
+              text-decoration: underline;
+
+              &:hover {
+                  background-color: var(--ls-secondary-background-color);
+                  color: var(--ls-secondary-text-color);
+              }
+          }
       }
-      & p {
-        font-size: 1.1em;
-      }
-      & input[type="radio"] {
-        margin-left: 0.5em;
-        margin-right: 0.5em;
-      }
-      & ul {
-        list-style: none;
-        padding: 4px 8px;
-        cursor: pointer;
-      }
-      & button {
-        margin-top: 1em;
-        margin-left: 2em;
-        border: 1px solid var(--ls-secondary-background-color);
-        boxShadow: 1px 2px 5px var(--ls-secondary-background-color);
-        text-decoration: underline;
-        &:hover {
-          background: var(--ls-secondary-background-color);
-          color: var(--ls-secondary-text-color);
-        }
-      }
-    }
   }
   `});
 

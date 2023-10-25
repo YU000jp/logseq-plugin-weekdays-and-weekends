@@ -50,5 +50,8 @@
     "Which template do you want to use?": "どのテンプレートを使用しますか？",
     "Plugin": "プラグイン",
     "Private Days": "個人休暇日",
-    "Working on Holidays": "休日出勤日"
+    "Working on Holidays": "休日出勤日",
+    "Submit": "送信",
+    "Date" : "日付",
+    "Click the right end of the input field to display a calendar to enter the date." : "入力欄の右端をクリックすると、日付を入力するためのカレンダーが表示されます。"
 }
