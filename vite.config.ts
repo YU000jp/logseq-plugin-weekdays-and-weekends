@@ -1,14 +1,12 @@
-import { defineConfig } from 'vite'
-import logseqDevPlugin from 'vite-plugin-logseq'
+import { defineConfig } from "vite";
+import logseqDevPlugin from "vite-plugin-logseq";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    // Makes HMR available for development
-    logseqDevPlugin()
-  ],
+  plugins: [logseqDevPlugin()],
+  // Makes HMR available for development
   build: {
-    sourcemap: true,
-    target: 'esnext',
-    minify: 'esbuild',
+    target: "esnext",
+    minify: "esbuild",
   },
-})
+});
