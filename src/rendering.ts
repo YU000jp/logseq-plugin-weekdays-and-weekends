@@ -16,7 +16,7 @@ export function rendering() {
 
     if (type === ":Weekdays") { //:weekdays
 
-      const day: Date | null = await checkJournalsOrJournalSingle() //ジャーナルだったらレンダリング実行
+      const day: Date | null = await checkJournalsOrJournalSingle() //日誌だったらレンダリング実行
       if (template && weekdays && day) {
 
         let isHoliday = ""

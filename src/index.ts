@@ -16,7 +16,7 @@ const main = () => {
   let processingSlashCommand = false
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async ({ uuid }) => {
     if (processingSlashCommand) return
-    const check: Date | null = await checkJournalsOrJournalSingle()//ジャーナルでは許可しない
+    const check: Date | null = await checkJournalsOrJournalSingle()//日誌では許可しない
     if (check) {
       logseq.UI.showMsg(t("The current page is journals."), "error")
       return

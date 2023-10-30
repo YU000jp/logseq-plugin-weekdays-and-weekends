@@ -1,6 +1,6 @@
 # Logseq Plugin: Weekdays and Holidays (Templates) 🛌
 
-- 平日と土日、祝日のジャーナルテンプレートを切り替えるためのプラグイン。曜日ごとにテンプレートを設定可能。
+- 平日と土日、祝日の日誌テンプレートを切り替えるためのプラグイン。曜日ごとにテンプレートを設定可能。
 
 [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends) [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue) [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)
  公開日:2023/05/04 /
@@ -10,8 +10,8 @@
 
 ## 機能説明
 
-- ジャーナルテンプレートにレンダリングと呼ぶものを置きます。それによってこのプラグインの機能が呼び出されます。
-- ジャーナル以外のページでは、そのレンダリングが待機します。今日のジャーナルが空で呼び出されたときに、指定したテンプレートが反映されます。
+- 日誌テンプレートにレンダリングと呼ぶものを置きます。それによってこのプラグインの機能が呼び出されます。
+- 日誌以外のページでは、そのレンダリングが待機します。今日の日誌が空で呼び出されたときに、指定したテンプレートが反映されます。
 
 4つのテンプレートを用意:
 
@@ -38,7 +38,7 @@
 
 ## Q&amp;A
 
-- ジャーナル テンプレートが呼び出されたときにレンダリングを実行する必要があります。常にこのプラグインをオンにしてください。 Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
+- 日誌 テンプレートが呼び出されたときにレンダリングを実行する必要があります。常にこのプラグインをオンにしてください。 Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
 - 既存の[Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)との統合が可能です。
 - Logseq標準の動的変数をサポートします。
 
