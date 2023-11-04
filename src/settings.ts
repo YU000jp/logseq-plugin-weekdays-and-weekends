@@ -276,7 +276,7 @@ export function selectDaysByUser(target) {
     `,
       style: {
         color: "var(--ls-link-ref-text-hover-color)",
-        background: "var(--ls-block-properties-background-color)",
+        backgroundColor: "var(--ls-block-properties-background-color)",
         paddingTop: "0.2em",
         paddingBottom: "0.2em",
         margin: "0.2em",
