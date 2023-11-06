@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.2...v1.15.3) (2023-11-06)
+
+
+### Bug Fixes
+
+* **bug:** CSS not applied ([1ab2036](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/1ab20367d9ccf2685de815698b172a3fa42a2639))
+
 ## [1.15.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.1...v1.15.2) (2023-10-25)
 
 
