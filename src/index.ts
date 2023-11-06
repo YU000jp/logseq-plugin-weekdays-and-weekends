@@ -66,7 +66,7 @@ const main = () => {
     key: "main", style: `
     body>div {
       &#root>div>main {
-          & article>div[data-id="weekdays-and-holidays"] div.heading-item {
+          & article>div[data-id="logseq-plugin-weekdays-and-holidays"] div.heading-item {
               margin-top: 3em;
               border-top-width: 1px;
               padding-top: 1em;
