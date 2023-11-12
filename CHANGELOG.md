@@ -1,3 +1,10 @@
+## [1.15.4](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.3...v1.15.4) (2023-11-12)
+
+
+### Performance Improvements
+
+* **translations:** full Logseq languages ([08ca04a](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/08ca04af07b7a1fa972638f17d6ea0755ac0f32b))
+
 ## [1.15.3](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.2...v1.15.3) (2023-11-06)
 
 
