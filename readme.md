@@ -36,8 +36,6 @@
 
 - Press [`---`] on the top right toolbar to open [`Plugins`]. Select `Marketplace`. Type `week` in the search field, select it from the search results and install.
 
-   ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
-
 ### Usage
 
 - In this plugin, initial setup by the user is required once.
