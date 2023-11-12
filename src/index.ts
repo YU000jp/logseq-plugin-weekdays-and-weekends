@@ -6,11 +6,45 @@ import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from '
 import { rendering } from './rendering'
 import { setToolbar } from './setToolbar'
 import { selectDaysByUser, settingsTemplate, getDates as updateDays } from './settings'
+import af from "./translations/af.json"
+import de from "./translations/de.json"
+import es from "./translations/es.json"
+import fr from "./translations/fr.json"
+import id from "./translations/id.json"
+import it from "./translations/it.json"
 import ja from "./translations/ja.json"
+import ko from "./translations/ko.json"
+import nbNO from "./translations/nb-NO.json"
+import nl from "./translations/nl.json"
+import pl from "./translations/pl.json"
+import ptBR from "./translations/pt-BR.json"
+import ptPT from "./translations/pt-PT.json"
+import ru from "./translations/ru.json"
+import sk from "./translations/sk.json"
+import tr from "./translations/tr.json"
+import uk from "./translations/uk.json"
+import zhCN from "./translations/zh-CN.json"
+import zhHant from "./translations/zh-Hant.json"
 export const key = "selectTemplateDialog"
 
 
-const main = () => {
+const main = async () => {
+
+  await l10nSetup({
+    builtinTranslations: {//Full translations
+      ja, af, de, es, fr, id, it, ko, "nb-NO": nbNO, nl, pl, "pt-BR": ptBR, "pt-PT": ptPT, ru, sk, tr, uk, "zh-CN": zhCN, "zh-Hant": zhHant
+    }
+  })
+
+  /* user settings */
+  //get user config Language >>> Country
+  if (logseq.settings?.switchHolidaysCountry === undefined) {
+    const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs
+    logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)))
+    setTimeout(() => logseq.showSettingsUI(), 300)
+  } else
+    logseq.useSettingsSchema(settingsTemplate("US: United States of America"))
+
 
   /* slash command */
   let processingSlashCommand = false
@@ -41,8 +75,6 @@ const main = () => {
 
 
   rendering()//end onMacroRendererSlotted
-
-  loadSettings()
 
 
   let processingOnSettingsChanged: Boolean = false
@@ -133,24 +165,5 @@ const main = () => {
 
 }/* end_main */
 
-
-
-const loadSettings = async () => {
-  try {
-    await l10nSetup({ builtinTranslations: { ja } })
-  } finally {
-    /* user settings */
-    //get user config Language >>> Country
-    if (logseq.settings?.switchHolidaysCountry === undefined) {
-      const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs
-      logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)))
-      setTimeout(() => {
-        logseq.showSettingsUI()
-      }, 300)
-    } else {
-      logseq.useSettingsSchema(settingsTemplate("US: United States of America"))
-    }
-  }
-}
 
 logseq.ready(main).catch(console.error) //model
