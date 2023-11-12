@@ -1,6 +1,6 @@
 [日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md)
 
-# Logseq Plugin: *Weekdays and Holidays (Templates)* 🛌
+# Logseq Plugin: *More journal templates* 🛌
 
 - Switch journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week.  Also, support private holidays (or annual leave) max 6 dates.
 
@@ -89,7 +89,7 @@
 
 Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 ([@xyhp915](https://github.com/xyhp915))
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 [@xyhp915](https://github.com/xyhp915)
 - [date-holidays](https://github.com/commenthol/date-holidays)
   > This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
