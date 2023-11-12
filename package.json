@@ -1,12 +1,12 @@
 {
     "name": "logseq-plugin-weekdays-and-holidays",
-    "description": "Switch journal templates for weekdays and weekends, public holidays.",
+    "description": "Journal Templates for each day of the week",
     "repository": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends.git",
     "author": "YU000jp",
     "license": "MIT",
     "logseq": {
         "id": "weekdays-and-holidays",
-        "title": "Weekdays and holidays (Templates)",
+        "title": "More journal templates",
         "icon": "./icon.svg",
         "main": "./dist/index.html"
     },
