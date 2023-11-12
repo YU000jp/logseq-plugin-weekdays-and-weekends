@@ -7,8 +7,8 @@
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases) Published 2023/05/04
- 
- ---
+
+---
 
 ## Features
 
@@ -41,7 +41,7 @@
 ### Usage
 
 - In this plugin, initial setup by the user is required once.
-> By default, several items are set to "off" in the initial configuration.
+   > By default, several items are set to "off" in the initial configuration.
 
 #### Setup 🖥️
 
@@ -62,7 +62,7 @@
 ## Links
 
 - [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
-- [Ramses Oudt / How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+- [@Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
 ### Logseq Plugin
 
@@ -71,13 +71,13 @@
 
 #### Template Gallery
 
-- [dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
+- [@dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 
 #### Rendering
 
-- [stdword / Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
-- [hkgnp / powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
-- [sawhney17 / SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
+- [@stdword/ Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
+- [@hkgnp/ powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
+- [@sawhney17/ SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
 
 ---
 
@@ -85,23 +85,17 @@
 
 > Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
 
-## Author
-
-- GitHub: [YU000jp](https://github.com/YU000jp)
-
 ## Prior art & Credit
 
-### Library
+Library
 
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 ([xyhp915](https://github.com/xyhp915))
+- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 ([@xyhp915](https://github.com/xyhp915))
 - [date-holidays](https://github.com/commenthol/date-holidays)
   > This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
 - [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
 
-### Icon
+Icon > [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
 
-- [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
-
----
+Author > [@YU000jp](https://github.com/YU000jp)
 
 <a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>

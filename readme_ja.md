@@ -6,7 +6,7 @@
  公開日:2023/05/04 /
  [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
 
-<hr/>
+---
 
 ## 機能説明
 
@@ -15,7 +15,7 @@
 
 4つのテンプレートを用意:
 
-1. 平日のテンプレート `Main-Template`
+1. 平日メインのテンプレート `Main-Template`
 2. サブのテンプレート `Sub-Template`
 3. 週末のテンプレート `Weekends-Template`
 4. 祝日のテンプレート `Holidays-Template`
@@ -27,7 +27,7 @@
 
 ![image](https://user-images.githubusercontent.com/111847207/235460001-a731d9eb-8b45-4c55-8789-d73e24bb655a.gif)
 
-<hr/>
+---
 
 - プラグインを使用するには、ユーザーによる初期設定が必要です。またデフォルトでは、いくつかの機能がオフになっています。プラグインの設定画面を開いて、設定をオンにしてください。
 
@@ -36,7 +36,7 @@
 - [Engilsh document](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document)📝
 - [日本語ドキュメント](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)📝
 
-## Q&amp;A
+## Q&A
 
 - 日誌 テンプレートが呼び出されたときにレンダリングを実行する必要があります。常にこのプラグインをオンにしてください。 Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
 - 既存の[Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)との統合が可能です。
@@ -44,9 +44,6 @@
 
 ## Logseqマーケットプレースからインストール
 
-- 右上にあるツールバーの[`---`]を押して[`Plugins`]を選択する
-- マーケットプレースを選択する
-- 検索欄に`week`と入力。<br>検索結果から探してインストール。
+- 右上にあるツールバーの[`---`]を押して[`Plugins`]を選択し、その後、マーケットプレースを選択します。検索欄に`week`と入力してください。
 
 ![image](https://user-images.githubusercontent.com/111847207/236143556-6404ec21-5e5f-457f-9193-f89f00330ff0.png)
-
