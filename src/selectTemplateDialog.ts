@@ -1,6 +1,6 @@
 import { t } from 'logseq-l10n'
 import { key } from '.'
-import { insertTemplateBlock } from './insertSampleTemplates'
+import { insertTemplateBlock } from './lib'
 
 //selectTemplateDialog
 export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTemplate, updateSettings): Promise<void> {

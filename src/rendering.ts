@@ -1,6 +1,6 @@
 import Holidays from 'date-holidays'
 import { selectTemplateDialog } from './selectTemplateDialog'
-import { insertTemplateBlock } from './insertSampleTemplates'
+import { insertTemplateBlock } from './lib'
 import { checkJournalsOrJournalSingle } from './lib'
 import { t } from 'logseq-l10n'
 
