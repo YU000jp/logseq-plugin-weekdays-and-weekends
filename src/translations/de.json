@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[Option] Privater Urlaub (oder Jahresurlaub)",
   "[Option] Sub-Template for a week": "[Option] Sub-Template für eine Woche",
   "[Option] Working on holidays": "[Option] Arbeiten an Feiertagen",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Aktivieren Sie immer das Plugin Wochentage und Feiertage (Vorlagen) zum Ausführen des Renderings, wenn die Journalvorlage aufgerufen wird.\n[Englisches Dokument]",
+  "[English document]": "[Englisches Dokument]",
   "Call: Holidays-Template name *": "Aufruf: Feiertags-Vorlagenname *",
   "Call: Private-Template name *": "Aufruf: Private-Template-Name *",
   "Call: Sub-Template name *": "Aufruf: Name der Untervorlage *",

@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[Opción] Vacaciones privadas (o vacaciones anuales)",
   "[Option] Sub-Template for a week": "[Opción] Subplantilla para una semana",
   "[Option] Working on holidays": "[Opción] Trabajar en días festivos",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Active siempre el complemento Días de la semana y días festivos (plantillas) para ejecutar la representación cuando se llama a la plantilla de diario.\n[Documento en inglés]",
+  "[English document]": "[Documento en inglés]",
   "Call: Holidays-Template name *": "Llamada: Vacaciones-Nombre de la plantilla *",
   "Call: Private-Template name *": "Llamada: Nombre de la plantilla privada *",
   "Call: Sub-Template name *": "Llamada: Nombre de la subplantilla *",

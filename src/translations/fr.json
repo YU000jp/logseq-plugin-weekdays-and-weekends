@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[En option] Vacances privées (ou congés annuels)",
   "[Option] Sub-Template for a week": "[En option] Sous-modèle pour une semaine",
   "[Option] Working on holidays": "[En option] Travailler les jours fériés",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Activez toujours le plug-in Jours de la semaine et jours fériés (modèles) pour exécuter le rendu lorsque le modèle de journal est appelé.\n[Document en anglais]",
+  "[English document]": "[Document en anglais]",
   "Call: Holidays-Template name *": "Appeler : Jours fériés-Nom du modèle *",
   "Call: Private-Template name *": "Appelez : Nom du modèle privé *",
   "Call: Sub-Template name *": "Appelez : Nom du sous-modèle *",

@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[İsteğe bağlı] Özel tatil (veya yıllık izin)",
   "[Option] Sub-Template for a week": "[İsteğe bağlı] Bir hafta boyunca Alt Şablon",
   "[Option] Working on holidays": "[İsteğe bağlı] Tatillerde çalışmak",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Günlük şablonu çağrıldığında işlemeyi yürütmek için Hafta içi ve tatiller (Şablonlar) eklentisini her zaman açın.\n[İngilizce belge]",
+  "[English document]": "[İngilizce belge]",
   "Call: Holidays-Template name *": "Çağrı: Tatiller-Şablon adı *",
   "Call: Private-Template name *": "Çağrı: Özel-Şablon adı *",
   "Call: Sub-Template name *": "Çağrı: Alt Şablon adı *",

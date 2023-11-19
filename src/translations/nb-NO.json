@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[Alternativ] Privat ferie (eller årlig ferie)",
   "[Option] Sub-Template for a week": "[Alternativ] Sub-Mal for en uke",
   "[Option] Working on holidays": "[Alternativ] Jobber på helligdager",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Slå alltid på plugin-modulen Ukedager og helligdager (Maler) for å utføre gjengivelse når journalmalen kalles.\n[Engelsk dokument]",
+  "[English document]": "[Engelsk dokument]",
   "Call: Holidays-Template name *": "Ring: Holidays-Mal navn *",
   "Call: Private-Template name *": "Ring: Privat-Mal navn *",
   "Call: Sub-Template name *": "Ring: Navn på undermal *",

@@ -13,7 +13,7 @@
   "#### Main-Template:": "#### Templat Utama:",
   "#### Sub-Template:": "#### Sub-Templat:",
   "#### Weekends-Template:": "#### Akhir Pekan-Templat:",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Selalu aktifkan plugin Hari Kerja dan hari libur (Template) untuk menjalankan rendering saat template jurnal dipanggil.\n[Dokumen bahasa Inggris]",
+  "[English document]": "[Dokumen bahasa Inggris]",
   "Call: Holidays-Template name *": "Panggilan: Liburan-Nama templat *",
   "Call: Private-Template name *": "Panggilan: Nama Template Pribadi *",
   "Call: Sub-Template name *": "Panggilan: Nama Sub-Template *",

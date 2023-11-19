@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[Opcja] Prywatne święto (lub urlop wypoczynkowy)",
   "[Option] Sub-Template for a week": "[Opcja] Podszablon na tydzień",
   "[Option] Working on holidays": "[Opcja] Praca w święta",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Zawsze włączaj wtyczkę Dni powszednie i święta (szablony) do wykonywania renderowania po wywołaniu szablonu dziennika.\n[Dokument w języku angielskim]",
+  "[English document]": "[Dokument w języku angielskim]",
   "Call: Holidays-Template name *": "Wywołanie: Święta-Nazwa szablonu *",
   "Call: Private-Template name *": "Wywołanie: Nazwa szablonu prywatnego *",
   "Call: Sub-Template name *": "Zawołanie: Nazwa szablonu podrzędnego *",

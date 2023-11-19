@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[옵션] 개인 휴가(또는 연차)",
   "[Option] Sub-Template for a week": "[옵션] 일주일 동안의 하위 템플릿",
   "[Option] Working on holidays": "[옵션] 휴일 근무",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "저널 템플릿이 호출될 때 렌더링을 실행하기 위해 항상 Weekdays and holidays (Templates) plugin을 켭니다.\n[영문 문서]",
+  "[English document]": "[영문 문서]",
   "Call: Holidays-Template name *": "전화: 휴일 템플릿 이름 *",
   "Call: Private-Template name *": "전화: 개인 템플릿 이름 *",
   "Call: Sub-Template name *": "호출: 하위 템플릿 이름 *",

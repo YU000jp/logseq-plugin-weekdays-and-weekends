@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[選項]私人假期（或年假）",
   "[Option] Sub-Template for a week": "[選項]一周的子範本",
   "[Option] Working on holidays": "[選項]公休日工作",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "調用日記範本時，始終打開工作日和公休日（範本）外掛程式以執行渲染。\n[英文檔]",
+  "[English document]": "[英文檔]",
   "Call: Holidays-Template name *": "電話：假期-範本名稱 *",
   "Call: Private-Template name *": "呼叫：私有範本名稱 *",
   "Call: Sub-Template name *": "呼叫：子範本名稱 *",

@@ -13,7 +13,7 @@
   "[Option] Private holiday (or annual leave)": "[Опция] Частный отпуск (или ежегодный отпуск)",
   "[Option] Sub-Template for a week": "[Опция] Подшаблон на неделю",
   "[Option] Working on holidays": "[Опция] Работа в праздничные дни",
-  "Always turn on Weekdays and holidays (Templates) plugin for execute rendering when journal template is called.\n[English document]": "Всегда включайте плагин Будние и праздничные дни (Шаблоны) для выполнения рендеринга при вызове шаблона журнала.\n[Документ на английском языке]",
+  "[English document]": "[Документ на английском языке]",
   "Call: Holidays-Template name *": "Звоните: Праздники-Название шаблона *",
   "Call: Private-Template name *": "Вызов: Имя приватного шаблона *",
   "Call: Sub-Template name *": "Вызов: Имя подшаблона *",
