@@ -1,6 +1,6 @@
 # Logseq Plugin: More journal templates 🛌
 
-- 平日と土日、祝日の日誌テンプレートを切り替えるためのプラグイン。曜日ごとにテンプレートを設定可能。
+- 曜日ごとにテンプレートを設定したりして、日誌テンプレートを切り替えるためのプラグイン。
 
 [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends) [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue) [](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)
  公開日:2023/05/04 /
@@ -10,8 +10,8 @@
 
 ## 機能説明
 
-- 日誌テンプレートにレンダリングと呼ぶものを置きます。それによってこのプラグインの機能が呼び出されます。
-- 日誌以外のページでは、そのレンダリングが待機します。今日の日誌が空で呼び出されたときに、指定したテンプレートが反映されます。
+- 日誌テンプレートにレンダラーと呼ぶものを置きます。それによってこのプラグインの機能が呼び出されます。
+- 日誌以外のページではレンダリングは実行されません。日誌のページが空で呼び出されたときに、指定したテンプレートが反映されます。
 
 4つのテンプレートを用意:
 
@@ -21,7 +21,7 @@
 4. 祝日のテンプレート `Holidays-Template`
 
 > 複数のテンプレートによる条件指定や曜日変更が可能
-- 個人休暇(年休)、休日出勤日を指定可能 (それぞれ最大6日)
+- 個人休暇、休日出勤日を指定可能 (それぞれ最大12日)
 
 ## デモ
 
@@ -29,7 +29,8 @@
 
 ---
 
-- プラグインを使用するには、ユーザーによる初期設定が必要です。またデフォルトでは、いくつかの機能がオフになっています。プラグインの設定画面を開いて、設定をオンにしてください。
+- プラグインを使用するには、ユーザーによる初期設定が必要です。
+- デフォルトでは、いくつかの機能がオフになっています。プラグインの設定画面を開いて、設定をオンにしてください。
 
 ## 初期設定
 
