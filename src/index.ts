@@ -1,7 +1,7 @@
 import '@logseq/libs' //https://plugins-doc.logseq.com/
 import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
 import { setup as l10nSetup, t, } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
-import { insertSampleTemplates } from './insertSampleTemplates'
+import { sampleTemplatesEachDays, sampleTemplatesWeekdays } from './insertSampleTemplates'
 import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
 import { rendering } from './rendering'
 import { setToolbar } from './setToolbar'
@@ -56,10 +56,26 @@ const main = async () => {
       return
     }
     processingSlashCommand = true
-    await insertSampleTemplates(uuid)
+    await sampleTemplatesWeekdays(uuid) // 平日のサンプルを作成
     processingSlashCommand = false
   })
   //end
+
+  /* slash command */
+  logseq.Editor.registerSlashCommand("Create sample for each days renderer", async ({ uuid }) => {
+    if (processingSlashCommand) return
+    const check: Date | null = await checkJournalsOrJournalSingle()//日誌では許可しない
+    if (check) {
+      logseq.UI.showMsg(t("The current page is journals."), "error")
+      return
+    }
+    processingSlashCommand = true
+    await sampleTemplatesEachDays(uuid) // 1日ごとのサンプルを作成
+    processingSlashCommand = false
+  })
+  //end
+
+
 
 
   //TODO: 保留
@@ -98,14 +114,14 @@ const main = async () => {
     key: "main", style: `
     body>div {
       &#root>div>main {
-          & article>div[data-id="logseq-plugin-weekdays-and-holidays"] div.heading-item {
+          & article>div[data-id="${logseq.baseInfo.id}"] div.heading-item {
               margin-top: 3em;
               border-top-width: 1px;
               padding-top: 1em;
           }
       }
 
-      &[data-ref="weekdays-and-holidays"] {
+      &[data-ref="${logseq.baseInfo.id}"] {
           & form.setDates {
               margin: 1.2em;
 
