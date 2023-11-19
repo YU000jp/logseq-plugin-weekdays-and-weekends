@@ -2,7 +2,7 @@
 
 # Logseq Plugin: *More journal templates* 🛌
 
-- Switch journal templates for weekdays and weekends, public holidays. It is possible to set templates for each day of the week.  Also, support private holidays (or annual leave) max 6 dates.
+- A plugin for switching daily templates by setting templates for each day of the week.
 
 [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
