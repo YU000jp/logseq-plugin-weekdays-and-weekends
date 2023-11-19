@@ -2,7 +2,7 @@
   "The current page is journals.": "現在のページは日誌です。",
   "### \"More Journal Templates\" plugin >": "### \"More Journal Templates\" プラグイン >",
   "#### Journal-template config >": "#### 日誌テンプレート設定 >",
-  "Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a diary template.": "「config.edn」ファイルの「:d efault-templates {:journals \"Journal\"}」を置き換えます。レンダリングは、日誌でテンプレートとして読み込まれるときに実行されます。",
+  "Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a diary template.": "「config.edn」ファイルの「:d efault-templates {:journals \"Journal\"}」を置き換えてください。レンダリングは、日誌でテンプレートとして読み込まれるときに実行されます。",
   "#### Main-Template > ": "#### メイン テンプレート >",
   "AM": "午前",
   "PM": "午後",
