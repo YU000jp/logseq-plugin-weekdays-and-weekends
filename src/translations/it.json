@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "Fare clic sull'estremità destra del campo di immissione per visualizzare un calendario in cui inserire la data.",
   "Create sample for weekdays renderer": "Creare un esempio per il renderer dei giorni feriali",
   "Date": "Dattero",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "Modificare config.edn ':d efault-templates {:journals \"Journal\"}' Quando viene caricato come modello journal, i rendering vengono eseguiti. Durante l'esecuzione, il blocco con i rendering viene rimosso. Un blocco può avere un massimo di sette rendering, ma se i giorni della settimana si sovrappongono, solo uno di essi verrà eseguito.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "Modificare config.edn `:default-templates {:journals \"Journal\"}` Quando viene caricato come modello di diario, vengono eseguiti i rendering. Durante l'esecuzione, il blocco con i rendering viene rimosso.",
   "Fill in the Main-Template specified in a renderer.": "Compilare il modello principale specificato in un renderer.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

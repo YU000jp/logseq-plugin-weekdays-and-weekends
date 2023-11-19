@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "单击输入字段的右端以显示日历以输入日期。",
   "Create sample for weekdays renderer": "为工作日渲染器创建示例",
   "Date": "日期",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "编辑 config.edn ':d efault-templates {：journals “Journal”}' 当加载为日志模板时，将执行渲染。在运行时，将删除带有渲染的块。一个区块最多可以有 7 个渲染，但如果工作日重叠，则只会执行其中的一个渲染。",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "编辑 config.edn `:default-templates {:journals \"Journal\"}` 当作为日记模板加载时，将执行渲染。在运行时，将删除具有渲染的块。",
   "Fill in the Main-Template specified in a renderer.": "填写渲染器中指定的 Main-Template。",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

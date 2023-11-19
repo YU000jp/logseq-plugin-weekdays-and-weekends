@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "Tarihi girmek üzere bir takvim görüntülemek için giriş alanının sağ ucunu tıklatın.",
   "Create sample for weekdays renderer": "Hafta içi işleyici için örnek oluşturma",
   "Date": "Tarih",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "config.edn ':d efault-templates {:journals \"Journal\"}' düzenle Günlük şablonu olarak yüklendiğinde, işlemeler yürütülür. Çalışma zamanı sırasında, işlemeleri olan blok kaldırılır. Bir blok en fazla yedi işlemeye sahip olabilir, ancak hafta içi günler çakışırsa bunlardan yalnızca biri yürütülür.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "config.edn `:default-templates {:journals \"Journal\"}` düzenleyin. Günlük şablonu olarak yüklenirken, işlemler yürütülür. Çalışma zamanında, işlemlerle blok kaldırılır.",
   "Fill in the Main-Template specified in a renderer.": "Bir oluşturucuda belirtilen Main-Template'i doldurun.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

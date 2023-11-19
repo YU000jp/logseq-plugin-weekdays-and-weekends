@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "Klik op die regterkant van die invoerveld om 'n kalender te vertoon om die datum in te voer.",
   "Create sample for weekdays renderer": "Skep voorbeeld vir weeksdae-weergawe",
   "Date": "Datum",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "Edit config.edn ':d efault-templates {:journals \"Journal\"}' Wanneer dit as joernaalsjabloon gelaai word, word die weergawes uitgevoer. Tydens looptyd word die blok met weergawes verwyder. 'n Blok kan 'n maksimum van sewe weergawes hê, maar as die weeksdae oorvleuel, sal slegs een daarvan uitgevoer word.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "Redigeer config.edn `:default-templates {:journals \"Journal\"}` Wanneer gelaai word as joernaalsjabloon, word die weergawes uitgevoer. Tydens uitvoering word die blok met weergawes verwyder.",
   "Fill in the Main-Template specified in a renderer.": "Vul die hoofsjabloon in wat in 'n weergawe gespesifiseer is.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

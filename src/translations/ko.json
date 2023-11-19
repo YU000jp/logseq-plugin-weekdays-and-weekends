@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "입력 필드의 오른쪽 끝을 클릭하면 날짜를 입력할 수 있는 달력이 표시됩니다.",
   "Create sample for weekdays renderer": "평일 렌더러용 샘플 만들기",
   "Date": "날짜",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "config.edn 편집 ':d efault-templates {:journals \"Journal\"}' 저널 템플릿으로 로드하면 렌더링이 실행됩니다. 런타임 중에 렌더링이 있는 블록이 제거됩니다. 블록은 최대 7개의 렌더링을 가질 수 있지만 평일이 겹치는 경우 그 중 하나만 실행됩니다.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "config.edn `:default-templates {:journals \"Journal\"}` 편집 시, 저널 템플릿으로 로드하면 렌더링이 실행됩니다. 런타임 중에 렌더링이 있는 블록이 제거됩니다.",
   "Fill in the Main-Template specified in a renderer.": "렌더러에 지정된 Main-Template을 채웁니다.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

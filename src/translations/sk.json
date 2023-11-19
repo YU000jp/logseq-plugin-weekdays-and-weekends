@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "Kliknutím na pravý koniec vstupného poľa zobrazíte kalendár na zadanie dátumu.",
   "Create sample for weekdays renderer": "Vytvorenie ukážky pre vykresľovač pracovných dní",
   "Date": "Dátum",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "Edit config.edn ':d efault-templates {:journals \"Journal\"}' Pri načítaní ako šablóna denníka sa vykresľovanie vykoná. Počas behu sa blok s vykresľovaním odstráni. Blok môže mať maximálne sedem vykreslení, ale ak sa pracovné dni prekrývajú, vykoná sa iba jeden z nich.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "Upravte config.edn `:default-templates {:journals \"Journal\"}` Pri načítaní ako šablóny denníka sa vykonáva vykresľovanie. Počas behu programu sa blok s vykresľovaním odstráni.",
   "Fill in the Main-Template specified in a renderer.": "Vyplňte hlavnú šablónu zadanú vo vykresľovači.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",

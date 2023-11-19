@@ -22,7 +22,7 @@
   "Click the right end of the input field to display a calendar to enter the date.": "Klikk på høyre side av inntastingsfeltet for å vise en kalender for å angi datoen.",
   "Create sample for weekdays renderer": "Opprette eksempel for ukedagsgjengiver",
   "Date": "Daddel",
-  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed. A block can have a maximum of seven renderings, but if the weekdays overlap, only one of them will be executed.": "Rediger config.edn ':d efault-templates {:journals \"Journal\"}' Når du laster inn som journalmal, utføres gjengivelsene. Under kjøretid fjernes blokken med gjengivelser. En blokk kan ha maksimalt syv gjengivelser, men hvis ukedagene overlapper, vil bare en av dem bli utført.",
+  "Edit config.edn `:default-templates {:journals \"Journal\"}` When load as journal template, the renderings are executed. During runtime, the block with renderings be removed.": "Rediger config.edn `:default-templates {:journals \"Journal\"}` Når du laster inn som journalmal, blir gjengivelsene utført. Under kjøringstid blir blokken med gjengivelser fjernet.",
   "Fill in the Main-Template specified in a renderer.": "Fyll ut hovedmalen som er angitt i en gjengiver.",
   "For select Main/Sub templates": "",
   "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document": "https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-Document",
