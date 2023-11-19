@@ -10,23 +10,18 @@
 
 ---
 
-## Features
+## Overview
 
-- A mechanism for calling the functions of this plugin is achieved by placing what is called renderings in journal template.
-- On pages other than journal, rendering waits. When loaded as today's journal, the designated template is reflected. And, as usual, the template can be called manually at any time.
+- Place something called a renderer in the journal template. This will invoke the functionality of this plugin. Rendering is not performed on pages other than the journal. The specified template will be reflected when the journal page is called empty.
 
-#### Offer 4 templates:
+1. Set a different template for each day of the week
+1. Set weekday and holiday templates
+1. Choose a template every other week with alerts on specific days of the week
+1. Alert on holidays and choose a template
+1. Alert on personal vacation days and select a template
+1. Alert on holiday work days and select template
 
-1. Weekdays template `Main-Template`
-1. Main/Sub template `Sub-Template`
-1. weekends template `Weekends-Template`
-1. Public holiday template `Holidays-Template`
-> It is possible to specify conditions using multiple templates and change days of a week.
-
-#### Offer 2 options:
-
-3. Private holiday (or annual leave)
-4. Working on holidays
+- It also accommodates cases where you choose a template every two weeks or have different work patterns. In other words, it also supports patterns such as "two-shift work." It is possible to perform operations such as ``On a specified day of the week, for example Monday, a screen to select a template will appear, and that week will be a sub-template.''
 
 ---
 
