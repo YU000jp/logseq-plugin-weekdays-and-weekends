@@ -51,43 +51,33 @@
 
 ---
 
-## Links
-
-- [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
-- [@Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
-
-### Logseq Plugin
-
-- [Side Block plugin](https://github.com/YU000jp/logseq-plugin-side-block)
-  - Place child blocks next to the parent block.
-
-#### Template Gallery
-
-- [@dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
-
-#### Rendering
-
-- [@stdword/ Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
-- [@hkgnp/ powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
-- [@sawhney17/ SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
-
----
-
 ## Showcase / Questions / Ideas / Help
 
 > Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
 
+- Document link
+  1. [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
+  1. [@Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
+
+- Logseq plugin
+  - Template gallery
+    1. [@dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
+  - Rendering
+  1. [@stdword/ Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
+  1. [@hkgnp/ powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
+  1. [@sawhney17/ SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
+  - Template support
+    - [Side Block plugin](https://github.com/YU000jp/logseq-plugin-side-block)
+      - Place child blocks next to the parent block.
+
 ## Prior art & Credit
 
-Library
-
-- [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 [@xyhp915](https://github.com/xyhp915)
-- [date-holidays](https://github.com/commenthol/date-holidays)
-  > This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
-- [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
-
-Icon > [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
-
-Author > [@YU000jp](https://github.com/YU000jp)
+- Library
+  1. [@logseq/libs](https://logseq.github.io/plugins/) v.0.0.15 [@xyhp915](https://github.com/xyhp915)
+  1. [date-holidays](https://github.com/commenthol/date-holidays)
+    > This plugin is capable of corresponding to holidays in various countries around the world, thanks to [date-holidays](https://github.com/commenthol/date-holidays) library.
+  1. [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
+- Icon > [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
+- Author > [@YU000jp](https://github.com/YU000jp)
 
 <a href="https://www.buymeacoffee.com/yu000japan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="🍌Buy Me A Coffee" style="height: 42px;width: 152px" ></a>
