@@ -45,3 +45,5 @@
 ## Logseqマーケットプレースからインストール
 
 - 右上にあるツールバーの[`---`]を押して[`Plugins`]を選択し、その後、マーケットプレースを選択します。検索欄に`more`と入力してください。
+
+<a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
