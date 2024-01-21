@@ -42,25 +42,16 @@
 
 > Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
 
-1. Always turn on this plugin for execute rendering when journal template is called. For Logseq mobile version, please manually call the template.
-1. Integration with existing [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin), [powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin), and [SmartBlocks](https://github.com/sawhney17/logseq-smartblocks) is possible.
+1. Always turn on this plugin for execute rendering when journal template is called.
+   > For Logseq mobile version, please manually call the template.
+1. Integration with existing [Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin), [powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin), [SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks), and [Side Block plugin](https://github.com/YU000jp/logseq-plugin-side-block) is possible.
+   > Template gallery: [Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 1. Support [Dynamic variables](https://mschmidtkorth.github.io/logseq-msk-docs/#/page/dynamic%20variables) of Logseq standard.
 1. It is possible to also place the renderer as a journal template in other graphs, but please note that the plugin settings are shared across all graphs.
 
 - Document link
   1. [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
   1. [@Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
-
-- Logseq plugin
-  - Template gallery
-    1. [@dangermccann/ Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
-  - Rendering
-  1. [@stdword/ Full House Templates plugin](https://github.com/stdword/logseq13-full-house-plugin)
-  1. [@hkgnp/ powerblocks plugin](https://github.com/hkgnp/logseq-powerblocks-plugin)
-  1. [@sawhney17/ SmartBlocks plugin](https://github.com/sawhney17/logseq-smartblocks)
-  - Template support
-    - [Side Block plugin](https://github.com/YU000jp/logseq-plugin-side-block)
-      - Place child blocks next to the parent block.
 
 ## Prior art & Credit
 
