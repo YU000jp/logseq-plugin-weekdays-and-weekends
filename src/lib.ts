@@ -1,4 +1,3 @@
-import { PageEntity } from '@logseq/libs/dist/LSPlugin.user'
 import { t } from 'logseq-l10n'
 
 
@@ -9,14 +8,13 @@ const getJournalDayDate = (str: string): Date => new Date(
 )
 
 export const checkJournalsOrJournalSingle = async (): Promise<Date | null> => {
-  const page = await logseq.Editor.getCurrentPage() as PageEntity | null //Journalsの場合はnull
+  const page = await logseq.Editor.getCurrentPage() as { journalDay: number, journal?: boolean | undefined } | null //Journalsの場合はnull
   if (page) {
     if (page["journal?"] === true
       && page.journalDay) return getJournalDayDate(String(page.journalDay))//日誌の日付だった場合
     return null //Non-Journal
-  } else {
+  } else
     return new Date() //Journals
-  }
 }
 export const convertLanguageCodeToCountryCode = (languageCode: string): string => {
   switch (languageCode) {

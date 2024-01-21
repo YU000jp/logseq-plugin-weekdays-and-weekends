@@ -1,6 +1,6 @@
-import '@logseq/libs' //https://plugins-doc.logseq.com/
+import '@logseq/libs'; //https://plugins-doc.logseq.com/
 import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
-import { setup as l10nSetup, t, } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
 import { sampleTemplatesEachDays, sampleTemplatesWeekdays } from './insertSampleTemplates'
 import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
 import { rendering } from './rendering'
@@ -39,8 +39,11 @@ const main = async () => {
   /* user settings */
   //get user config Language >>> Country
   if (logseq.settings?.switchHolidaysCountry === undefined) {
-    const { preferredLanguage } = await logseq.App.getUserConfigs() as AppUserConfigs
-    logseq.useSettingsSchema(settingsTemplate(convertLanguageCodeToCountryCode(preferredLanguage)))
+    const { preferredLanguage } = await logseq.App.getUserConfigs() as { preferredLanguage: AppUserConfigs['preferredLanguage']}
+    logseq.useSettingsSchema(
+      settingsTemplate(
+        convertLanguageCodeToCountryCode(preferredLanguage)
+      ))
     setTimeout(() => logseq.showSettingsUI(), 300)
   } else
     logseq.useSettingsSchema(settingsTemplate("US: United States of America"))
@@ -80,9 +83,7 @@ const main = async () => {
 
   //TODO: 保留
   logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async () => {
-    logseq.Editor.insertAtEditingCursor(
-      `{{renderer :Weekdays, TemplateName, Sat&Sun}} `
-    )
+    logseq.Editor.insertAtEditingCursor(`{{renderer :Weekdays, TemplateName, Sat&Sun}} `)
   })
 
 
@@ -95,19 +96,25 @@ const main = async () => {
 
   let processingOnSettingsChanged: Boolean = false
   logseq.onSettingsChanged(async (newSet: LSPluginBaseInfo['settings'], oldSet: LSPluginBaseInfo['settings']) => {
-    if (processingOnSettingsChanged === false && newSet && oldSet && newSet !== oldSet) {
-      if (oldSet.selectPrivateDays !== true && newSet.selectPrivateDays === true) {
+
+    if (processingOnSettingsChanged === false
+      && newSet && oldSet && newSet !== oldSet) {
+      if (oldSet.selectPrivateDays !== true
+        && newSet.selectPrivateDays === true) {
         processingOnSettingsChanged = true
         selectDaysByUser("PrivateDays")
         logseq.updateSettings({ selectPrivateDays: false })
         processingOnSettingsChanged = false
-      } else if (oldSet.selectWorkingOnHolidays !== true && newSet.selectWorkingOnHolidays === true) {
-        processingOnSettingsChanged = true
-        selectDaysByUser("WorkingOnHolidays")
-        logseq.updateSettings({ selectWorkingOnHolidays: false })
-        processingOnSettingsChanged = false
-      }
+      } else
+        if (oldSet.selectWorkingOnHolidays !== true
+          && newSet.selectWorkingOnHolidays === true) {
+          processingOnSettingsChanged = true
+          selectDaysByUser("WorkingOnHolidays")
+          logseq.updateSettings({ selectWorkingOnHolidays: false })
+          processingOnSettingsChanged = false
+        }
     }
+
   })
 
   logseq.provideStyle({

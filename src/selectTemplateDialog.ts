@@ -41,22 +41,28 @@ export function selectTemplateDialog(uuid, dialogText, targetTemplate, replaceTe
       const button = parent.document.getElementById("selectTemplateButton") as HTMLButtonElement
       if (button) {
         let processing: Boolean = false
+
         button.addEventListener("click", () => {
           if (processing) return
           processing = true
+
           //radioボタンの値を取得する
           const select: string = (parent.document.querySelector('input[name="selectTemplateRadio"]:checked') as HTMLInputElement)!.value
           if (!select) return processing = false
+
           let selectTemplate = ""
-          if (select === "main") {
+
+          if (select === "main")
             selectTemplate = targetTemplate
-          }
-          else if (select === "sub") {
-            selectTemplate = replaceTemplate
-            if (updateSettings === "sub") logseq.updateSettings({ switchSetTemplate: selectTemplate })
-          } else {
-            return processing = false
-          }
+
+          else
+            if (select === "sub") {
+              selectTemplate = replaceTemplate
+              if (updateSettings === "sub")
+                logseq.updateSettings({ switchSetTemplate: selectTemplate })
+
+            } else
+              return processing = false
 
           logseq.showMainUI()
           //テンプレートを挿入する
