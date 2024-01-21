@@ -1,6 +1,6 @@
-import '@logseq/libs'; //https://plugins-doc.logseq.com/
+import '@logseq/libs' //https://plugins-doc.logseq.com/
 import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
-import { setup as l10nSetup, t, } from "logseq-l10n"; //https://github.com/sethyuan/logseq-l10n
+import { setup as l10nSetup, t, } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { sampleTemplatesEachDays, sampleTemplatesWeekdays } from './insertSampleTemplates'
 import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
 import { rendering } from './rendering'
@@ -39,7 +39,7 @@ const main = async () => {
   /* user settings */
   //get user config Language >>> Country
   if (logseq.settings?.switchHolidaysCountry === undefined) {
-    const { preferredLanguage } = await logseq.App.getUserConfigs() as { preferredLanguage: AppUserConfigs['preferredLanguage']}
+    const { preferredLanguage } = await logseq.App.getUserConfigs() as { preferredLanguage: AppUserConfigs['preferredLanguage'] }
     logseq.useSettingsSchema(
       settingsTemplate(
         convertLanguageCodeToCountryCode(preferredLanguage)
