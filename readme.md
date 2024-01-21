@@ -12,15 +12,14 @@
 
 ## Overview
 
-- Place something called a renderer in the journal template. This will invoke the functionality of this plugin. Rendering is not performed on pages other than the journal. The specified template will be reflected when the journal page is called empty.
+- Place a short piece of code called a renderer on a line within your journal template. The template functionality of this plugin is executed when the journal template is called.
 
-1. Set a different template for each day of the week
-1. Set weekday and holiday templates
-1. Choose a template every other week with alerts on specific days of the week
+1. Different templates for each day of the week
+1. Templates for weekdays and holidays
+1. Holiday alert (select template)
+1. Biweekly templates (select templates on specific days of the week)
    - It accommodates cases where you choose a template every two weeks or have different work patterns. In other words, it also supports patterns such as "two-shift work." It is possible to perform operations such as ``On a specified day of the week, for example Monday, a screen to select a template will appear, and that week will be a sub-template.''
-1. Alert on holidays and choose a template
-1. Alert on personal vacation days and select a template
-1. Alert on holiday work days and select template
+1. Preset alerts (select templates for days such as personal leave or holiday work)
 
 ---
 
