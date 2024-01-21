@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.16.0...v1.16.1) (2024-01-21)
+
+
+### Performance Improvements
+
+* **refactor:** "public" holidays only [#33](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/issues/33) / release bundle [#34](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/issues/34) ([e64eb9d](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e64eb9dc0bc50b34045de17ac959b68147c4e077))
+
 # [1.16.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.15.4...v1.16.0) (2023-11-19)
 
 
