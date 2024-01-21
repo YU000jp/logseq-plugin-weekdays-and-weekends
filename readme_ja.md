@@ -23,18 +23,18 @@
 
 ### Logseqマーケットプレースからインストール
 
-- 右上にあるツールバーの[`---`]を押して[`Plugins`]を選択し、その後、マーケットプレースを選択します。検索欄に`more`と入力してください。
+- 右上にあるツールバーの[`---`]を押して[`Plugins`]を開き、マーケットプレースを選択。検索欄に`more`と入力してください。
 
 ## 初期設定
 
-- プラグインを使用するには、ユーザーによる初期設定が必要です。デフォルトでは、プラグイン設定で、いくつかの機能がオフになっています。
+- プラグインを使用するには、ユーザーによる初期設定が必要です。デフォルトでは、いくつかの機能がオフになっています。
 
 - *[セットアップ ドキュメント (日本語)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88)*
 
 ## 備考
 
 1. 日誌 テンプレートが呼び出されたときにレンダリングを実行する必要があります。常にこのプラグインをオンにしてください。 Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
-1. 既存の[Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)との統合が可能です。
+1. 既存の各プラグイン [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)、[Side Block](https://github.com/YU000jp/logseq-plugin-side-block) との統合が可能です。
 1. Logseq標準の動的変数をサポートします。
 1. レンダラーを他のグラフの日誌テンプレートとして配置することもできますが、プラグインの設定はすべてのグラフで共有されることに注意してください。
 
