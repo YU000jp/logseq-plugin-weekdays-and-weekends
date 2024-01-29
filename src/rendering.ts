@@ -31,13 +31,13 @@ export const rendering = () => {
           && (logseq.settings!.switchWorkingOnHolidaysTemplateName
             || logseq.settings!.selectWorkingOnHolidaysSetTemplate === true)
           && logseq.settings!.workingOnHolidaysArray)
-          isWorkingOnHolidays = checkMatchDay(logseq.settings!.workingOnHolidaysArray, day) as boolean
+          isWorkingOnHolidays = checkMatchDay(logseq.settings!.workingOnHolidaysArray as [], day) as boolean
 
         if (isWorkingOnHolidays === false
           && logseq.settings!.switchPrivate === true
           && logseq.settings!.switchPrivateTemplateName
           && logseq.settings!.privateDaysArray)
-          isPrivate = checkMatchDay(logseq.settings!.privateDaysArray, day) as boolean
+          isPrivate = checkMatchDay(logseq.settings!.privateDaysArray as [], day) as boolean
 
         if (isWorkingOnHolidays === false
           && isPrivate === false
@@ -79,7 +79,7 @@ export const rendering = () => {
                 && logseq.settings!.switchMainTemplateName === template
                 && logseq.settings!.switchSubTemplateName) { //Switch to Sub Template
                 if (logseq.settings!.switchAlertDay
-                  && checkWeekday(logseq.settings!.switchAlertDay, day) === true)
+                  && checkWeekday(logseq.settings!.switchAlertDay as string, day) === true)
                   //アラート日の場合
                   //dialog
                   await selectTemplateDialog(payload.uuid,
