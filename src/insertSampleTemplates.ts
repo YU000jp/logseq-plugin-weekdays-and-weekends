@@ -16,7 +16,7 @@ export function sampleTemplatesWeekdays(uuid): Promise<void> {
             properties: {
               template: "Journal",
               "template-including-parent": "false",
-              comment: t("Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a diary template."),
+              comment: t("Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a journal template."),
               "background-color": "yellow",
             },
             children: [
@@ -164,7 +164,7 @@ export function sampleTemplatesEachDays(uuid): Promise<void> {
             properties: {
               template: "Journal",
               "template-including-parent": "false",
-              comment: t("Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a diary template."),
+              comment: t("Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a journal template."),
               "background-color": "yellow",
             },
             children: [

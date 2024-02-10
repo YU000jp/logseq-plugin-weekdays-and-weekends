@@ -79,14 +79,6 @@ const main = async () => {
   //end
 
 
-
-
-  //TODO: 保留
-  logseq.Editor.registerSlashCommand("Add :Weekdays-renderer at Editing cursor", async () => {
-    logseq.Editor.insertAtEditingCursor(`{{renderer :Weekdays, TemplateName, Sat&Sun}} `)
-  })
-
-
   //renderer実行
   logseq.App.onTodayJournalCreated(() => setTimeout(() => logseq.Editor.exitEditingMode(), 100))
 
@@ -98,7 +90,9 @@ const main = async () => {
   logseq.onSettingsChanged(async (newSet: LSPluginBaseInfo['settings'], oldSet: LSPluginBaseInfo['settings']) => {
 
     if (processingOnSettingsChanged === false
-      && newSet && oldSet && newSet !== oldSet) {
+      && newSet
+      && oldSet
+      && newSet !== oldSet) {
       if (oldSet.selectPrivateDays !== true
         && newSet.selectPrivateDays === true) {
         processingOnSettingsChanged = true
