@@ -37,5 +37,6 @@
 1. 既存の各プラグイン [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)、[Side Block](https://github.com/YU000jp/logseq-plugin-side-block) との統合が可能です。
 1. Logseq標準の動的変数をサポートします。
 1. レンダラーを他のグラフの日誌テンプレートとして配置することもできますが、プラグインの設定はすべてのグラフで共有されることに注意してください。
+1. 今日より前の日付の場合は、日誌テンプレートが適用されないためレンダリングがおこなえません。その場合は、手動で通常どおりの手順でスラッシュコマンド「/template」を打ち、「Journal」を選択してください。
 
 <a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
