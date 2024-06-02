@@ -26,6 +26,7 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
   let rendering = "" //rendering flag
   if (rendering === slot) return
   rendering = slot//重複実行防止
+  logseq.Editor.exitEditingMode()
   const day: Date | null = await checkJournalsOrJournalSingle() //日誌だったらレンダリング実行
   if (template
     && weekdays

@@ -79,10 +79,6 @@ const main = async () => {
   //end
 
 
-  //renderer実行
-  logseq.App.onTodayJournalCreated(() => setTimeout(() => logseq.Editor.exitEditingMode(), 100))
-
-
   rendering()//end onMacroRendererSlotted
 
 
