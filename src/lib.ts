@@ -1,6 +1,5 @@
 import { t } from 'logseq-l10n'
 
-
 const getJournalDayDate = (str: string): Date => new Date(
   Number(str.slice(0, 4)), //year
   Number(str.slice(4, 6)) - 1, //month 0-11
@@ -16,6 +15,7 @@ export const checkJournalsOrJournalSingle = async (): Promise<Date | null> => {
   } else
     return new Date() //Journals
 }
+
 export const convertLanguageCodeToCountryCode = (languageCode: string): string => {
   switch (languageCode) {
     case "en":
@@ -60,6 +60,7 @@ export const convertLanguageCodeToCountryCode = (languageCode: string): string =
       return "US: United States of America"
   }
 }
+
 export async function insertTemplateBlock(blockUuid, template: string) {
   // @logseq/lib v0.0.15導入
   // ブロックではなく、テンプレートとして読み込む。SmartBlocksなどのプラグインも動作するようになる。Dynamic variablesも動作する
@@ -75,7 +76,8 @@ export async function insertTemplateBlock(blockUuid, template: string) {
       logseq.App.insertTemplate(newBlock.uuid, template).finally(() => {
         console.log(`Render insert template ${template}`)
         logseq.Editor.removeBlock(blockUuid)
-        setTimeout(() => logseq.Editor.exitEditingMode(), 100)
+        setTimeout(() =>
+          logseq.Editor.exitEditingMode(), 100)
       })
     }
   } else {
@@ -83,5 +85,48 @@ export async function insertTemplateBlock(blockUuid, template: string) {
     console.warn(`Template "${template}" not found.`)
   }
 
-  setTimeout(() => logseq.hideMainUI(), 200)
+  setTimeout(() =>
+    logseq.hideMainUI(), 200)
 }
+
+export const checkWeekday = (selectWeekday: string, day: Date): boolean => {
+  //曜日指定=ALL以外
+  const days = {
+    Sun: 0,
+    Mon: 1,
+    Tue: 2,
+    Wed: 3,
+    Thu: 4,
+    Fri: 5,
+    Sat: 6,
+  }
+  const dayArray = selectWeekday.split("&") // ["Sun", "Sat"]
+  const dayNumbers = dayArray.map(day => days[day]) // [0, 6]
+  const theDayNumber = day.getDay() // 0-6
+
+  if (dayNumbers.includes(theDayNumber))
+    return true //一致
+  else return false //一致しない
+}
+
+export const checkMatchDay = (array: [], today: Date): Boolean => {
+  if (!array) return false
+
+  const fullYear = today.getFullYear()
+  const month = today.getMonth() // +1しない
+  const day = today.getDate()
+  let check: Boolean = false
+
+  array.forEach((date) => {
+    const thisDate: Date = new Date(date)
+    if (thisDate.getFullYear() === fullYear
+      && thisDate.getMonth() === month
+      && thisDate.getDate() === day) {
+      // dateが今日の日付と一致する場合の処理
+      check = true
+      return true
+    }
+  })
+  return check
+}
+

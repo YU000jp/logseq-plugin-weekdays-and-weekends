@@ -1,6 +1,6 @@
 import Holidays from 'date-holidays'
 import { t } from 'logseq-l10n'
-import { checkJournalsOrJournalSingle, insertTemplateBlock } from './lib'
+import { checkJournalsOrJournalSingle, checkMatchDay, checkWeekday, insertTemplateBlock } from './lib'
 import { selectTemplateDialog } from './selectTemplateDialog'
 
 export const rendering = () => {
@@ -108,9 +108,10 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
                 await insertTemplateBlock(payload.uuid, setTemplate)
               }
           }
-          else if (weekdays === "ALL"
-            || checkWeekday(weekdays, day) === true)
-            await insertTemplateBlock(payload.uuid, template)
+          else
+            if (weekdays === "ALL"
+              || checkWeekday(weekdays, day) === true)
+              await insertTemplateBlock(payload.uuid, template)
 
     setTimeout(() => rendering = "", 1000)
     return
@@ -133,46 +134,3 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
   })
 
 }
-
-const checkWeekday = (selectWeekday: string, day: Date): boolean => {
-  //曜日指定=ALL以外
-  const days = {
-    Sun: 0,
-    Mon: 1,
-    Tue: 2,
-    Wed: 3,
-    Thu: 4,
-    Fri: 5,
-    Sat: 6,
-  }
-  const dayArray = selectWeekday.split("&") // ["Sun", "Sat"]
-  const dayNumbers = dayArray.map(day => days[day]) // [0, 6]
-  const theDayNumber = day.getDay() // 0-6
-
-  if (dayNumbers.includes(theDayNumber))
-    return true //一致
-  else return false //一致しない
-}
-
-
-const checkMatchDay = (array: [], today: Date): Boolean => {
-  if (!array) return false
-
-  const fullYear = today.getFullYear()
-  const month = today.getMonth() // +1しない
-  const day = today.getDate()
-  let check: Boolean = false
-
-  array.forEach((date) => {
-    const thisDate: Date = new Date(date)
-    if (thisDate.getFullYear() === fullYear
-      && thisDate.getMonth() === month
-      && thisDate.getDate() === day) {
-      // dateが今日の日付と一致する場合の処理
-      check = true
-      return true
-    }
-  })
-  return check
-}
-
