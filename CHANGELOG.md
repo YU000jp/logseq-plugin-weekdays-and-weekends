@@ -10,6 +10,18 @@
 
 * **Update:** plugin settings ([9143480](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/9143480beb88252bed21583ec269f9169916bdca))
 
+# [1.17.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.16.1...v1.17.0) (2024-06-02)
+
+
+### Bug Fixes
+
+* **bug:** Prevent unnecessary "onTodayJournalCreated()" callbacks ([e9eabe0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e9eabe0a4e55b7eb424d82acdc6379981f3cf02d))
+
+
+### Features
+
+* **Update:** plugin settings ([9143480](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/9143480beb88252bed21583ec269f9169916bdca))
+
 ## [1.16.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.16.0...v1.16.1) (2024-01-21)
 
 
