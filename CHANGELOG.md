@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.17.1...v1.17.2) (2024-06-02)
+
+
+### Bug Fixes
+
+* **bug:** Prevent unnecessary "onTodayJournalCreated()" callbacks ([1d3b442](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/1d3b442cf9b3a123b92a76039101a4ed13440950))
+
 # [1.17.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.16.1...v1.17.0) (2024-06-02)
 
 
