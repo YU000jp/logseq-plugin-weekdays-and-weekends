@@ -1,4 +1,4 @@
-# Logseq Plugin: More journal templates 🛌
+# Logseq プラグイン: More journal templates 🛌
 
 - 日誌テンプレートをレンダリングして、曜日ごとにテンプレートを設定するためのプラグインです。
 
