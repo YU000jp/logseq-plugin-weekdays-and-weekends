@@ -53,7 +53,6 @@
 
 - Document link
   1. [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
-  1. [@Ramses Oudt/ How to Set Up an Automated Daily Template in Logseq](https://thinkstack.club/how-to-set-up-an-automated-daily-template-in-logseq/)
 
 ## Prior art & Credit
 
