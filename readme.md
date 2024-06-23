@@ -49,7 +49,10 @@
    > Template gallery: [Template Gallery plugin](https://github.com/dangermccann/logseq-template-gallery)
 1. Support [Dynamic variables](https://mschmidtkorth.github.io/logseq-msk-docs/#/page/dynamic%20variables) of Logseq standard.
 1. Note: The plugin settings are shared across all graphs.
-1. If the date is before today, the journal template will not be loaded and rendering will not be possible. In that case, manually type the slash command `/template` as usual and select `Journal`.
+1. In Logseq core, If the date is before today, the journal template will not be loaded and rendering will not be possible.
+   - One of the following solutions is available.
+     1. Use "Completion of journal template" feature of [Default Template plugin](https://github.com/YU000jp/logseq-plugin-default-template)
+     1. Manually type the slash command `/template` as usual and select `Journal`.
 
 - Document link
   1. [templates (Logseq documents)](https://docs.logseq.com/#/page/templates)
