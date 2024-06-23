@@ -43,13 +43,18 @@
 
 ## 備考
 
-1. 日誌テンプレートが呼び出されたときに、レンダリングが実行されるには、プラグインがオンの状態である必要があります。
-   > Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
-1. 既存の各プラグイン [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)、[Side Block](https://github.com/YU000jp/logseq-plugin-side-block) との統合が可能です。Logseqの動的変数も動作します。
-1. プラグインの設定項目に関しては、グラフ毎ではなく全てのグラフ共通になっています。ご注意してください。
-1. 今日より前の日付の場合は、日誌テンプレートが適用されないためレンダリングがおこなえません。
-   - 次のいずれかの解決方法があります。
-     1. [Default Template プラグイン](https://github.com/YU000jp/logseq-plugin-default-template)のジャーナルテンプレート補完機能を使う
-     1. 手動にてスラッシュコマンド `/template`を打ち、ジャーナルテンプレートを選択する
+- 日誌テンプレートが呼び出されたときに、レンダリングが実行されるには、プラグインがオンの状態である必要があります。
+  > Logseq モバイル版の場合は、手動でテンプレートを呼び出してください。
+- プラグインの設定項目に関しては、グラフ毎ではなく全てのグラフ共通になっています。ご注意してください。
+- 今日より前の日付の場合は、日誌テンプレートが適用されないためレンダリングがおこなえません。
+  - 次のいずれかの解決方法があります。
+    1. [Default Template プラグイン](https://github.com/YU000jp/logseq-plugin-default-template)のジャーナルテンプレート補完機能を使う
+    1. 手動にてスラッシュコマンド `/template`を打ち、ジャーナルテンプレートを選択する
+- 既存の各プラグイン [Full House Templates](https://github.com/stdword/logseq13-full-house-plugin)、[powerblocks](https://github.com/hkgnp/logseq-powerblocks-plugin)、[SmartBlocks](https://github.com/sawhney17/logseq-smartblocks)、[Side Block](https://github.com/YU000jp/logseq-plugin-side-block) との統合が可能です。Logseqの動的変数も動作します。
+
+## クレジット
+
+- アイコン > [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
+- 製作者 > [@YU000jp](https://github.com/YU000jp)
 
 <a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
