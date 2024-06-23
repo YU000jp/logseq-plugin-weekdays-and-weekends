@@ -1,26 +1,35 @@
-[日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md)
-
 # Logseq Plugin: *More journal templates* 🛌
 
 - A plugin for rendering on the journal template and using templates for each day of the week.
 
-[![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
+<div align="right">
+
+[English](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)/[日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
 [![License](https://img.shields.io/github/license/YU000jp/logseq-plugin-weekdays-and-weekends?color=blue)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases) Published 2023/05/04
+[![Downloads](https://img.shields.io/github/downloads/YU000jp/logseq-plugin-weekdays-and-weekends/total.svg)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases) Published 2023/05/04 <a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
+</div>
 
 ---
 
 ## Overview
 
-- Place a renderer on the block within your journal template. The template functionality of this plugin is executed when the journal template is called.
+- In the journal template block, place the code for the "renderer" call.
+- The renderer is executed when the journal template is called. The template is then applied according to the conditions.
 
-1. Different templates for each day of the week
-1. Templates for weekdays and holidays
-1. Holiday alert (select template)
-1. Biweekly templates 
-   > Select a template at specific days of the week
-1. Preset alerts
-   > Select a template at the day such as personal leave or holiday work
+- Rendering the journal template
+  1. templates for each day of the week
+     - Monday template, Tuesday template .... Apply the template according to the day of the week, such as.
+
+### Optional functions
+
+- Configuration items in the plugin settings.
+  - It is possible to add modification operations at the time of rendering.
+  1. holiday settings.
+     > Select whether to use the template for holidays when they are public holidays.
+  1. bi-weekly function
+     > "On a given day of the week, select a template for that week" operation can be performed.
+  1. setting up holiday workdays and personal leave (annual leave)
+     > 'On a specific day of the week, select a template' operation
 
 ---
 
@@ -64,5 +73,3 @@
    1. [logseq-L10N](https://github.com/sethyuan/logseq-l10n)
 - Icon > [icooon-rainbow.com](https://icon-rainbow.com/%e3%82%a4%e3%83%93%e3%82%ad%e3%82%92%e3%81%8b%e3%81%84%e3%81%a6%e5%af%9d%e3%81%a6%e3%82%8b%e4%ba%ba%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3%e7%b4%a0%e6%9d%90/)
 - Author > [@YU000jp](https://github.com/YU000jp)
-
-<a href="https://www.buymeacoffee.com/yu000japan"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a pizza&emoji=🍕&slug=yu000japan&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" /></a>
