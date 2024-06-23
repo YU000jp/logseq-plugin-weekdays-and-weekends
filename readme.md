@@ -50,7 +50,7 @@
 
 ## Showcase / Questions / Ideas / Help
 
-> Go to the [discussion](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
+> Go to the [Discussions](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/discussions) tab to ask and find this kind of things.
 
 - Always turn on this plugin for execute rendering when journal template is called.
    > For Logseq mobile version, please manually call the template.
