@@ -27,7 +27,8 @@ export function sampleTemplatesWeekdays(uuid): Promise<void> {
                 content: ""
               }
             ],
-          }, {
+          },
+          {
             content: t("#### Main-Template > "),
             properties: {
               template: "Main-Template",

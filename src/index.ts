@@ -111,12 +111,67 @@ const main = async () => {
     key: "main", style: `
     body>div {
       &#root>div>main {
-          & article>div[data-id="${logseq.baseInfo.id}"] div.heading-item {
+          & article>div[data-id="${logseq.baseInfo.id}"] {
+            & div.heading-item {
               margin-top: 3em;
               border-top-width: 1px;
               padding-top: 1em;
-          }
-      }
+            }
+            & div.desc-item {
+
+              &[data-key="switchMainSub"]:has(input.form-checkbox:not(:checked))+div.desc-item[data-key="switchAlertDay"] {
+                  display: none;
+
+                  &+div.desc-item[data-key="switchMainTemplateName"] {
+                      display: none;
+
+                      &+div.desc-item[data-key="switchSubTemplateName"] {
+                          display: none;
+
+                          &+div.desc-item[data-key="switchSetTemplate"] {
+                              display: none;
+                          }
+                      }
+                  }
+              }
+
+              &[data-key="switchHolidays"]:has(input.form-checkbox:not(:checked))+div.desc-item[data-key="switchHolidaysTemplateName"] {
+                  display: none;
+
+                  &+div.desc-item[data-key="switchHolidaysCountry"] {
+                      display: none;
+
+                      &+div.desc-item[data-key="switchHolidaysState"] {
+                          display: none;
+
+                          &+div.desc-item[data-key="switchHolidaysRegion"] {
+                              display: none;
+                          }
+                      }
+                  }
+              }
+
+              &[data-key="switchPrivate"]:has(input.form-checkbox:not(:checked))+div.desc-item[data-key="selectPrivateDays"] {
+                  display: none;
+
+                  &+div.desc-item[data-key="switchPrivateTemplateName"] {
+                      display: none;
+                  }
+              }
+
+              &[data-key="switchWorkingOnHolidays"]:has(input.form-checkbox:not(:checked))+div.desc-item[data-key="selectWorkingOnHolidays"] {
+                  display: none;
+
+                  &+div.desc-item[data-key="selectWorkingOnHolidaysSetTemplate"] {
+                      display: none;
+
+                      &+div.desc-item[data-key="switchWorkingOnHolidaysTemplateName"] {
+                          display: none;
+                      }
+                  }
+              }
+            }
+          }     
 
       &[data-ref="${logseq.baseInfo.id}"] {
           & form.setDates {
