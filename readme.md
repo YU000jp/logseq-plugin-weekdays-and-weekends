@@ -2,6 +2,9 @@
 
 - A plugin for rendering on the journal template and using templates for each day of the week.
 
+> [!WARNING]
+This plugin does not work with Logseq db version.
+
 <div align="right">
 
 [English](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)/[日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)

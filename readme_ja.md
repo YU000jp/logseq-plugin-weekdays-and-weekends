@@ -2,6 +2,9 @@
 
 - 日誌テンプレートをレンダリングして、曜日ごとにテンプレートを設定するためのプラグインです。
 
+> [!WARNING]
+>このプラグインはLogseq dbバージョンでは動作しません。
+
 <div align="right">
 
 [English](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends)/[日本語](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/blob/main/readme_ja.md) [![latest release version](https://img.shields.io/github/v/release/YU000jp/logseq-plugin-weekdays-and-weekends)](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/releases)
