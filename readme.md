@@ -2,8 +2,8 @@
 
 - A plugin for rendering on the journal template and using templates for each day of the week.
 
-> [!WARNING]
-This plugin does not work with Logseq db version.
+> [!NOTE]
+This plugin works in Logseq db model. (md graph only)
 
 <div align="right">
 
