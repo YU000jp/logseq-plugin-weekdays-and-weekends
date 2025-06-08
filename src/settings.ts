@@ -9,7 +9,7 @@ import { supportedCountries } from './supportedCountries'
 // t() L10N framework
 //最終更新 2023/05/05
 // Sub Template settings
-const subTemplateSettings: SettingSchemaDesc[] = [
+const subTemplateSettings = (): SettingSchemaDesc[] => [
   {
     key: "",
     title: t("Check Wiki to setup"),
@@ -111,7 +111,7 @@ const holidaySettings = (ByLanguage: string): SettingSchemaDesc[] => [
 ]
 
 // Private holiday settings
-const privateHolidaySettings: SettingSchemaDesc[] = [
+const privateHolidaySettings = (): SettingSchemaDesc[] => [
   {
     key: "",
     title: t("[Option]") + " " + t("Private holiday (or annual leave)"),
@@ -143,7 +143,7 @@ const privateHolidaySettings: SettingSchemaDesc[] = [
 ]
 
 // Working-on-Holidays settings
-const workingOnHolidaysSettings: SettingSchemaDesc[] = [
+const workingOnHolidaysSettings = (): SettingSchemaDesc[] => [
   {
     key: "",
     title: t("[Option]") + " " + t("Working-on-Holidays"),
@@ -183,9 +183,9 @@ const workingOnHolidaysSettings: SettingSchemaDesc[] = [
 
 export const settingsTemplate = (ByLanguage: string, logseqVersionMd: boolean): SettingSchemaDesc[] => [
   ...holidaySettings(ByLanguage),
-  ...(logseqVersionMd ? subTemplateSettings : []),
-  ...(logseqVersionMd ? privateHolidaySettings : []),
-  ...(logseqVersionMd ? workingOnHolidaysSettings : [])
+  ...(logseqVersionMd ? subTemplateSettings() : []),
+  ...(logseqVersionMd ? privateHolidaySettings() : []),
+  ...(logseqVersionMd ? workingOnHolidaysSettings() : [])
 ]
 
 

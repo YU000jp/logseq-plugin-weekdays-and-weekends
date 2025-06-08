@@ -36,7 +36,7 @@
   "Private Days": "個人休暇日",
   "Private holiday (or annual leave)": "個人休暇日(年次休暇)",
   "Private holiday template name": "個人休暇日のテンプレート名",
-  "Remove dates before today.": "今日より前の日付を削除します。",
+  "Remove dates before today.": "今日より前の日付は削除されます。",
   "Replace `:default-templates {:journals \"Journal\"}` in the \"config.edn\" file. Rendering occurs when it is loaded as a journal template.": "「config.edn」ファイルの「:d efault-templates {:journals \"Journal\"}」を置き換えます。レンダリングは、日誌テンプレートとして読み込まれるときに発効します。",
   "Saved": "保存",
   "Select your country. If possible to set the State and Region, do so individually.": "国を選択します。都道府県と地域を設定できる場合は、個別に設定してください。(日本では設定不要です！)",
