@@ -51,10 +51,10 @@ const main = async () => {
 
   // // DBグラフチェック
   logseqDbGraph = await checkLogseqDbGraph()
-  // if (logseqDbGraph === true) {
-  //   // DBグラフには対応していない
-  //   return showDbGraphIncompatibilityMsg()
-  // }
+  if (logseqDbGraph === true) {
+    // DBグラフには対応していない
+    return showDbGraphIncompatibilityMsg()
+  }
 
   //100ms待つ
   await new Promise(resolve => setTimeout(resolve, 100))
@@ -62,9 +62,9 @@ const main = async () => {
   logseq.App.onCurrentGraphChanged(async () => {
     logseqDbGraph = await checkLogseqDbGraph()
     logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
-    // if (logseqDbGraph === true)
-    //   // DBグラフには対応していない
-    //   return showDbGraphIncompatibilityMsg()
+    if (logseqDbGraph === true)
+      // DBグラフには対応していない
+      return showDbGraphIncompatibilityMsg()
   })
 
   await l10nSetup({
