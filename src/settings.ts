@@ -8,7 +8,8 @@ import { supportedCountries } from './supportedCountries'
 //設定画面の文章変更時は、translations/ja.jsonも変更する (翻訳が反映されなくなる)
 // t() L10N framework
 //最終更新 2023/05/05
-export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
+// Sub Template settings
+const subTemplateSettings: SettingSchemaDesc[] = [
   {
     key: "",
     title: t("Check Wiki to setup"),
@@ -16,7 +17,6 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     description: t("https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/wiki/English-document"),
     default: "",
   },
-  //Sub Template
   {
     key: "",
     title: t("[Option]") + " " + t("Weekly sub template"),
@@ -32,7 +32,6 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     default: false,
   },
   {
-    // アラートの曜日にトリガーする
     key: "switchAlertDay",
     title: t("Alert on the specific day of the week"),
     type: "enum",
@@ -60,10 +59,12 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     type: "string",
     description: t("--No editing is needed. For editing manually."),
     default: "",
-  },
-  //holidays
+  }
+]
+
+// Holiday settings
+const holidaySettings = (ByLanguage: string): SettingSchemaDesc[] => [
   {
-    // 祝日にテンプレートを切り替える
     key: "",
     title: t("[Option]") + " " + t("Holidays-Template"),
     type: "heading",
@@ -106,10 +107,12 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     type: "string",
     description: t("2 or 3 character alphanumeric code or blank (default)"),
     default: "",
-  },
-  //Private holidays
+  }
+]
+
+// Private holiday settings
+const privateHolidaySettings: SettingSchemaDesc[] = [
   {
-    //個人休暇にテンプレートを切り替える
     key: "",
     title: t("[Option]") + " " + t("Private holiday (or annual leave)"),
     type: "heading",
@@ -136,8 +139,11 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     type: "string",
     description: "",
     default: "Holidays-Template",
-  },
-  //Working-on-Holidays
+  }
+]
+
+// Working-on-Holidays settings
+const workingOnHolidaysSettings: SettingSchemaDesc[] = [
   {
     key: "",
     title: t("[Option]") + " " + t("Working-on-Holidays"),
@@ -172,7 +178,14 @@ export const settingsTemplate = (ByLanguage: string): SettingSchemaDesc[] => [
     type: "string",
     description: t("If the above item is 'false'"),
     default: "Main-Template",
-  },
+  }
+]
+
+export const settingsTemplate = (ByLanguage: string, logseqVersionMd: boolean): SettingSchemaDesc[] => [
+  ...holidaySettings(ByLanguage),
+  ...(logseqVersionMd ? subTemplateSettings : []),
+  ...(logseqVersionMd ? privateHolidaySettings : []),
+  ...(logseqVersionMd ? workingOnHolidaysSettings : [])
 ]
 
 

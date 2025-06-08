@@ -2,6 +2,7 @@ import Holidays from 'date-holidays'
 import { t } from 'logseq-l10n'
 import { checkJournalsOrJournalSingle, checkMatchDay, checkWeekday, insertTemplateBlock } from './lib'
 import { selectTemplateDialog } from './selectTemplateDialog'
+import { booleanLogseqVersionMd } from '.'
 
 export const rendering = () => {
 
@@ -25,6 +26,7 @@ export const rendering = () => {
 const weekdaysRenderer = async (slot: string, payload: any, template: string, weekdays: string, hd: Holidays) => {
   let rendering = "" //rendering flag
   if (rendering === slot) return
+  const logseqVersionMd = booleanLogseqVersionMd() //logseq version check
   rendering = slot//重複実行防止
   logseq.Editor.exitEditingMode()
   const day: Date | null = await checkJournalsOrJournalSingle() //日誌だったらレンダリング実行
@@ -36,14 +38,14 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
     let isPrivate: Boolean = false
     let isWorkingOnHolidays: Boolean = false
 
-    if (logseq.settings!.switchWorkingOnHolidays === true
+    if ((logseq.settings!.switchWorkingOnHolidays === true && logseqVersionMd === true)
       && (logseq.settings!.switchWorkingOnHolidaysTemplateName
         || logseq.settings!.selectWorkingOnHolidaysSetTemplate === true)
       && logseq.settings!.workingOnHolidaysArray)
       isWorkingOnHolidays = checkMatchDay(logseq.settings!.workingOnHolidaysArray as [], day) as boolean
 
     if (isWorkingOnHolidays === false
-      && logseq.settings!.switchPrivate === true
+      && (logseq.settings!.switchPrivate === true && logseqVersionMd === true)
       && logseq.settings!.switchPrivateTemplateName
       && logseq.settings!.privateDaysArray)
       isPrivate = checkMatchDay(logseq.settings!.privateDaysArray as [], day) as boolean
@@ -84,7 +86,7 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
             logseq.settings!.switchHolidaysTemplateName,
             "")
         else
-          if (logseq.settings!.switchMainSub === true
+          if ((logseq.settings!.switchMainSub === true && logseqVersionMd === true)
             && logseq.settings!.switchMainTemplateName === template
             && logseq.settings!.switchSubTemplateName) { //Switch to Sub Template
             if (logseq.settings!.switchAlertDay
