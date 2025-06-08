@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.19.0...v1.19.1) (2025-06-08)
+
+
+### Bug Fixes
+
+* **bug:** plugin settings ([e6e0816](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/e6e08169cfba68db980a0b63e16ef3b06f0fa7fe))
+
 # [1.19.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.18.0...v1.19.0) (2025-06-08)
 
 
