@@ -29,10 +29,11 @@ This plugin works in Logseq db model. (md graph only)
   - It is possible to add modification operations at the time of rendering.
   1. holiday settings.
      > Select whether to use the template for holidays when they are public holidays.
-  1. bi-weekly function
-     > "On a given day of the week, select a template for that week" operation can be performed.
-  1. setting up holiday workdays and personal leave (annual leave)
-     > 'On a specific day of the week, select a template' operation
+  - ⚠️**Logseq File-based Model only**
+    1. bi-weekly function
+       > "On a given day of the week, select a template for that week" operation can be performed.
+    1. setting up holiday workdays and personal leave (annual leave)
+       > 'On a specific day of the week, select a template' operation
 
 ---
 
