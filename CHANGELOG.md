@@ -1,3 +1,11 @@
+# [1.19.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.18.0...v1.19.0) (2025-06-08)
+
+
+### Features
+
+* Some optional features are not available for Logseq MD model. ([135e3ba](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/135e3bab4baa7176f568ff053cdb092668918c33))
+* Support DB model (file-based graph only) [#39](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/issues/39) ([2932ae0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/2932ae07d0c27947cfd2155c21bfa602301c1564))
+
 # [1.18.0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.17.2...v1.18.0) (2024-07-06)
 
 
