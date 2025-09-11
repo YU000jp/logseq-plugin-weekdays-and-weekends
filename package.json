@@ -36,7 +36,7 @@
         "npx": "^10.2.2",
         "semantic-release": "^24.0.0",
         "typescript": "^5.4.5",
-        "vite": "^5.4.12",
+        "vite": "^5.4.20",
         "vite-plugin-logseq": "^1.1.2"
     },
     "config": {
