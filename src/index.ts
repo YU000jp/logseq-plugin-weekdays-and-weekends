@@ -46,14 +46,14 @@ const main = async () => {
     if (seq !== graphCheckSeq || result === null) return // 最新の切替のみ反映。検出失敗時は現状維持
     logseqDbGraph = result
     logseqVersionMd = !result //ファイルベースグラフ = !DBグラフ
+    if (pluginInitialized === true)
+      // グラフ種別に応じて設定項目の表示/非表示を更新するため設定スキーマを再適用
+      logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
     if (logseqDbGraph === true)
       // DBグラフには対応していない
       return showDbGraphIncompatibilityMsg()
     // ファイルグラフ
-    if (pluginInitialized === true)
-      // ファイルグラフ向け設定項目の表示を更新するため設定スキーマを再適用
-      logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
-    else
+    if (pluginInitialized === false)
       await initializePlugin() // DBグラフで起動していた場合の遅延初期化
   })
 
@@ -61,11 +61,20 @@ const main = async () => {
   logseqVersion = await fetchAppVersion()
 
   // グラフが読み込まれるまで待機(新規インストール直後など、ready時点ではグラフ未作成の場合があるため)
-  await waitGraphReady()
+  const graphReady = await waitGraphReady()
+  if (graphReady === false) {
+    // 待機してもグラフが読み込まれない場合は初期化せず、グラフ切替時の検出に委ねる
+    console.warn("weekdays-and-weekends: graph did not load in time; waiting for graph change")
+    return
+  }
 
   // DBグラフチェック(公式API。API非搭載の旧ホストで検出失敗した場合はファイルグラフ扱い)
-  logseqDbGraph = (await checkLogseqDbGraph()) === true
-  logseqVersionMd = !logseqDbGraph
+  const seq = ++graphCheckSeq
+  const result = await checkLogseqDbGraph()
+  if (seq === graphCheckSeq) { // 検出中にグラフ切替側の検出が先に反映済みなら上書きしない
+    logseqDbGraph = result === true
+    logseqVersionMd = !logseqDbGraph
+  }
   console.log(`weekdays-and-weekends: ${logseqDbGraph ? "DB graph" : "file graph"} detected. (Logseq ${logseqVersion})`)
 
   //100ms待つ
@@ -82,7 +91,8 @@ const main = async () => {
 
 // プラグインの初期化(ファイルグラフでのみ実行)
 const initializePlugin = async () => {
-  pluginInitialized = true //二重初期化防止
+  if (pluginInitialized === true) return //二重初期化防止
+  pluginInitialized = true
 
   await l10nSetup({
     builtinTranslations: {//Full translations
@@ -299,16 +309,18 @@ const fetchAppVersion = async (): Promise<string> => {
 
 // 現在のグラフが読み込まれるまで待機する(最大3秒)
 // ready直後にDemo DB等のグラフ作成が走る場合があり、未読み込み状態で判定すると誤検出するため
-const waitGraphReady = async (): Promise<void> => {
+// true = グラフ読み込み済み(またはAPI非搭載で待機不要)、false = タイムアウトで未読み込み
+const waitGraphReady = async (): Promise<boolean> => {
   for (let i = 0; i < 10; i++) {
     try {
       const graph = await (logseq.App as any).getCurrentGraph()
-      if (graph !== null && graph !== undefined) return // グラフ読み込み済み
+      if (graph !== null && graph !== undefined) return true // グラフ読み込み済み
     } catch {
-      return // API非搭載ホスト(0.10.x系)は待機不要
+      return true // API非搭載ホスト(0.10.x系)は待機不要
     }
     await new Promise(resolve => setTimeout(resolve, 300))
   }
+  return false
 }
 
 // DBグラフかどうかのチェック DBグラフだけtrue(検出失敗時はnull)
@@ -316,8 +328,11 @@ const waitGraphReady = async (): Promise<void> => {
 const checkLogseqDbGraph = async (): Promise<boolean | null> => {
   try {
     const value = await (logseq.App as any).checkCurrentIsDbGraph()
-    return typeof value === "boolean" ? value : null
-  } catch {
+    if (typeof value === "boolean") return value
+    console.warn("weekdays-and-weekends: checkCurrentIsDbGraph returned non-boolean", value)
+    return null
+  } catch (e) {
+    console.warn("weekdays-and-weekends: checkCurrentIsDbGraph failed", e)
     return null // API非搭載ホスト = DBグラフを開けない旧アプリ
   }
 }
