@@ -60,6 +60,9 @@ const main = async () => {
   // アプリのバージョン取得(診断用。グラフ種別の判定には使わない)
   logseqVersion = await fetchAppVersion()
 
+  // グラフが読み込まれるまで待機(新規インストール直後など、ready時点ではグラフ未作成の場合があるため)
+  await waitGraphReady()
+
   // DBグラフチェック(公式API。API非搭載の旧ホストで検出失敗した場合はファイルグラフ扱い)
   logseqDbGraph = (await checkLogseqDbGraph()) === true
   logseqVersionMd = !logseqDbGraph
@@ -292,6 +295,20 @@ const fetchAppVersion = async (): Promise<string> => {
   //  0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
   const m = version.match(/(\d+)\.(\d+)\.(\d+)/)
   return m ? m[0] : version
+}
+
+// 現在のグラフが読み込まれるまで待機する(最大3秒)
+// ready直後にDemo DB等のグラフ作成が走る場合があり、未読み込み状態で判定すると誤検出するため
+const waitGraphReady = async (): Promise<void> => {
+  for (let i = 0; i < 10; i++) {
+    try {
+      const graph = await (logseq.App as any).getCurrentGraph()
+      if (graph !== null && graph !== undefined) return // グラフ読み込み済み
+    } catch {
+      return // API非搭載ホスト(0.10.x系)は待機不要
+    }
+    await new Promise(resolve => setTimeout(resolve, 300))
+  }
 }
 
 // DBグラフかどうかのチェック DBグラフだけtrue(検出失敗時はnull)
