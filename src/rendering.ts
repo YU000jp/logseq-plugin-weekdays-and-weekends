@@ -2,7 +2,7 @@ import Holidays from 'date-holidays'
 import { t } from 'logseq-l10n'
 import { checkJournalsOrJournalSingle, checkMatchDay, checkWeekday, insertTemplateBlock } from './lib'
 import { selectTemplateDialog } from './selectTemplateDialog'
-import { booleanLogseqVersionMd } from '.'
+import { booleanDbGraph, booleanLogseqVersionMd } from '.'
 
 export const rendering = () => {
 
@@ -15,6 +15,7 @@ export const rendering = () => {
 
   //rendering
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
+    if (booleanDbGraph() === true) return //DBグラフでは動作しない
     const [type, template, weekdays] = payload.arguments as string[]
 
     if (type === ":Weekdays")  //:weekdays
