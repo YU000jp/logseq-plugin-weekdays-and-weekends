@@ -43,7 +43,7 @@ const main = async () => {
   // DBグラフで起動した後にファイルグラフへ切り替えた場合でも初期化できるようにする)
   logseq.App.onCurrentGraphChanged(async () => {
     const result = await detectGraphType()
-    if (result === null) return // 検出失敗時は現状維持
+    if (result === null) return // グラフ種別不明(検出失敗)時は現状維持
     if (pluginInitialized === true)
       // グラフ種別に応じて設定項目の表示/非表示を更新するため設定スキーマを再適用
       logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
@@ -58,19 +58,22 @@ const main = async () => {
   // アプリのバージョン取得(診断用。グラフ種別の判定には使わない)
   logseqVersion = await fetchAppVersion()
 
-  // グラフが読み込まれるまで待機(新規インストール直後など、ready時点ではグラフ未作成の場合があるため)
-  const graphReady = await waitGraphReady(10, 300) // 最大3秒
-  if (graphReady === false) {
-    // 待機してもグラフが読み込まれない場合は初期化せず待機する。
-    // onCurrentGraphChangedが初回グラフ読み込みで発火しない環境に備え、
-    // バックグラウンドでも最大60秒ポーリングして検出・初期化を試みる
-    console.warn("weekdays-and-weekends: graph did not load in time; keep polling in background")
-    void (async () => {
-      if (await waitGraphReady(40, 1500) === false) return // 最大60秒でも読み込まれなければ諦める
-      if (pluginInitialized === true || graphAppliedSeq > 0) return // 検出・初期化済み
-      await detectGraphAndInit()
-    })()
-    return
+  // DB系世代では新規インストール直後など ready時点でグラフ未作成の場合があるため、
+  // グラフが読み込まれるまで待機する(旧ホストは常にファイルグラフなので待機不要)
+  if (isDbEraApp() === true) {
+    const graphReady = await waitGraphReady(10, 300) // 最大3秒
+    if (graphReady === false) {
+      // 待機してもグラフが読み込まれない場合は初期化せず待機する。
+      // onCurrentGraphChangedが初回グラフ読み込みで発火しない環境に備え、
+      // バックグラウンドでも最大60秒ポーリングして検出・初期化を試みる
+      console.warn("weekdays-and-weekends: graph did not load in time; keep polling in background")
+      void (async () => {
+        if (await waitGraphReady(40, 1500) === false) return // 最大60秒でも読み込まれなければ諦める
+        if (pluginInitialized === true || graphAppliedSeq > 0) return // 検出・初期化済み
+        await detectGraphAndInit()
+      })()
+      return
+    }
   }
 
   await detectGraphAndInit()
@@ -80,11 +83,8 @@ const main = async () => {
 
 // グラフ種別を検出し、ファイルグラフなら初期化・DBグラフなら警告する
 const detectGraphAndInit = async () => {
-  // DBグラフチェック(公式API。API非搭載の旧ホストで検出失敗した場合はファイルグラフ扱い)
-  const result = await detectGraphType()
-  if (result === null && graphAppliedSeq === 0)
-    // checkCurrentIsDbGraph非搭載の旧ホスト(0.10.x系)= DBグラフを開けない
-    logseqVersionMd = true
+  // 検出失敗(DB系世代ホスト)時はグラフ種別不明のまま初期化しない
+  if (await detectGraphType() === null) return
   console.log(`weekdays-and-weekends: ${logseqDbGraph ? "DB graph" : "file graph"} detected. (Logseq ${logseqVersion})`)
 
   //100ms待つ
@@ -332,12 +332,32 @@ const waitGraphReady = async (retries: number, intervalMs: number): Promise<bool
   return false
 }
 
+// アプリ世代の判定(バージョン解析のみ。グラフ種別の判定には使わない)
+// DB系世代 = major>=2 or 0.11.x。バージョン不明は保守的にDB系世代扱い
+const isDbEraApp = (): boolean => {
+  const m = logseqVersion.match(/(\d+)\.(\d+)\.(\d+)/)
+  if (m === null) return true
+  return Number(m[1]) >= 2 || (Number(m[1]) === 0 && Number(m[2]) >= 11)
+}
+
 // DBグラフかどうかを検出し、最新の成功した検出の結果のみをフラグへ反映する
-// 失敗した検出(null)は反映連番を進めないため、別の成功した検出の結果を無効化しない
+// 連番は「開始(graphCheckSeq)」と「反映(graphAppliedSeq)」に分け、
+// 判定不能の検出は反映連番を進めないため、別の成功した検出の結果を無効化しない
 const detectGraphType = async (): Promise<boolean | null> => {
   const seq = ++graphCheckSeq
   const result = await checkLogseqDbGraph()
-  if (result === null || seq <= graphAppliedSeq) return result // 検出失敗 or より新しい検出が反映済み
+  if (result === null) {
+    // DB系世代ホストでの検出失敗はグラフ種別不明としてnullを返す
+    if (isDbEraApp() === true) return null
+    // checkCurrentIsDbGraph非搭載の旧ホスト(0.10.x/OG 1.x系)= DBグラフを開けない → ファイルグラフ扱い
+    if (seq > graphAppliedSeq) {
+      graphAppliedSeq = seq
+      logseqDbGraph = false
+      logseqVersionMd = true
+    }
+    return false
+  }
+  if (seq <= graphAppliedSeq) return result // より新しい検出が反映済み
   graphAppliedSeq = seq
   logseqDbGraph = result
   logseqVersionMd = !result //ファイルベースグラフ = !DBグラフ
@@ -353,8 +373,10 @@ const checkLogseqDbGraph = async (): Promise<boolean | null> => {
     console.warn("weekdays-and-weekends: checkCurrentIsDbGraph returned non-boolean", value)
     return null
   } catch (e) {
-    console.warn("weekdays-and-weekends: checkCurrentIsDbGraph failed", e)
-    return null // API非搭載ホスト = DBグラフを開けない旧アプリ
+    // API非搭載の旧ホスト(0.10.x/OG 1.x系)では必ず失敗するため警告しない
+    if (isDbEraApp() === true)
+      console.warn("weekdays-and-weekends: checkCurrentIsDbGraph failed", e)
+    return null
   }
 }
 
