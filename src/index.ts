@@ -1,5 +1,5 @@
 import '@logseq/libs' //https://plugins-doc.logseq.com/
-import { AppInfo, AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
+import { AppUserConfigs, LSPluginBaseInfo } from '@logseq/libs/dist/LSPlugin.user'
 import { setup as l10nSetup, t, } from "logseq-l10n" //https://github.com/sethyuan/logseq-l10n
 import { sampleTemplatesEachDays, sampleTemplatesWeekdays } from './insertSampleTemplates'
 import { checkJournalsOrJournalSingle, convertLanguageCodeToCountryCode } from './lib'
@@ -26,46 +26,63 @@ import uk from "./translations/uk.json"
 import zhCN from "./translations/zh-CN.json"
 import zhHant from "./translations/zh-Hant.json"
 export const key = "selectTemplateDialog"
-let logseqVersion: string = "" //バージョンチェック用
-let logseqVersionMd: boolean = false //バージョンチェック用
-let logseqDbGraph: boolean = false
-// export const getLogseqVersion = () => logseqVersion //バージョンチェック用
-export const booleanLogseqVersionMd = () => logseqVersionMd //バージョンチェック用
-export const booleanDbGraph = () => logseqDbGraph //バージョンチェック用
+let logseqVersion: string = "" //バージョン情報(診断用)
+let logseqVersionMd: boolean = false //現在のグラフがファイルベースかどうか(= !DBグラフ)
+let logseqDbGraph: boolean = false //現在のグラフがDBグラフかどうか
+let pluginInitialized: boolean = false //初期化済みか(DBグラフ起動→ファイルグラフ切替での遅延初期化用)
+let graphCheckSeq: number = 0 //グラフ切替検出の連番(最新の検出のみ反映するため)
+// export const getLogseqVersion = () => logseqVersion //バージョン情報
+export const booleanLogseqVersionMd = () => logseqVersionMd //現在のグラフがファイルベースかどうか
+export const booleanDbGraph = () => logseqDbGraph //現在のグラフがDBグラフかどうか
 
 
 const main = async () => {
 
-  // バージョンチェック
-  logseqVersionMd = await checkLogseqVersion()
-  // console.log("logseq version: ", logseqVersion)
-  // console.log("logseq version is MD model: ", logseqVersionMd)
-  // 100ms待つ
-  await new Promise(resolve => setTimeout(resolve, 100))
+  // グラフ切替時の再検出(起動時のDBグラフ判定ゲートより先に登録し、
+  // DBグラフで起動した後にファイルグラフへ切り替えた場合でも初期化できるようにする)
+  logseq.App.onCurrentGraphChanged(async () => {
+    const seq = ++graphCheckSeq
+    const result = await checkLogseqDbGraph()
+    if (seq !== graphCheckSeq || result === null) return // 最新の切替のみ反映。検出失敗時は現状維持
+    logseqDbGraph = result
+    logseqVersionMd = !result //ファイルベースグラフ = !DBグラフ
+    if (logseqDbGraph === true)
+      // DBグラフには対応していない
+      return showDbGraphIncompatibilityMsg()
+    // ファイルグラフ
+    if (pluginInitialized === true)
+      // ファイルグラフ向け設定項目の表示を更新するため設定スキーマを再適用
+      logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
+    else
+      await initializePlugin() // DBグラフで起動していた場合の遅延初期化
+  })
 
-  // if (logseqVersionMd === false) {
-  //   // Logseq ver 0.10.*以下にしか対応していない
-  //   logseq.UI.showMsg("The ’More journal Template’ plugin only supports Logseq ver 0.10.* and below.", "warning", { timeout: 5000 })
-  //   return
-  // }
+  // アプリのバージョン取得(診断用。グラフ種別の判定には使わない)
+  logseqVersion = await fetchAppVersion()
 
-  // // DBグラフチェック
-  logseqDbGraph = await checkLogseqDbGraph()
-  if (logseqDbGraph === true) {
-    // DBグラフには対応していない
-    return showDbGraphIncompatibilityMsg()
-  }
+  // グラフが読み込まれるまで待機(新規インストール直後など、ready時点ではグラフ未作成の場合があるため)
+  await waitGraphReady()
+
+  // DBグラフチェック(公式API。API非搭載の旧ホストで検出失敗した場合はファイルグラフ扱い)
+  logseqDbGraph = (await checkLogseqDbGraph()) === true
+  logseqVersionMd = !logseqDbGraph
+  console.log(`weekdays-and-weekends: ${logseqDbGraph ? "DB graph" : "file graph"} detected. (Logseq ${logseqVersion})`)
 
   //100ms待つ
   await new Promise(resolve => setTimeout(resolve, 100))
 
-  logseq.App.onCurrentGraphChanged(async () => {
-    logseqDbGraph = await checkLogseqDbGraph()
-    logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
-    if (logseqDbGraph === true)
-      // DBグラフには対応していない
-      return showDbGraphIncompatibilityMsg()
-  })
+  if (logseqDbGraph === true)
+    // DBグラフには対応していない
+    return showDbGraphIncompatibilityMsg()
+
+  await initializePlugin()
+
+}/* end_main */
+
+
+// プラグインの初期化(ファイルグラフでのみ実行)
+const initializePlugin = async () => {
+  pluginInitialized = true //二重初期化防止
 
   await l10nSetup({
     builtinTranslations: {//Full translations
@@ -89,7 +106,7 @@ const main = async () => {
   /* slash command */
   let processingSlashCommand = false
   logseq.Editor.registerSlashCommand("Create sample for weekdays renderer", async ({ uuid }) => {
-    if (processingSlashCommand) return
+    if (processingSlashCommand || logseqDbGraph === true) return //DBグラフでは動作しない
     const check: Date | null = await checkJournalsOrJournalSingle()//日誌では許可しない
     if (check) {
       logseq.UI.showMsg(t("The current page is journals."), "error")
@@ -103,7 +120,7 @@ const main = async () => {
 
   /* slash command */
   logseq.Editor.registerSlashCommand("Create sample for each days renderer", async ({ uuid }) => {
-    if (processingSlashCommand) return
+    if (processingSlashCommand || logseqDbGraph === true) return //DBグラフでは動作しない
     const check: Date | null = await checkJournalsOrJournalSingle()//日誌では許可しない
     if (check) {
       logseq.UI.showMsg(t("The current page is journals."), "error")
@@ -268,42 +285,45 @@ const main = async () => {
   // toolbar button
   setToolbar()
 
-}/* end_main */
+}/* end_initializePlugin */
 
 
-// MDモデルかどうかのチェック DBモデルはfalse
-const checkLogseqVersion = async (): Promise<boolean> => {
-  const logseqInfo = (await logseq.App.getInfo("version")) as AppInfo | any
+// アプリのバージョンを取得(診断用。グラフ種別の判定には使わない)
+const fetchAppVersion = async (): Promise<string> => {
+  const raw = await logseq.App.getInfo("version")
+  const version = typeof raw === "string" ? raw : "0.0.0"
   //  0.11.0もしくは0.11.0-alpha+nightly.20250427のような形式なので、先頭の3つの数値(1桁、2桁、2桁)を正規表現で取得する
-  const version = logseqInfo.match(/(\d+)\.(\d+)\.(\d+)/)
-  if (version) {
-    logseqVersion = version[0] //バージョンを取得
-    // console.log("logseq version: ", logseqVersion)
-
-    // もし バージョンが0.10.*系やそれ以下ならば、logseqVersionMdをtrueにする
-    if (logseqVersion.match(/0\.([0-9]|10)\.\d+/)) {
-      logseqVersionMd = true
-      // console.log("logseq version is 0.10.* or lower")
-      return true
-    } else logseqVersionMd = false
-  } else logseqVersion = "0.0.0"
-  return false
+  const m = version.match(/(\d+)\.(\d+)\.(\d+)/)
+  return m ? m[0] : version
 }
-// DBグラフかどうかのチェック
-// DBグラフかどうかのチェック DBグラフだけtrue
-const checkLogseqDbGraph = async (): Promise<boolean> => {
-  const element = parent.document.querySelector(
-    "div.block-tags",
-  ) as HTMLDivElement | null // ページ内にClassタグが存在する  WARN:: ※DOM変更の可能性に注意
-  if (element) {
-    logseqDbGraph = true
-    return true
-  } else logseqDbGraph = false
-  return false
+
+// 現在のグラフが読み込まれるまで待機する(最大3秒)
+// ready直後にDemo DB等のグラフ作成が走る場合があり、未読み込み状態で判定すると誤検出するため
+const waitGraphReady = async (): Promise<void> => {
+  for (let i = 0; i < 10; i++) {
+    try {
+      const graph = await (logseq.App as any).getCurrentGraph()
+      if (graph !== null && graph !== undefined) return // グラフ読み込み済み
+    } catch {
+      return // API非搭載ホスト(0.10.x系)は待機不要
+    }
+    await new Promise(resolve => setTimeout(resolve, 300))
+  }
+}
+
+// DBグラフかどうかのチェック DBグラフだけtrue(検出失敗時はnull)
+// 公式APIを使用。0.10.x以前のホストには未実装でrejectする → null
+const checkLogseqDbGraph = async (): Promise<boolean | null> => {
+  try {
+    const value = await (logseq.App as any).checkCurrentIsDbGraph()
+    return typeof value === "boolean" ? value : null
+  } catch {
+    return null // API非搭載ホスト = DBグラフを開けない旧アプリ
+  }
 }
 
 const showDbGraphIncompatibilityMsg = () => {
-  logseq.UI.showMsg("The ’More journal templates’ plugin not supports Logseq DB graph.", "warning", { timeout: 5000 })
+  logseq.UI.showMsg("The ’More journal templates’ plugin does not support Logseq DB graph.", "warning", { timeout: 5000 })
   return
 }
 
