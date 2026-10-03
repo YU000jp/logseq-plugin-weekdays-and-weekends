@@ -30,7 +30,8 @@ let logseqVersion: string = "" //バージョン情報(診断用)
 let logseqVersionMd: boolean = false //現在のグラフがファイルベースかどうか(= !DBグラフ)
 let logseqDbGraph: boolean = false //現在のグラフがDBグラフかどうか
 let pluginInitialized: boolean = false //初期化済みか(DBグラフ起動→ファイルグラフ切替での遅延初期化用)
-let graphCheckSeq: number = 0 //グラフ切替検出の連番(最新の検出のみ反映するため)
+let graphCheckSeq: number = 0 //開始した検出の連番
+let graphAppliedSeq: number = 0 //結果を反映した検出の連番(成功した検出のみ進める)
 // export const getLogseqVersion = () => logseqVersion //バージョン情報
 export const booleanLogseqVersionMd = () => logseqVersionMd //現在のグラフがファイルベースかどうか
 export const booleanDbGraph = () => logseqDbGraph //現在のグラフがDBグラフかどうか
@@ -41,11 +42,8 @@ const main = async () => {
   // グラフ切替時の再検出(起動時のDBグラフ判定ゲートより先に登録し、
   // DBグラフで起動した後にファイルグラフへ切り替えた場合でも初期化できるようにする)
   logseq.App.onCurrentGraphChanged(async () => {
-    const seq = ++graphCheckSeq
-    const result = await checkLogseqDbGraph()
-    if (seq !== graphCheckSeq || result === null) return // 最新の切替のみ反映。検出失敗時は現状維持
-    logseqDbGraph = result
-    logseqVersionMd = !result //ファイルベースグラフ = !DBグラフ
+    const result = await detectGraphType()
+    if (result === null) return // グラフ種別不明(検出失敗)時は現状維持
     if (pluginInitialized === true)
       // グラフ種別に応じて設定項目の表示/非表示を更新するため設定スキーマを再適用
       logseq.useSettingsSchema(settingsTemplate("US: United States of America", logseqVersionMd))
@@ -60,21 +58,33 @@ const main = async () => {
   // アプリのバージョン取得(診断用。グラフ種別の判定には使わない)
   logseqVersion = await fetchAppVersion()
 
-  // グラフが読み込まれるまで待機(新規インストール直後など、ready時点ではグラフ未作成の場合があるため)
-  const graphReady = await waitGraphReady()
-  if (graphReady === false) {
-    // 待機してもグラフが読み込まれない場合は初期化せず、グラフ切替時の検出に委ねる
-    console.warn("weekdays-and-weekends: graph did not load in time; waiting for graph change")
-    return
+  // DB系世代では新規インストール直後など ready時点でグラフ未作成の場合があるため、
+  // グラフが読み込まれるまで待機する(旧ホストは常にファイルグラフなので待機不要)
+  if (isDbEraApp() === true) {
+    const graphReady = await waitGraphReady(10, 300) // 最大3秒
+    if (graphReady === false) {
+      // 待機してもグラフが読み込まれない場合は初期化せず待機する。
+      // onCurrentGraphChangedが初回グラフ読み込みで発火しない環境に備え、
+      // バックグラウンドでも最大60秒ポーリングして検出・初期化を試みる
+      console.warn("weekdays-and-weekends: graph did not load in time; keep polling in background")
+      void (async () => {
+        if (await waitGraphReady(40, 1500) === false) return // 最大60秒でも読み込まれなければ諦める
+        if (pluginInitialized === true || graphAppliedSeq > 0) return // 検出・初期化済み
+        await detectGraphAndInit()
+      })()
+      return
+    }
   }
 
-  // DBグラフチェック(公式API。API非搭載の旧ホストで検出失敗した場合はファイルグラフ扱い)
-  const seq = ++graphCheckSeq
-  const result = await checkLogseqDbGraph()
-  if (seq === graphCheckSeq) { // 検出中にグラフ切替側の検出が先に反映済みなら上書きしない
-    logseqDbGraph = result === true
-    logseqVersionMd = !logseqDbGraph
-  }
+  await detectGraphAndInit()
+
+}/* end_main */
+
+
+// グラフ種別を検出し、ファイルグラフなら初期化・DBグラフなら警告する
+const detectGraphAndInit = async () => {
+  // 検出失敗(DB系世代ホスト)時はグラフ種別不明のまま初期化しない
+  if (await detectGraphType() === null) return
   console.log(`weekdays-and-weekends: ${logseqDbGraph ? "DB graph" : "file graph"} detected. (Logseq ${logseqVersion})`)
 
   //100ms待つ
@@ -85,8 +95,7 @@ const main = async () => {
     return showDbGraphIncompatibilityMsg()
 
   await initializePlugin()
-
-}/* end_main */
+}
 
 
 // プラグインの初期化(ファイルグラフでのみ実行)
@@ -307,20 +316,52 @@ const fetchAppVersion = async (): Promise<string> => {
   return m ? m[0] : version
 }
 
-// 現在のグラフが読み込まれるまで待機する(最大3秒)
+// 現在のグラフが読み込まれるまで待機する(retries回 × intervalMs)
 // ready直後にDemo DB等のグラフ作成が走る場合があり、未読み込み状態で判定すると誤検出するため
 // true = グラフ読み込み済み(またはAPI非搭載で待機不要)、false = タイムアウトで未読み込み
-const waitGraphReady = async (): Promise<boolean> => {
-  for (let i = 0; i < 10; i++) {
+const waitGraphReady = async (retries: number, intervalMs: number): Promise<boolean> => {
+  for (let i = 0; i < retries; i++) {
     try {
       const graph = await (logseq.App as any).getCurrentGraph()
       if (graph !== null && graph !== undefined) return true // グラフ読み込み済み
     } catch {
       return true // API非搭載ホスト(0.10.x系)は待機不要
     }
-    await new Promise(resolve => setTimeout(resolve, 300))
+    await new Promise(resolve => setTimeout(resolve, intervalMs))
   }
   return false
+}
+
+// アプリ世代の判定(バージョン解析のみ。グラフ種別の判定には使わない)
+// DB系世代 = major>=2 or 0.11.x。バージョン不明は保守的にDB系世代扱い
+const isDbEraApp = (): boolean => {
+  const m = logseqVersion.match(/(\d+)\.(\d+)\.(\d+)/)
+  if (m === null) return true
+  return Number(m[1]) >= 2 || (Number(m[1]) === 0 && Number(m[2]) >= 11)
+}
+
+// DBグラフかどうかを検出し、最新の成功した検出の結果のみをフラグへ反映する
+// 連番は「開始(graphCheckSeq)」と「反映(graphAppliedSeq)」に分け、
+// 判定不能の検出は反映連番を進めないため、別の成功した検出の結果を無効化しない
+const detectGraphType = async (): Promise<boolean | null> => {
+  const seq = ++graphCheckSeq
+  const result = await checkLogseqDbGraph()
+  if (result === null) {
+    // DB系世代ホストでの検出失敗はグラフ種別不明としてnullを返す
+    if (isDbEraApp() === true) return null
+    // checkCurrentIsDbGraph非搭載の旧ホスト(0.10.x/OG 1.x系)= DBグラフを開けない → ファイルグラフ扱い
+    if (seq > graphAppliedSeq) {
+      graphAppliedSeq = seq
+      logseqDbGraph = false
+      logseqVersionMd = true
+    }
+    return false
+  }
+  if (seq <= graphAppliedSeq) return result // より新しい検出が反映済み
+  graphAppliedSeq = seq
+  logseqDbGraph = result
+  logseqVersionMd = !result //ファイルベースグラフ = !DBグラフ
+  return result
 }
 
 // DBグラフかどうかのチェック DBグラフだけtrue(検出失敗時はnull)
@@ -332,8 +373,10 @@ const checkLogseqDbGraph = async (): Promise<boolean | null> => {
     console.warn("weekdays-and-weekends: checkCurrentIsDbGraph returned non-boolean", value)
     return null
   } catch (e) {
-    console.warn("weekdays-and-weekends: checkCurrentIsDbGraph failed", e)
-    return null // API非搭載ホスト = DBグラフを開けない旧アプリ
+    // API非搭載の旧ホスト(0.10.x/OG 1.x系)では必ず失敗するため警告しない
+    if (isDbEraApp() === true)
+      console.warn("weekdays-and-weekends: checkCurrentIsDbGraph failed", e)
+    return null
   }
 }
 
