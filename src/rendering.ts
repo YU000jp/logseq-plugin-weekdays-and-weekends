@@ -6,12 +6,8 @@ import { booleanDbGraph, booleanLogseqVersionMd } from '.'
 
 export const rendering = () => {
 
-  // 祝日ライブラリ初期化
+  // 祝日ライブラリ(国/州/地域はレンダリング実行時の設定で初期化する)
   const hd = new Holidays()
-  hd.init((logseq.settings!.switchHolidaysCountry as string).split(":")[0],
-    logseq.settings!.switchHolidaysState as string,
-    logseq.settings!.switchHolidaysRegion as string,
-    { types: ["public"] })
 
   //rendering
   logseq.App.onMacroRendererSlotted(async ({ slot, payload }) => {
@@ -34,6 +30,12 @@ const weekdaysRenderer = async (slot: string, payload: any, template: string, we
   if (template
     && weekdays
     && day) {
+
+    // 設定変更やグラフ切替に追随するため、実行時の設定で祝日ライブラリを初期化し直す
+    hd.init((logseq.settings!.switchHolidaysCountry as string).split(":")[0],
+      logseq.settings!.switchHolidaysState as string,
+      logseq.settings!.switchHolidaysRegion as string,
+      { types: ["public"] })
 
     let isHoliday = ""
     let isPrivate: Boolean = false
