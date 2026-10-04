@@ -1,3 +1,14 @@
+## [1.19.2](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.19.1...v1.19.2) (2026-10-04)
+
+
+### Bug Fixes
+
+* DBグラフ判定を公式APIに置き換え、グラフ種別とファイルグラフ判定を分離 ([f6ec070](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/f6ec070e09e742626a0034bd7300c3aef30f861f))
+* Devin Review指摘への対応(検出競合・未読み込み・設定表示・祝日判定) ([0ddbee5](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/0ddbee55a464768a2169f39daadd762a48e4abeb))
+* Devin Review指摘への対応(検出連番の分離・バックグラウンド再試行) ([27e8db6](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/27e8db6c3c66c9a506bf398a9ac217bed38129ec))
+* 初回起動時にグラフ未読み込みで誤検出する競合を修正 ([61c1bf0](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/61c1bf0001bc1277e66f3d5c0f51096d98d2b129))
+* 旧ホストではグラフ待機をスキップし、検出失敗時の判定をアプリ世代で分岐 ([30bd50a](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/commit/30bd50a63a38be05656c655670afaa16a0429715))
+
 ## [1.19.1](https://github.com/YU000jp/logseq-plugin-weekdays-and-weekends/compare/v1.19.0...v1.19.1) (2025-06-08)
 
 
